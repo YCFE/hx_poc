@@ -1,14 +1,9 @@
 <template>
   <div id="app">
-    Hello {{name}}
+    Hello
     <child></child>
   </div>
 </template>
-
-<style lang="less" scoped>
-  @import '~common/css/base.less';
-
-</style>
 
 <script>
   import { mapState } from 'vuex';
@@ -21,7 +16,7 @@
     },
     data() {
       return {
-        name: '<%=pageName%>',
+
       }
     },
     mounted() {
@@ -30,3 +25,8 @@
   }
 
 </script>
+
+<style lang="less" scoped>
+  @import '~common/css/base.less';
+
+</style>
