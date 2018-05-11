@@ -67,10 +67,10 @@
       }
     },
     mounted() {
-      let h = document.documentElement.clientHeight - 8;
+      /* let h = document.documentElement.clientHeight - 8;
       document.getElementsByTagName('body')[0].style.height = h+'px';
       document.getElementsByTagName('body')[0].style.margin = 0;
-      document.getElementsByTagName('body')[0].style.backgroundColor = '#efeff4';
+      document.getElementsByTagName('body')[0].style.backgroundColor = '#efeff4'; */
     }
   }
 

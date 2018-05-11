@@ -28,5 +28,7 @@
 
 <style lang="less">
   @import '~common/css/base.less';
-
+  body{
+    background: #efeff4;
+  }
 </style>
