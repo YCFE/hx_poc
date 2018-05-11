@@ -48,6 +48,10 @@
       "check-accounts/check-reunite": {
         "entry": "./src/pages/check-accounts/check-reunite/index.js",
         "template": "./src/layout/check-accounts/check-reunite.html"
+      },
+      "check-accounts/reconciliation": {
+        "entry": "./src/pages/check-accounts/reconciliation/index.js",
+        "template": "./src/layout/check-accounts/reconciliation.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
