@@ -65,12 +65,6 @@
   .footer-dis{
     margin-top: 32px;
   }
-  .text-color{
-    color:#A1A1A1;
-  }
-  .currency-distance{
-    margin-left:58px;
-  }
   .footer-button{
     text-align: center;
   }
@@ -78,20 +72,6 @@
     height: 100px;
     background-color: #E14535;
     border-radius: 10px;
-  }
-  .border-set{
-    border-bottom: 1px solid #DDDDDD;
-  }
-  .special{
-    margin-top: 50px;
-  }
-  button {
-    padding:0px;
-    border:0px;
-    color:#fff;
-  }
-  .button-left{
-    margin-right:50px;
   }
   .page{
     margin:57px 0px 29px 15px
