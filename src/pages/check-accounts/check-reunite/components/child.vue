@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <section class="list-wrap">
+  <div class="list-wrap">
+    <section>
       <ul style="position: relative" class="border-set" v-for="(item, index) in options">
         <li class="li-dis  special">
           <span class="text-color title-special">账号</span>
@@ -23,8 +23,10 @@
         </li>
       </ul>
     </section>
-    <footer class="footer-dis list-wrap">
-      <div class="text-dis text-color  record-distance">共12条记录，显示7至9条记录</div>
+    <footer class="footer-dis">
+      <div class="text-dis text-color  record-distance">
+        共{{totalNumber}}条记录， 显示{{fromNumber}}至{{toNumber}}条记录
+      </div>
       <div class="text-color page">
         <span>上一页</span>
         <span>/</span>
@@ -47,10 +49,13 @@
     data() {
       return {
         name: 'child',
+        totalNumber: 20,
+        fromNumber: 7,
+        toNumber: 9,
         options: [
-          { accountNumber: '11020110446967', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'},
-          { accountNumber: '11020110446967', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'},
-          { accountNumber: '11020110446967', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'}
+          { accountNumber: '11020110446851', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'},
+          { accountNumber: '11020110446968', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'},
+          { accountNumber: '11020110446569', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'}
         ]
       };
     },
