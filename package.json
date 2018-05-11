@@ -44,6 +44,10 @@
       "check-accounts/input": {
         "entry": "./src/pages/check-accounts/input/index.js",
         "template": "./src/layout/check-accounts/input.html"
+      },
+      "check-accounts/check-reunite": {
+        "entry": "./src/pages/check-accounts/check-reunite/index.js",
+        "template": "./src/layout/check-accounts/check-reunite.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
