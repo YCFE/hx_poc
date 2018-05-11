@@ -8,13 +8,6 @@
           <i class="search-arrow"></i>
         </span>
       </div>
-      <div class="search-item clearfix" @click="openTypeSelect">
-        <span class="search-label fl">对账情况</span>
-        <span class="search-value fr">
-          <span class="search-text">{{search.type}}</span>
-          <i class="search-arrow"></i>
-        </span>
-      </div>
       <div class="search-item clearfix" @click="openStartPicker">
         <span class="search-label fl">开始日期</span>
         <span class="search-value fr">
@@ -40,12 +33,6 @@
       ref="select"
       :slots="slots"
       :on-change="onAccountSelectChange">
-    </u-select>
-
-    <u-select
-      ref="type"
-      :slots="slots2"
-      :on-change="onTypeSelectChange">
     </u-select>
 
     <mt-datetime-picker
@@ -77,7 +64,7 @@ const startDate = new Date();
 startDate.setMonth(startDate.getMonth() - 6);
 
 export default {
-  name: 'accountSearch',
+  name: 'inputSearch',
   components: {
     uSelect
   },
@@ -98,9 +85,6 @@ export default {
           values: ['全部', '6226****3381', '6226****8624', '6226****4675']
         }
       ],
-      slots2: [{
-        values: ['全部', '未对账', '已对账']
-      }],
       startDate: startDate,
       endDate: new Date()
     };
@@ -111,12 +95,6 @@ export default {
     },
     onAccountSelectChange(v) {
       this.search.account = v[0];
-    },
-    openTypeSelect() {
-      this.$refs.type.open();
-    },
-    onTypeSelectChange(v) {
-      this.search.type = v[0];
     },
     openStartPicker() {
       this.$refs.startPicker.open();

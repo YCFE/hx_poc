@@ -28,6 +28,10 @@
       "check-accounts/search": {
         "entry": "./src/pages/check-accounts/search/index.js",
         "template": "./src/layout/check-accounts/search.html"
+      },
+      "check-accounts/input-search": {
+        "entry": "./src/pages/check-accounts/input-search/index.js",
+        "template": "./src/layout/check-accounts/input-search.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
