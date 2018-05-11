@@ -28,6 +28,18 @@
       "check-accounts/check-lists": {
         "entry": "./src/pages/check-accounts/check-lists/index.js",
         "template": "./src/layout/check-accounts/check-lists.html"
+      },
+      "check-accounts/detail": {
+        "entry": "./src/pages/check-accounts/detail/index.js",
+        "template": "./src/layout/check-accounts/detail.html"
+      },
+      "check-accounts/search": {
+        "entry": "./src/pages/check-accounts/search/index.js",
+        "template": "./src/layout/check-accounts/search.html"
+      },
+      "check-accounts/input-search": {
+        "entry": "./src/pages/check-accounts/input-search/index.js",
+        "template": "./src/layout/check-accounts/input-search.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",

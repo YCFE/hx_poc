@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    Hello
+    <!-- Hello {{name}} -->
     <child></child>
   </div>
 </template>
@@ -10,13 +10,13 @@
   import child from './child';
 
   export default {
-    name: '<%=pageName%>',
+    name: 'accountDetail',
     components: {
       child
     },
     data() {
       return {
-
+        name: 'accountDetail',
       }
     },
     mounted() {
