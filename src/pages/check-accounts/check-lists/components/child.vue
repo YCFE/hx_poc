@@ -37,91 +37,6 @@
   </div>
 </template>
 
-<style lang="less" scoped>
-  .list-wrap{
-    margin: 0 28px;
-  }
-  div,span,li,input {
-    font-size: 28px;
-    color:#333333;
-  }
-  button {
-    padding:0px;
-    border:0px;
-    color:#fff;
-  }
-  html, ul, li {
-    list-style: none;
-    padding:0px;
-    margin:0px;
-  }
-  input {
-    border:0px;
-  }
-  .title-special{
-    margin-right: 125px;
-  }
-  .li-dis-special{
-    margin-bottom:40px;
-  }
-  .li-dis{
-    margin-bottom:20px;
-  }
-  .title{
-    margin-right: 62px;
-  }
-  .div-size{
-    height: 30px;
-  }
-  .position-set {
-    position: absolute;
-    top: 0px;
-    right: 28px;
-  }
-  .button-position-set{
-    position: absolute;
-    bottom: 36px;
-    right: 0;
-  }
-  .button-size{
-    height: 100px;
-    width:320px;
-    background-color: #E14535;
-    border-radius: 10px;
-    margin: 10px 0px 10px 0px;
-  }
-  .border-set{
-    border-bottom: 1px solid #DDDDDD;
-  }
-  .special{
-    margin-top: 50px;
-  }
-  .footer-dis{
-    margin-top: 32px;
-  }
-  .text-dis{
-    margin-bottom: 32px;
-  }
-  .text-color{
-    color:#A1A1A1;
-  }
-  .button-detail{
-    width: 102px;
-    height: 54px;
-    background-color: #E14535;
-    border-radius: 2px;
-  }
-  .button-left{
-    margin-right:50px;
-  }
-  .currency-distance{
-    margin-left:58px;
-  }
-  .footer-button{
-    text-align: center;
-  }
-</style>
-
 <script>
   export default {
     name: 'child',
@@ -141,3 +56,49 @@
   };
 
 </script>
+
+<style lang="less" scoped>
+  .footer-dis{
+    margin-top: 32px;
+  }
+  .text-dis{
+    margin-bottom: 32px;
+  }
+  .text-color{
+    color:#A1A1A1;
+  }
+  .button-detail{
+    width: 102px;
+    height: 54px;
+    background-color: #E14535;
+    border-radius: 2px;
+  }
+
+  .currency-distance{
+    margin-left:58px;
+  }
+  .footer-button{
+    text-align: center;
+  }
+  .button-size{
+    height: 100px;
+    width:320px;
+    background-color: #E14535;
+    border-radius: 10px;
+    margin: 10px 0px 10px 0px;
+  }
+  .border-set{
+    border-bottom: 1px solid #DDDDDD;
+  }
+  .special{
+    margin-top: 50px;
+  }
+  button {
+    padding:0px;
+    border:0px;
+    color:#fff;
+  }
+  .button-left{
+    margin-right:50px;
+  }
+</style>
