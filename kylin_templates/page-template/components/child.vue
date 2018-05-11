@@ -4,10 +4,6 @@
   </div>
 </template>
 
-<style lang="less">
-
-</style>
-
 <script>
 
   export default {
@@ -23,3 +19,7 @@
   }
 
 </script>
+
+<style lang="less">
+
+</style>
