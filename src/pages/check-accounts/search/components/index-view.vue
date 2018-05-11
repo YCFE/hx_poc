@@ -1,10 +1,17 @@
 <template>
   <div id="app">
     <div class="search-box">
-      <div class="search-item clearfix" @click="openUSelect">
+      <div class="search-item clearfix" @click="openAccountSelect">
         <span class="search-label fl">账号</span>
         <span class="search-value fr">
           <span class="search-text">{{search.account}}</span>
+          <i class="search-arrow"></i>
+        </span>
+      </div>
+      <div class="search-item clearfix" @click="openTypeSelect">
+        <span class="search-label fl">对账情况</span>
+        <span class="search-value fr">
+          <span class="search-text">{{search.type}}</span>
           <i class="search-arrow"></i>
         </span>
       </div>
@@ -32,7 +39,13 @@
     <u-select
       ref="select"
       :slots="slots"
-      :on-change="onUSelectChange">
+      :on-change="onAccountSelectChange">
+    </u-select>
+
+    <u-select
+      ref="type"
+      :slots="slots2"
+      :on-change="onTypeSelectChange">
     </u-select>
 
     <mt-datetime-picker
@@ -56,110 +69,125 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-  import uSelect from 'common/components/u-select';
-  import child from './child';
+import { mapState } from 'vuex';
+import uSelect from 'common/components/u-select';
+import child from './child';
 
-  const startDate = new Date();
+const startDate = new Date();
 
-  startDate.setMonth(startDate.getMonth() -6);
+startDate.setMonth(startDate.getMonth() - 6);
 
-  export default {
-    name: 'accountSearch',
-    components: {
-      child
-    },
-    data() {
-      return {
-        search: {
-          account: '全部',
-          startDate: '',
-          endDate: ''
-        },
-        value: {
-          startDate: '',
-          endDate: ''
-        },
-        slots: [{
+export default {
+  name: 'accountSearch',
+  components: {
+    child
+  },
+  data() {
+    return {
+      search: {
+        account: '全部',
+        type: '全部',
+        startDate: '',
+        endDate: ''
+      },
+      value: {
+        startDate: '',
+        endDate: ''
+      },
+      slots: [
+        {
           values: ['全部', '6226****3381', '6226****8624', '6226****4675']
-        }],
-        startDate: startDate,
-        endDate: new Date()
-      }
+        }
+      ],
+      slots2: [{
+        values: ['全部', '未对账', '已对账']
+      }],
+      startDate: startDate,
+      endDate: new Date()
+    };
+  },
+  components: {
+    uSelect
+  },
+  methods: {
+    openAccountSelect() {
+      this.$refs.select.open();
     },
-    components: {
-      uSelect
+    onAccountSelectChange(v) {
+      this.search.account = v[0];
     },
-    methods: {
-      openUSelect() {
-        this.$refs.select.open();
-      },
-      onUSelectChange(v) {
-        this.search.account = v[0];
-      },
-      openStartPicker() {
-        this.$refs.startPicker.open();
-      },
-      openEndPicker() {
-        this.$refs.endPicker.open();
-      },
-      setStartDate(date) {
-        const { search, value } = this;
-        value.startDate = date;
-        search.startDate = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
-      },
-      setEndDate(date) {
-        const { search, value } = this;
-        value.endDate = date;
-        search.endDate = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
-      }
+    openTypeSelect() {
+      this.$refs.type.open();
     },
-    mounted() {
-      const date = new Date();
-      this.setStartDate(date);
-      this.setEndDate(date);
+    onTypeSelectChange(v) {
+      this.search.type = v[0];
+    },
+    openStartPicker() {
+      this.$refs.startPicker.open();
+    },
+    openEndPicker() {
+      this.$refs.endPicker.open();
+    },
+    setStartDate(date) {
+      const { search, value } = this;
+      value.startDate = date;
+      search.startDate = `${date.getFullYear()}年${date.getMonth() +
+        1}月${date.getDate()}日`;
+    },
+    setEndDate(date) {
+      const { search, value } = this;
+      value.endDate = date;
+      search.endDate = `${date.getFullYear()}年${date.getMonth() +
+        1}月${date.getDate()}日`;
     }
+  },
+  mounted() {
+    const date = new Date();
+    this.setStartDate(date);
+    this.setEndDate(date);
   }
-
+};
 </script>
 
 <style lang="less">
-  @import '~common/css/base.less';
+@import '~common/css/base.less';
 
-  .search-box{
-    margin: 0 30px;
-  }
-  .search-item{
-    padding: 36px 0;
-    color: #333;
-    font-size: 30px;
-    border-bottom: 1px #ddd solid;
-  }
-  .search-label{
-    margin-top: 4px;
-  }
-  .search-arrow{
-    width: 15px;
-    height: 31px;
-    margin-left: 30px;
-    background: url(../imgs/arrow.png) no-repeat;
-    background-size: contain;
-  }
-  .search-text,.search-arrow, .search-calendar {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .search-calendar{
-    width: 38px;
-    height: 40px;
-    margin-left: 16px;
-    background: url(../imgs/calendar.png) no-repeat;
-    background-size: contain;
-  }
-  .calendar-text{
-    color: #999;
-  }
-  .search-button{
-    margin-top: 136px;
-  }
+.search-box {
+  margin: 0 30px;
+}
+.search-item {
+  padding: 36px 0;
+  color: #333;
+  font-size: 30px;
+  border-bottom: 1px #ddd solid;
+}
+.search-label {
+  margin-top: 4px;
+}
+.search-arrow {
+  width: 15px;
+  height: 31px;
+  margin-left: 30px;
+  background: url(../imgs/arrow.png) no-repeat;
+  background-size: contain;
+}
+.search-text,
+.search-arrow,
+.search-calendar {
+  display: inline-block;
+  vertical-align: middle;
+}
+.search-calendar {
+  width: 38px;
+  height: 40px;
+  margin-left: 16px;
+  background: url(../imgs/calendar.png) no-repeat;
+  background-size: contain;
+}
+.calendar-text {
+  color: #999;
+}
+.search-button {
+  margin-top: 136px;
+}
 </style>

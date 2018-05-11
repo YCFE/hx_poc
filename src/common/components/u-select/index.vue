@@ -14,7 +14,7 @@ export default {
     return {
       popupVisible: false,
       values: ''
-    }
+    };
   },
   props: {
     slots: Array,
@@ -35,7 +35,7 @@ export default {
       this.popupVisible = false;
     }
   }
-}
+};
 </script>
 
 <style>
@@ -45,10 +45,10 @@ export default {
 </style>
 
 <style lang="less" scoped>
-.mint-select-header{
+.mint-select-header {
   padding: 12px 0;
   border: 1px #eee solid;
-  button{
+  button {
     width: 50%;
     font-size: 16px;
     color: #26a2ff;
