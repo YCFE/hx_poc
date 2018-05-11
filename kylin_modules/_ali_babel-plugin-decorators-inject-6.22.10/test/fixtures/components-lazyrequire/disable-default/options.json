@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    ["../../../../", {
+      "className": "Component",
+      "propertyName": "Property",
+      "propertyIgnoreName": "PropertyIgnore",
+      "componentsPropertyName": "components"
+    }],
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-es2015-modules-commonjs"
+  ]
+}

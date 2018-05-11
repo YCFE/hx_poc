@@ -1,0 +1,51 @@
+{
+    "name": "@ali/vue-pre-loader",
+    "version": "0.3.2",
+    "description": "",
+    "main": "lib/index.js",
+    "scripts": {
+        "build": "rm -rf lib && babel src --out-dir lib --copy-files",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "xingyu.xxy",
+    "license": "UNLICENSED",
+    "peerDependencies": {
+        "webpack": "^1 || ^2"
+    },
+    "dependencies": {
+        "de-indent": "^1.0.2",
+        "hash-sum": "^1.0.2",
+        "loader-utils": "^1.1.0",
+        "lru-cache": "^4.1.1",
+        "postcss": "^6.0.8",
+        "postcss-load-config": "^1.2.0",
+        "resolve": "^1.4.0",
+        "source-map": "^0.5.6"
+    },
+    "publishConfig": {
+        "registry": "http://registry.npm.alibaba-inc.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@gitlab.alipay-inc.com:vue-component/vue-pre-loader.git"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.24.1",
+        "babel-core": "^6.25.0",
+        "babel-plugin-add-module-exports": "^0.2.1",
+        "babel-preset-es2015-node4": "^2.1.1",
+        "babel-preset-stage-0": "^6.24.1"
+    },
+    "babel": {
+        "presets": [
+            "stage-0",
+            "es2015-node4"
+        ],
+        "plugins": [
+            "add-module-exports"
+        ]
+    },
+    "files": [
+        "lib"
+    ]
+}

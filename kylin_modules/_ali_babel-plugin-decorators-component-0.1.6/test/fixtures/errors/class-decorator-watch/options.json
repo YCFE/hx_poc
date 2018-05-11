@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    ["../../../../node_modules/@ali/babel-plugin-decorators-inject/", {
+      "className": "Component",
+      "propertyName": "Property",
+      "propertyIgnoreName": "PropertyIgnore"
+    }],
+    ["../../../../src/", {}],
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-es2015-modules-commonjs"
+  ],
+  "throws": "@Watch decorator should not be used with other decorators [Property]"
+}

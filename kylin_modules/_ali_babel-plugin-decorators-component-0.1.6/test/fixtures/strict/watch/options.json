@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    ["../../../../node_modules/@ali/babel-plugin-decorators-inject/", {
+      "className": "Component",
+      "propertyName": "Property",
+      "propertyIgnoreName": "PropertyIgnore"
+    }],
+    ["../../../../src/", {
+      "strict": true
+    }],
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-es2015-modules-commonjs"
+  ],
+  "throws": "ClassProperty \"watch\" is deprecated. please use @Watch Decorator to decorate ClassMethod instead."
+}
