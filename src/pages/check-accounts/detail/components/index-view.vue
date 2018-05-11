@@ -10,13 +10,13 @@
   import child from './child';
 
   export default {
-    name: 'accountIndex',
+    name: 'accountDetail',
     components: {
       child
     },
     data() {
       return {
-        name: '111',
+        name: 'accountDetail',
       }
     },
     mounted() {
