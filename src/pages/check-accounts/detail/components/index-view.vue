@@ -26,7 +26,7 @@
 
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @import '~common/css/base.less';
 
 </style>
