@@ -17,7 +17,7 @@
           <span class="text-color title">对账结果</span>
           <span>{{item.checkResult}}</span>
         </li>
-        <li class="border_none li-dis-special">
+        <li class="li-dis-special">
           <span class="text-color title">复核结果</span>
           <span>{{item.result}}</span>
         </li>

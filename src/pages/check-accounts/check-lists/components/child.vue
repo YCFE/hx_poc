@@ -17,11 +17,11 @@
           <span class="text-color title">账户余额</span>
           <span>{{item.accountBalance}}</span>
         </li>
-        <li class="border_none li-dis">
+        <li class="li-dis">
           <span class="text-color title">余额日期</span>
           <span>{{item.date}}</span>
         </li>
-        <li class="border_none li-dis-special">
+        <li class="li-dis-special">
           <span class="text-color title">余额状态</span>
           <span>{{item.state}}</span>
         </li>
