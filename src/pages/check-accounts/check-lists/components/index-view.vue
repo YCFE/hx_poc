@@ -4,11 +4,6 @@
   </div>
 </template>
 
-<style lang="less" scoped>
-  @import '~common/css/base.less';
-
-</style>
-
 <script>
   import { mapState } from 'vuex';
   import child from './child';
@@ -28,3 +23,8 @@
     }
   };
 </script>
+
+<style lang="less">
+  @import '~common/css/base.less';
+
+</style>

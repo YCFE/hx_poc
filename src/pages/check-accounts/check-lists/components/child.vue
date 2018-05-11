@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section>
+    <section class="list-wrap">
       <ul style="position: relative" class="border-set" v-for="(item, index) in options">
         <li class="li-dis  special">
           <span class="text-color title-special">账号</span>
@@ -30,7 +30,7 @@
     </section>
     <footer class="footer-dis">
       <div class="text-dis text-color" style="text-align: center;">共12条记录，显示7至9条记录</div>
-      <div>
+      <div class="footer-button">
         <button class="button-size button-left">上一页</button><button class="button-size button-dis">下一页</button>
       </div>
     </footer>
@@ -38,6 +38,9 @@
 </template>
 
 <style lang="less" scoped>
+  .list-wrap{
+    margin: 0 28px;
+  }
   div,span,li,input {
     font-size: 28px;
     color:#333333;
@@ -78,7 +81,7 @@
   .button-position-set{
     position: absolute;
     bottom: 36px;
-    right: 30px;
+    right: 0;
   }
   .button-size{
     height: 100px;
@@ -113,6 +116,9 @@
   }
   .currency-distance{
     margin-left:58px;
+  }
+  .footer-button{
+    text-align: center;
   }
 </style>
 
