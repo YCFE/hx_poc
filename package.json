@@ -24,6 +24,10 @@
       "check-accounts/index": {
         "entry": "./src/pages/check-accounts/index/index.js",
         "template": "./src/layout/check-accounts/index.html"
+      },
+      "check-accounts/search": {
+        "entry": "./src/pages/check-accounts/search/index.js",
+        "template": "./src/layout/check-accounts/search.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
