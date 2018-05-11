@@ -40,6 +40,10 @@
       "check-accounts/input-search": {
         "entry": "./src/pages/check-accounts/input-search/index.js",
         "template": "./src/layout/check-accounts/input-search.html"
+      },
+      "check-accounts/input": {
+        "entry": "./src/pages/check-accounts/input/index.js",
+        "template": "./src/layout/check-accounts/input.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
