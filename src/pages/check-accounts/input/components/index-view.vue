@@ -77,7 +77,7 @@
         }
 
         const r2 = this.options.some(obj => {
-          return obj.state !== '' && obj.reason === '';
+          return obj.state === '余额不符' && obj.reason === '';
         });
 
         if(r2) {
