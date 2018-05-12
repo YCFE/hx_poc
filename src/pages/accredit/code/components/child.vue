@@ -8,7 +8,11 @@
         <li class="code-distance" style="position: relative">
           <span>验证码</span>
           <input class="input-distance" type="text" placeholder="请输入"/>
-          <button class="btn btn-code code-button-position">获取验证码</button>
+          <!--<button class="btn btn-code code-button-position">获取验证码</button>-->
+          <countdown
+            :second="10"
+            @click.native="runTimer"
+            ref="timer"></countdown>
         </li>
         <li class="password">
           <span class="">授权密码</span>
@@ -25,18 +29,26 @@
 </template>
 
 <script>
-
+  import countdown from 'common/components/countdown';
   export default {
     name: 'child',
     data() {
       return {
         name: 'child'
-      }
+      };
+    },
+    components: {
+      countdown
     },
     mounted() {
 
+    },
+    methods: {
+      runTimer() {
+        this.$refs.timer.run();
+      }
     }
-  }
+  };
 
 </script>
 
