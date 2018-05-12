@@ -15,9 +15,9 @@
         </li>
       </ul>
     </section>
-    <footer class="footer-dis">
-      <div class="footer-button">
-        <button class="button-size button-dis btn">提交</button>
+    <footer>
+      <div>
+        <button class="button-size btn">提交</button>
       </div>
     </footer>
   </div>
