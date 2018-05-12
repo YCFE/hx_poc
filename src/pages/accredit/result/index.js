@@ -3,7 +3,7 @@ import Vue from 'vue';
 import MintUI from 'mint-ui';
 import FastClick from 'fastclick';
 import IndexView from './components/index-view.vue';
-import store from './store/index';
+import store from './store';
 
 Vue.use(MintUI);
 FastClick.attach(document.body);
