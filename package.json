@@ -68,6 +68,10 @@
       "accredit/transfer": {
         "entry": "./src/pages/accredit/transfer/index.js",
         "template": "./src/layout/accredit/transfer.html"
+      },
+      "accredit/code": {
+        "entry": "./src/pages/accredit/code/index.js",
+        "template": "./src/layout/accredit/code.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
