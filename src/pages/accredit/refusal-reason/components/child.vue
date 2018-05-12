@@ -1,0 +1,99 @@
+<template>
+  <div class="list-wrap">
+    <section>
+      <ul>
+        <li class="reason-dis test" style="position: relative">
+          <span class="reason-text-distance">拒绝原因</span>
+          <input class="" type="text" placeholder="请选择拒绝原因"/>
+          <span class="i-img arrow-position"></span>
+          <span class="pencil pencil-position"></span>
+        </li>
+        <li class="reason-dis password" style="position: relative">
+          <span class="reason-text-distance">授权密码</span>
+          <input type="text" placeholder="请输入授权密码">
+          <span class="i-img arrow-position-special"></span>
+        </li>
+      </ul>
+    </section>
+    <footer class="footer-dis">
+      <div class="footer-button">
+        <button class="button-size button-dis btn">提交</button>
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script>
+
+  export default {
+    name: 'child',
+    data() {
+      return {
+        name: 'child'
+      }
+    },
+    mounted() {
+
+    }
+  }
+
+</script>
+
+<style lang="less" scoped>
+  .list-wrap{
+    span{
+      color: #333333;
+    }
+    .test{
+      margin-top:40px;
+    }
+    .pencil{
+      background-image: url('~common/img/pencil.gif');
+      background-size: 24px 35px;
+      background-repeat: no-repeat;
+      width: 24px;
+      height: 35px;
+      display: inline-block;
+      margin-left:34px;
+    }
+    .pencil-position{
+      position: absolute;
+      top:0px;
+      right:12px;
+    }
+    .arrow-position{
+      position: absolute;
+      top:0px;
+      right:70px;
+    }
+    .arrow-position-special{
+      position: absolute;
+      right:12px;
+      top:0px;
+    }
+    .i-img{
+      background-image: url('~common/img/arrow.png');
+      background-size: 15px 30px;
+      background-repeat: no-repeat;
+      width: 15px;
+      height: 30px;
+      display: inline-block;
+    }
+    .reason-dis{
+      padding-bottom: 24px;
+      border-bottom: 1px solid #DDDDDD;
+      margin-bottom: 67px;
+    }
+    .reason-text-distance{
+      margin-right:80px;
+    }
+    .password{
+      margin-bottom: 140px;
+    }
+    .button-size{
+      height: 100px;
+      background-color: #E14535;
+      border-radius: 10px;
+    }
+  }
+</style>

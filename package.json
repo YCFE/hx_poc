@@ -60,6 +60,10 @@
       "accredit/result": {
         "entry": "./src/pages/accredit/result/index.js",
         "template": "./src/layout/accredit/result.html"
+      },
+      "accredit/refusal-reason": {
+        "entry": "./src/pages/accredit/refusal-reason/index.js",
+        "template": "./src/layout/accredit/refusal-reason.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
