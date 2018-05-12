@@ -48,6 +48,10 @@
       "check-accounts/check-reunite": {
         "entry": "./src/pages/check-accounts/check-reunite/index.js",
         "template": "./src/layout/check-accounts/check-reunite.html"
+      },
+      "check-accounts/refusal-reason": {
+        "entry": "./src/pages/check-accounts/refusal-reason/index.js",
+        "template": "./src/layout/check-accounts/refusal-reason.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
