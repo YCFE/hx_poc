@@ -64,6 +64,10 @@
       "accredit/refusal-reason": {
         "entry": "./src/pages/accredit/refusal-reason/index.js",
         "template": "./src/layout/accredit/refusal-reason.html"
+      },
+      "accredit/transfer": {
+        "entry": "./src/pages/accredit/transfer/index.js",
+        "template": "./src/layout/accredit/transfer.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
