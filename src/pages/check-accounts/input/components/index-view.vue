@@ -28,7 +28,7 @@
           </mt-radio>
         </li>
         <li>
-          <input class="reason-input" type="text" v-if="item.state === '余额不符'" placeholder="请输入余额不符原因">
+          <input class="reason-input" type="text" v-if="item.state === '余额不符'" v-model="item.reason" placeholder="请输入余额不符原因">
         </li>
       </ul>
     </section>
@@ -44,24 +44,55 @@
       </span>
     </div>
     <div class="input-button">
-      <button class="btn btn-primary">确认对账</button>
+      <button class="btn btn-primary" @click="doSubmit">确认对账</button>
     </div>
   </div>
 </template>
 
 <script>
   import { mapState } from 'vuex';
+  import { MessageBox } from 'mint-ui';
 
   export default {
     name: 'accountInput',
     data() {
       return {
         options: [
-          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '' },
-          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '' },
-          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '' },
+          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '', reason: '' },
+          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '', reason: '' },
+          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '', reason: '' },
         ],
 
+      }
+    },
+    methods: {
+      checkSubmit() {
+        const r = this.options.some(obj => {
+          return obj.state === ''
+        });
+
+        if(r) {
+          MessageBox('提示', '请选择余额是否相符');
+          return false;
+        }
+
+        const r2 = this.options.some(obj => {
+          return obj.state !== '' && obj.reason === '';
+        });
+
+        if(r2) {
+          MessageBox('提示', '请输入余额不符原因');
+          return false;
+        }
+
+        return true;
+
+      },
+      doSubmit() {
+        if(!this.checkSubmit()) {
+          return;
+        }
+        alert(1)
       }
     },
     mounted() {
