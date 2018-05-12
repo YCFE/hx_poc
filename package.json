@@ -68,6 +68,10 @@
       "accredit/code": {
         "entry": "./src/pages/accredit/code/index.js",
         "template": "./src/layout/accredit/code.html"
+      },
+      "check-accounts/result": {
+        "entry": "./src/pages/check-accounts/result/index.js",
+        "template": "./src/layout/check-accounts/result.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",

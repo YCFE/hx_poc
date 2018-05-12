@@ -25,7 +25,7 @@
         </span>
       </div>
       <div class="search-button">
-        <button class="btn btn-primary">查询</button>
+        <button class="btn btn-primary" @click="doSearch">查询</button>
       </div>
     </div>
 
@@ -113,6 +113,11 @@ export default {
       value.endDate = date;
       search.endDate = `${date.getFullYear()}年${date.getMonth() +
         1}月${date.getDate()}日`;
+    },
+    doSearch() {
+      AlipayJSBridge.call('pushWindow', {
+        url: 'input.html'
+      });
     }
   },
   mounted() {

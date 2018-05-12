@@ -92,7 +92,13 @@
         if(!this.checkSubmit()) {
           return;
         }
-        alert(1)
+
+        AlipayJSBridge.call('pushWindow', {
+          url: 'result.html',
+          params: {
+            count: this.options.length
+          }
+        });
       }
     },
     mounted() {
