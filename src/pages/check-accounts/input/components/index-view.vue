@@ -96,7 +96,7 @@ export default {
       }
 
       AlipayJSBridge.call('pushWindow', {
-        url: 'result.html',
+        url: 'check-reunite.html',
         params: {
           count: this.options.length
         }

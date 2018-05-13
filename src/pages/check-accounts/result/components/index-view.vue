@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="icon-success"></div>
-    <p class="success-title">审批成功</p>
-    <p class="success-content"><span>3</span>条数据对账成功</p>
+    <p class="success-title">对账单提交成功</p>
+    <p class="success-content">录入待授权</p>
     <div class="success-button">
       <button class="again" @click="doAgain">继续对账</button>
       <button class="go-home">返回首页</button>
