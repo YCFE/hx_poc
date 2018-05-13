@@ -25,8 +25,8 @@
     <div class="footer">
       <p>已选择 <span class="font-red"> {{ total }} </span> 笔</p>
       <div class="button-inline">
-        <button class="btn btn-primary">拒绝</button>
-        <button class="btn btn-primary">同意</button>
+        <button class="btn btn-primary" @click="refuse">拒绝</button>
+        <button class="btn btn-primary" @click="agree">同意</button>
       </div>
     </div>
   </div>
@@ -34,9 +34,8 @@
 
 <script>
   import { mapState } from 'vuex';
-/*   import { Search } from 'mint-ui';
-
-  Vue.component(Search.name, Search); */
+  import { MessageBox } from 'mint-ui';
+  import request from 'common/js/request';
 
   export default {
     name: 'accreditBankEnterprise',
@@ -50,18 +49,7 @@
         isShowSection:true,
         total: 0,
         checkedArr:[],
-        options:[
-          {
-            number:'201808088870011',
-            time:'2018-05-11',
-            submitter:'测试三',
-          },
-          {
-            number:'201808088870011',
-            time:'2018-05-11',
-            submitter:'测试三',
-          }
-        ]
+        options:[]
       }
     },
     methods: {
@@ -94,9 +82,34 @@
           this.isShowSection = false;
         }
       },
+      getData() {
+        request('client.accredit.getBankData', r => {
+          this.options = r.data;
+        });
+      },
+      refuse(){
+        if(this.total == 0){
+          MessageBox('提示', '请选择银企对账项目');
+          return false;
+        }else{
+          AlipayJSBridge.call('pushWindow', {
+            url: 'refusal-reason.html'
+          });
+        }
+      },
+      agree(){
+        if(this.total == 0){
+          MessageBox('提示', '请选择银企对账项目');
+          return false;
+        }else{
+          AlipayJSBridge.call('pushWindow', {
+            url: 'code.html'
+          });
+        }
+      }
     },
     mounted() {
-
+      this.getData();
     }
   }
 
