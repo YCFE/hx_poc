@@ -1,11 +1,19 @@
 <template>
   <div id="app">
     <ul class="accredit-list" v-if="counts">
-      <li class="accredit-item clearfix">
+      <li class="accredit-item clearfix" @click="open('transfer.html')">
         <span class="fl">
           <i class="accredit-icon icon1"></i>
           <span class="acreadit-title">转账汇款</span>
           <span class="count">({{counts[0]}})</span>
+        </span>
+        <i class="fr arrow"></i>
+      </li>
+      <li class="accredit-item clearfix" @click="open('bank-enterprise.html')">
+        <span class="fl">
+          <i class="accredit-icon icon8"></i>
+          <span class="acreadit-title">银企对账</span>
+          <span class="count">({{counts[7]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -57,14 +65,6 @@
         </span>
         <i class="fr arrow"></i>
       </li>
-      <li class="accredit-item clearfix">
-        <span class="fl">
-          <i class="accredit-icon icon8"></i>
-          <span class="acreadit-title">银企对账</span>
-          <span class="count">({{counts[7]}})</span>
-        </span>
-        <i class="fr arrow"></i>
-      </li>
     </ul>
   </div>
 </template>
@@ -84,6 +84,11 @@
       getAccounts() {
         request('client.accredit.getCounts', r => {
           this.counts = r.data;
+        });
+      },
+      open(url) {
+        AlipayJSBridge.call('pushWindow', {
+          url
         });
       }
     },

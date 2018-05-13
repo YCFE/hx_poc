@@ -1,25 +1,51 @@
 <template>
   <div id="app">
-    <div class="icon-success"></div>
-    <p class="success-title">审批成功</p>
-    <p class="success-content"><span>1</span>条指令审批成功</p>
-    <div class="success-button">
-      <button class="again">继续审批</button>
-      <button class="go-home">返回首页</button>
-    </div>
+    <template v-if="result === 'success'">
+      <div class="icon-success"></div>
+      <p class="success-title">审批成功</p>
+      <p class="success-content"><span>3</span>条指令审批成功</p>
+      <div class="result-button">
+        <button class="again">继续审批</button>
+        <button class="go-home">返回首页</button>
+      </div>
+    </template>
+    <template v-else>
+      <div class="icon-fail"></div>
+      <p class="fail-title">审批失败</p>
+      <p class="fail-content"><span>3</span>条指令审批拒绝</p>
+      <div class="result-button">
+        <button class="again">继续审批</button>
+        <button class="go-home">返回首页</button>
+      </div>
+      <div class="fail-list">
+        <div class="fail-item">
+          <span class="label">指令类型</span>
+          <span class="value">银企对账</span>
+        </div>
+        <div class="fail-item">
+          <span class="label">失败原因</span>
+          <span class="value">录入测试</span>
+        </div>
+        <div class="fail-item">
+          <span class="label">指令类型</span>
+          <span class="value">11020110446967</span>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
   import { mapState } from 'vuex';
+  import utils from 'common/js/utils';
+
+  const { getParam } = utils;
 
   export default {
     name: 'accreditResult',
-    components: {
-    },
     data() {
       return {
-
+        result: getParam('result')
       }
     },
     mounted() {
@@ -32,20 +58,31 @@
 <style lang="less">
   @import '~common/css/base.less';
 
-  .icon-success {
+  .icon-success, .icon-fail{
     width: 110px;
     height: 110px;
     margin: 130px auto 0;
-    background: url(../imgs/success.png) no-repeat;
+    background-repeat: no-repeat;
     background-size: contain;
   }
-  .success-title{
+  .icon-success {
+    background-image: url(../imgs/success.png);
+  }
+  .icon-fail {
+    background-image: url(../imgs/fail.png);
+  }
+  .success-title,.fail-title{
     margin-top: 28px;
-    color: #3f8c1d;
     font-size: 36px;
     text-align: center;
   }
-  .success-content{
+  .success-title{
+    color: #3f8c1d;
+  }
+  .fail-title{
+    color: #da262f;
+  }
+  .success-content,.fail-content{
     margin-top: 14px;
     color: #999;
     font-size: 30px;
@@ -54,7 +91,12 @@
       color: #3f8c1d;
     }
   }
-  .success-button{
+  .fail-content {
+    span {
+      color: #da262f;
+    }
+  }
+  .result-button{
     display: block;
     margin-top: 120px;
     text-align: center;
@@ -71,6 +113,26 @@
     }
     .go-home{
       background-color: #ea6a25;
+    }
+  }
+  .fail-list{
+    margin: 30px 28px;
+    padding: 30px 0 0;
+    border-top: 1px #ddd solid;
+  }
+  .fail-item{
+    margin-bottom: 26px;
+    .label{
+      display: inline-block;
+      width: 220px;
+      color: #999;
+      font-size: 30px;
+    }
+    .value{
+      display: inline-block;
+      width: 300px;
+      color: #333;
+      font-size: 30px;
     }
   }
 </style>
