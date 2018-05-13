@@ -36,31 +36,40 @@
         <span>最后一页</span>
       </div>
       <div class="footer-button">
-        <button class="button-size button-dis btn">下一步</button>
+        <button class="button-size button-dis btn" @click="nextStep">下一步</button>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-
+  import request from 'common/js/request';
   export default {
     name: 'child',
     data() {
       return {
         name: 'child',
-        totalNumber: 20,
-        fromNumber: 7,
-        toNumber: 9,
-        options: [
-          { accountNumber: '11020110446851', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'},
-          { accountNumber: '11020110446968', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'},
-          { accountNumber: '11020110446569', currency: '人民币', accountName: '华夏银行厦门分行**公司', checkResult: '相符', result: '通过'}
-        ]
+        totalNumber: '',
+        fromNumber: 1,
+        toNumber: 3,
+        options: []
       };
     },
     mounted() {
-
+      this.getLists();
+    },
+    methods: {
+      getLists() {
+        request('client.checkAccounts.getCheckReunite', r => {
+          this.options = r.data;
+          this.totalNumber = r.data.length;
+        });
+      },
+      nextStep() {
+        AlipayJSBridge.call('pushWindow', {
+          url: 'result.html'
+        });
+      }
     }
   }
 
