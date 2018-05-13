@@ -17,7 +17,7 @@
         <button class="again">继续审批</button>
         <button class="go-home">返回首页</button>
       </div>
-      <div class="fail-list">
+      <!-- <div class="fail-list">
         <div class="fail-item">
           <span class="label">指令类型</span>
           <span class="value">银企对账</span>
@@ -30,7 +30,7 @@
           <span class="label">指令类型</span>
           <span class="value">11020110446967</span>
         </div>
-      </div>
+      </div> -->
     </template>
   </div>
 </template>

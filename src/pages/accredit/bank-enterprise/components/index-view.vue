@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="options">
     <div class="transfer">
       <div class="transfer-heard clearfix">
           <div class="pull-left checkbox-div">
@@ -49,7 +49,7 @@
         isShowSection:true,
         total: 0,
         checkedArr:[],
-        options:[]
+        options:null
       }
     },
     methods: {

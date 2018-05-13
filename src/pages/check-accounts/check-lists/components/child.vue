@@ -1,5 +1,5 @@
 <template>
-  <div class="list-wrap">
+  <div class="list-wrap" v-if="options">
     <section>
       <ul style="position: relative" class="border-set" v-for="(item, index) in options">
         <li class="li-dis  special">
@@ -49,7 +49,7 @@
         totalNumber: '',
         fromNumber: '1',
         toNumber: '3',
-        options: [],
+        options: null,
         params: {
           index: ''
         }

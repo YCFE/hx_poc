@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="options">
     <section class="list-wrap">
       <ul style="position: relative" class="border-set" v-for="(item, index) in options" :key="index">
         <li class="li-dis  special">
@@ -57,7 +57,7 @@
     data() {
       return {
         name: 'child',
-        options:[],
+        options:null,
       }
     },
     methods: {

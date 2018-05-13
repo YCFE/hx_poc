@@ -16,7 +16,7 @@
         </li>
         <li class="password">
           <span class="">授权密码</span>
-          <input class="input-password-distance" maxlength="20" type="text" placeholder="请输入授权密码" v-model="options.code">
+          <input class="input-password-distance" maxlength="20" type="password" placeholder="请输入授权密码" v-model="options.code">
         </li>
       </ul>
     </section>
