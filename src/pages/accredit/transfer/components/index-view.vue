@@ -26,7 +26,7 @@
         </div>
         <div class="pull-right block-right">
           <p>{{item.transfer}}</p>
-          <p><a href="" class="font-red">{{item.reservation}} <i class="font-red i-img-red-arrow"></i></a></p>
+          <p><a class="font-red">{{item.reservation}} <i class="font-red i-img-red-arrow"></i></a></p>
           <p class="font-light-gray">提交人：{{item.submitter}}</p>
         </div>
       </section>

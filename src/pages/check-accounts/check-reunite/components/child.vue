@@ -1,7 +1,7 @@
 <template>
-  <div class="list-wrap">
+  <div class="list-wrap" v-if="options">
     <section>
-      <ul style="position: relative" class="border-set" v-for="(item, index) in options">
+      <ul style="position: relative" class="border-set" v-for="(item, index) in options" :key="index">
         <li class="li-dis  special">
           <span class="text-color title-special">账号</span>
           <span>{{item.accountNumber}}</span>
@@ -52,7 +52,7 @@
         totalNumber: '',
         fromNumber: 1,
         toNumber: 3,
-        options: []
+        options: null
       };
     },
     mounted() {

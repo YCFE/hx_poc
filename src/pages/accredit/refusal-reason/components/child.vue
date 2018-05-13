@@ -11,7 +11,7 @@
         </li>
         <li class="reason-dis password" style="position: relative">
           <span class="reason-text-distance">授权密码</span>
-          <input type="text" placeholder="请输入授权密码" v-model="options.password">
+          <input type="password" placeholder="请输入授权密码" v-model="options.password">
           <!--<span class="i-img arrow-position-special"></span>-->
         </li>
       </ul>
