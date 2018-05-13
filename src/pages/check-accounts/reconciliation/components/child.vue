@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="options">
     <section class="list-wrap">
       <ul style="position: relative" class="border-set" v-for="(item, index) in options" :key="index">
         <li class="li-dis  special">
@@ -28,7 +28,7 @@
           </mt-radio>
         </li>
         <li>
-          <input class="reason-input" type="text" v-if="item.state === '拒绝授权'" placeholder="拒绝授权原因">
+          <input class="reason-input" type="text" v-if="item.state === '拒绝授权'" placeholder="拒绝授权原因" v-focus v-model="item.reason">
         </li>
       </ul>
     </section>
@@ -57,7 +57,7 @@
     data() {
       return {
         name: 'child',
-        options:[],
+        options:null,
       }
     },
     methods: {
