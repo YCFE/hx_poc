@@ -4,22 +4,22 @@
     <div class="index-list">
       <ul>
         <li>
-          <a class="" href="">
+          <div class="a" @click="inputSearch">
             <span>对账录入</span>
             <span class="pull-right"><i class="i-img"></i></span>
-          </a>
+          </div>
         </li>
         <li>
-          <a class="" href="">
+          <div class="a" href="" @click="reconciliation">
             <span>对账授权</span>
             <span class="pull-right"><i class="i-img"></i></span>
-          </a>
+          </div>
         </li>
         <li>
-          <a class="" href="">
+          <div class="a" @click="search">
             <span>对账查询</span>
             <span class="pull-right"><i class="i-img"></i></span>
-          </a>
+          </div>
         </li>
       </ul>
     </div>
@@ -37,6 +37,23 @@
     },
     mounted() {
 
+    },
+    methods:{
+      inputSearch(){
+        AlipayJSBridge.call('pushWindow', {
+          url: 'input-search.html'
+        });
+      },
+      reconciliation(){
+        AlipayJSBridge.call('pushWindow', {
+          url: 'reconciliation.html'
+        });
+      },
+      search(){
+        AlipayJSBridge.call('pushWindow', {
+          url: 'search.html'
+        });
+      },
     }
   }
 
@@ -73,7 +90,7 @@
   .index-list{
     font-size: 30px;
     margin: 0 29px;
-    a{
+    .a{
       padding: 65px 0 24px;
       color: @black-gray;
       display: block;
