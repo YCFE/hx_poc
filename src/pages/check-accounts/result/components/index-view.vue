@@ -15,8 +15,6 @@
 
   export default {
     name: 'accreditResult',
-    components: {
-    },
     data() {
       return {
 
@@ -25,7 +23,7 @@
     methods: {
       doAgain() {
         AlipayJSBridge.call('pushWindow', {
-          url: 'input.html'
+          url: 'input-search.html'
         });
       }
     },
