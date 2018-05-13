@@ -7,7 +7,7 @@
       <ul>
         <li class="code-distance" style="position: relative">
           <span>验证码</span>
-          <input class="input-distance" type="text" placeholder="请输入"/>
+          <input class="input-distance" maxlength="6" type="tel" placeholder="请输入" v-model="options.number"/>
           <!--<button class="btn btn-code code-button-position">获取验证码</button>-->
           <countdown
             :second="10"
@@ -16,13 +16,13 @@
         </li>
         <li class="password">
           <span class="">授权密码</span>
-          <input class="input-password-distance" type="text" placeholder="请输入授权密码">
+          <input class="input-password-distance" minlength="6" maxlength="20" type="text" placeholder="请输入授权密码" v-model="options.code">
         </li>
       </ul>
     </section>
     <footer class="list-wrap">
       <div class="">
-        <button class="button-size btn">提交</button>
+        <button class="button-size btn" @click="messageSubmit">提交</button>
       </div>
     </footer>
   </div>
@@ -34,18 +34,50 @@
     name: 'child',
     data() {
       return {
-        name: 'child'
+        name: 'child',
+        options: {
+          number: '',
+          code: ''
+        }
       };
     },
     components: {
       countdown
     },
     mounted() {
-
+      const self = this;
+      setTimeout(function () {
+        self.runTimer();
+      }, 1000);
     },
     methods: {
       runTimer() {
         this.$refs.timer.run();
+      },
+      checkInfo() {
+        if (!this.options.number) {
+          alert('请输入短信验证码');
+          return false;
+        }
+        if (this.options.number.length < 6) {
+          alert('请输入6位短信验证码');
+          return false;
+        }
+        if (!this.options.code) {
+          alert('请输入授权密码');
+          return false;
+        }
+        if (!this.options.code.length < 6) {
+          alert('密码格式不正确，至少需要6位');
+          return false;
+        }
+        return true;
+      },
+      messageSubmit() {
+        this.checkInfo();
+        AlipayJSBridge.call('pushWindow', {
+          url: 'result.html'
+        });
       }
     }
   };

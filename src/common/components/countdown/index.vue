@@ -9,7 +9,7 @@ export default{
   name: 'countdown',
   data() {
     return {
-      text: '获取验证码',
+      text: '等待发送',
       isDisabled: false
     };
   },
