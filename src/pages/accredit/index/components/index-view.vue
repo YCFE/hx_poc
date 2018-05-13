@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <ul class="accredit-list">
+    <ul class="accredit-list" v-if="counts">
       <li class="accredit-item clearfix">
         <span class="fl">
           <i class="accredit-icon icon1"></i>
           <span class="acreadit-title">转账汇款</span>
+          <span class="count">({{counts[0]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -12,6 +13,7 @@
         <span class="fl">
           <i class="accredit-icon icon2"></i>
           <span class="acreadit-title">理财产品</span>
+          <span class="count">({{counts[1]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -19,6 +21,7 @@
         <span class="fl">
           <i class="accredit-icon icon3"></i>
           <span class="acreadit-title">贷款查询</span>
+          <span class="count">({{counts[2]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -26,6 +29,7 @@
         <span class="fl">
           <i class="accredit-icon icon4"></i>
           <span class="acreadit-title">定活互转</span>
+          <span class="count">({{counts[3]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -33,6 +37,7 @@
         <span class="fl">
           <i class="accredit-icon icon5"></i>
           <span class="acreadit-title">公务卡</span>
+          <span class="count">({{counts[4]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -40,6 +45,7 @@
         <span class="fl">
           <i class="accredit-icon icon6"></i>
           <span class="acreadit-title">大额存单</span>
+          <span class="count">({{counts[5]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -47,6 +53,7 @@
         <span class="fl">
           <i class="accredit-icon icon7"></i>
           <span class="acreadit-title">代发工资</span>
+          <span class="count">({{counts[6]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -54,6 +61,7 @@
         <span class="fl">
           <i class="accredit-icon icon8"></i>
           <span class="acreadit-title">银企对账</span>
+          <span class="count">({{counts[7]}})</span>
         </span>
         <i class="fr arrow"></i>
       </li>
@@ -69,13 +77,13 @@
     name: 'accreditIndex',
     data() {
       return {
-
+        counts: null
       }
     },
     methods: {
       getAccounts() {
-        request('client.accredit.getAccounts', r => {
-          console.log(r,222)
+        request('client.accredit.getCounts', r => {
+          this.counts = r.data;
         });
       }
     },
@@ -116,6 +124,13 @@
   }
   .accredit-icon,.acreadit-title{
     vertical-align: middle;
+  }
+
+  .count{
+    display: inline-block;
+    color: red;
+    vertical-align: middle;
+    margin-left: 20px;
   }
 
   .icon1 {

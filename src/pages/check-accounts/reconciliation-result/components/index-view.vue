@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="icon-success"></div>
-    <p class="success-title">对账单提交成功</p>
-    <p class="success-content">录入待授权</p>
+    <p class="success-title">授权成功</p>
+    <p class="success-content"><span>3</span>条数据授权成功</p>
     <div class="success-button">
-      <button class="again" @click="doAgain">继续对账</button>
+      <button class="again" @click="doAgain">继续授权</button>
       <button class="go-home">返回首页</button>
     </div>
   </div>
@@ -14,7 +14,9 @@
   import { mapState } from 'vuex';
 
   export default {
-    name: 'accreditResult',
+    name: 'checkResult',
+    components: {
+    },
     data() {
       return {
 
@@ -23,7 +25,7 @@
     methods: {
       doAgain() {
         AlipayJSBridge.call('pushWindow', {
-          url: 'input-search.html'
+          url: 'reconciliation.html'
         });
       }
     },

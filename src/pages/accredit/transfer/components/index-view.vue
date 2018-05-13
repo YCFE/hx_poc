@@ -43,9 +43,6 @@
 
 <script>
   import { mapState } from 'vuex';
-/*   import { Search } from 'mint-ui';
-
-  Vue.component(Search.name, Search); */
 
   export default {
     name: 'accreditTransfer',

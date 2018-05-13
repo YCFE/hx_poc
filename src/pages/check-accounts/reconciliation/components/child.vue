@@ -44,7 +44,7 @@
       </span>
     </div> -->
     <div class="input-button">
-      <button class="btn btn-primary">下一步</button>
+      <button class="btn btn-primary" @click="doSubmit">下一步</button>
     </div>
   </div>
 </template>
@@ -61,6 +61,42 @@
           { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '' },
           { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '' },
         ],
+      }
+    },
+    methods: {
+      checkSubmit() {
+        const r = this.options.some(obj => {
+          return obj.state === ''
+        });
+
+        if(r) {
+          MessageBox('提示', '请选择是否同意授权');
+          return false;
+        }
+
+        const r2 = this.options.some(obj => {
+          return obj.state === '拒绝授权' && obj.reason === '';
+        });
+
+        if(r2) {
+          MessageBox('提示', '请输入拒绝授权原因');
+          return false;
+        }
+
+        return true;
+
+      },
+      doSubmit() {
+        if(!this.checkSubmit()) {
+          return;
+        }
+
+        AlipayJSBridge.call('pushWindow', {
+          url: 'reconciliation-result.html',
+          params: {
+            count: this.options.length
+          }
+        });
       }
     },
     mounted() {
@@ -88,6 +124,13 @@
   .li-dis{
     span:first-child{
       width: 180px;
+    }
+  }
+  .reason-input{
+    border: none !important;
+    height: 60px;
+    &::-webkit-input-placeholder{
+      color:#e14636;
     }
   }
 </style>

@@ -80,6 +80,10 @@
       "accredit/bank-enterprise": {
         "entry": "./src/pages/accredit/bank-enterprise/index.js",
         "template": "./src/layout/accredit/bank-enterprise.html"
+      },
+      "check-accounts/reconciliation-result": {
+        "entry": "./src/pages/check-accounts/reconciliation-result/index.js",
+        "template": "./src/layout/check-accounts/reconciliation-result.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
