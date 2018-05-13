@@ -3,7 +3,7 @@
     <div class="search">
       <div class="searchbar">
           <i class="mintui mintui-search"></i>
-          <input type="search" placeholder="请输入搜索内容">
+          <input v-model="search" type="search" placeholder="请输入搜索内容" @change="searchData">
       </div>
     </div>
     <div class="transfer">
@@ -62,6 +62,18 @@
       }
     },
     methods: {
+      searchData(){
+        let content = event.currentTarget.value;
+        console.log(content);
+        this.getData();
+        /* AlipayJSBridge.call('pushWindow', {
+          url: 'mock/rpc/client.accredit.getTransferData',
+          param: {
+            readTitle: true,
+            showOptionMenu: false
+          }
+        }); */
+      },
       totalNumber(){
         let checked = event.currentTarget.checked;
         if(event.currentTarget.checked){
@@ -193,6 +205,9 @@
       background: #fff;
       padding: 10px 20px;
       border-radius:4px;
+      input{
+        width: 93%;
+      }
     }
   }
   .transfer{
