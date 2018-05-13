@@ -1,6 +1,5 @@
 module.exports = function () {
   return {
-    success: true,
-    code: 0
+    data: [2, 3, 2, 5, 4, 0, 1, 2]
   }
 }

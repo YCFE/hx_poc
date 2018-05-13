@@ -50,7 +50,7 @@
 </template>
 
 <script>
-
+  import { MessageBox } from 'mint-ui';
   export default {
     name: 'child',
     data() {
