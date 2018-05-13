@@ -63,19 +63,24 @@
 
 <script>
   import { mapState } from 'vuex';
+  import request from 'common/js/request';
 
   export default {
     name: 'accreditIndex',
-    components: {
-
-    },
     data() {
       return {
 
       }
     },
+    methods: {
+      getAccounts() {
+        request('client.accredit.getAccounts', r => {
+          console.log(r,222)
+        });
+      }
+    },
     mounted() {
-
+      this.getAccounts();
     }
   }
 
