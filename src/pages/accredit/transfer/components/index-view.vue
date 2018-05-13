@@ -34,8 +34,8 @@
     <div class="footer">
       <p>已选择 <span class="font-red"> {{ total }} </span> 笔</p>
       <div class="button-inline">
-        <button class="btn btn-primary">拒绝</button>
-        <button class="btn btn-primary">同意</button>
+        <button class="btn btn-primary" @click="refuse">拒绝</button>
+        <button class="btn btn-primary" @click="agree">同意</button>
       </div>
     </div>
   </div>
@@ -43,6 +43,8 @@
 
 <script>
   import { mapState } from 'vuex';
+  import { MessageBox } from 'mint-ui';
+  import request from 'common/js/request';
 
   export default {
     name: 'accreditTransfer',
@@ -56,26 +58,7 @@
         isShowSection:true,
         total: 0,
         checkedArr:[],
-        options:[
-          {
-            name:'企业一行测试1',
-            number:'尾号0011',
-            type:'贷款',
-            time:'2018-05-11',
-            transfer:'预约转账',
-            reservation:'全额预约',
-            submitter:'测试三',
-          },
-          {
-            name:'企业一行测试2',
-            number:'尾号0011',
-            type:'贷款',
-            time:'2018-05-11',
-            transfer:'预约转账',
-            reservation:'全额预约',
-            submitter:'测试三',
-          }
-        ]
+        options:[]
       }
     },
     methods: {
@@ -86,12 +69,12 @@
         }else{
           this.total--;
         }
-
       },
       allCheckbox(){
         var _this = this;
         if (!event.currentTarget.checked) {
           this.checkedArr = [];
+          this.total = 0;
         } else {
           _this.checkedArr = [];
           _this.options.forEach(function(item, i) {
@@ -108,9 +91,34 @@
           this.isShowSection = false;
         }
       },
+      getData() {
+        request('client.accredit.getTransferData', r => {
+          this.options = r.data;
+        });
+      },
+      refuse(){
+        if(this.total == 0){
+          MessageBox('提示', '请选择转账汇款项目');
+          return false;
+        }else{
+          AlipayJSBridge.call('pushWindow', {
+            url: 'refusal-reason.html'
+          });
+        }
+      },
+      agree(){
+        if(this.total == 0){
+          MessageBox('提示', '请选择转账汇款项目');
+          return false;
+        }else{
+          AlipayJSBridge.call('pushWindow', {
+            url: 'code.html'
+          });
+        }
+      }
     },
     mounted() {
-
+      this.getData();
     }
   }
 

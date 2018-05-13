@@ -51,16 +51,13 @@
 
 <script>
   import { MessageBox } from 'mint-ui';
+  import request from 'common/js/request';
   export default {
     name: 'child',
     data() {
       return {
         name: 'child',
-        options:[
-          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '' },
-          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '' },
-          { accountNumber: '12312356', currency: '人民币', accountName: '李晓', accountBalance: '12.00', date: '2018-01-15', state: '' },
-        ],
+        options:[],
       }
     },
     methods: {
@@ -97,10 +94,15 @@
             count: this.options.length
           }
         });
+      },
+      getData() {
+        request('client.check-accounts.getReconciliationData', r => {
+          this.options = r.data;
+        });
       }
     },
     mounted() {
-
+      this.getData();
     }
   }
 
