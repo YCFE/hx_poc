@@ -25,7 +25,7 @@
           <span class="text-color title">余额状态</span>
           <span>{{item.state}}</span>
         </li>
-        <button class="button-position-set button-detail">详情</button>
+        <button class="button-position-set button-detail" @click="detail(index)">详情</button>
       </ul>
     </section>
     <footer class="footer-dis">
@@ -57,6 +57,13 @@
     },
     mounted() {
 
+    },
+    methods: {
+      detail(index) {
+        AlipayJSBridge.call('pushWindow', {
+          url: 'check-lists.html'
+        });
+      }
     }
   };
 
