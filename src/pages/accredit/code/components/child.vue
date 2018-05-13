@@ -11,12 +11,12 @@
           <!--<button class="btn btn-code code-button-position">获取验证码</button>-->
           <countdown
             :second="10"
-            @click.native="runTimer"
+            @click.native="runTimer('again')"
             ref="timer"></countdown>
         </li>
         <li class="password">
           <span class="">授权密码</span>
-          <input class="input-password-distance" minlength="6" maxlength="20" type="text" placeholder="请输入授权密码" v-model="options.code">
+          <input class="input-password-distance" maxlength="20" type="text" placeholder="请输入授权密码" v-model="options.code">
         </li>
       </ul>
     </section>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+  import request from 'common/js/request';
   import countdown from 'common/components/countdown';
   export default {
     name: 'child',
@@ -51,8 +52,15 @@
       }, 1000);
     },
     methods: {
-      runTimer() {
-        this.$refs.timer.run();
+      runTimer(argu) {
+        if (argu === 'again') {
+          request('client.accredit.getCode', r => {
+            console.log(r.data);
+            this.$refs.timer.run();
+          });
+        } else {
+          this.$refs.timer.run();
+        }
       },
       checkInfo() {
         if (!this.options.number) {
@@ -67,16 +75,21 @@
           alert('请输入授权密码');
           return false;
         }
-        if (!this.options.code.length < 6) {
+        if (this.options.code.length < 6) {
+          console.log(1);
           alert('密码格式不正确，至少需要6位');
           return false;
         }
         return true;
       },
       messageSubmit() {
-        this.checkInfo();
-        AlipayJSBridge.call('pushWindow', {
-          url: 'result.html'
+        if (!this.checkInfo()) {
+          return;
+        }
+        request('client.accredit.submitReason', r => {
+          AlipayJSBridge.call('pushWindow', {
+            url: 'result.html'
+          });
         });
       }
     }

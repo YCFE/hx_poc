@@ -2,10 +2,11 @@
   <div class="list-wrap">
     <section>
       <ul>
-        <li class="reason-dis test" style="position: relative" @click="getReason">
+        <li class="reason-dis test" style="position: relative">
           <span class="reason-text-distance">拒绝原因</span>
-          <input ref="reason" type="text" placeholder="请选择拒绝原因" v-model="options.account"/>
-          <span class="i-img arrow-position"></span>
+          <input v-show="this.showChoose" ref="reason" type="text" placeholder="请选择拒绝原因" v-model="options.account"/>
+          <input v-show="!this.showChoose" ref="reason" type="text" placeholder="请输入拒绝原因" v-model="options.account"/>
+          <span class="i-img arrow-position" @click="getReason"></span>
           <span class="pencil pencil-position" @click.stop="edit"></span>
         </li>
         <li class="reason-dis password" style="position: relative">
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+  import request from 'common/js/request';
   import { mapState } from 'vuex';
   import { Toast } from 'mint-ui';
   import uSelect from 'common/components/u-select';
@@ -37,13 +39,14 @@
     data() {
       return {
         name: 'child',
+        showChoose: true,
         options: {
           account: '',
           password: ''
         },
         slots: [
           {
-            values: ['无', '不满意', '不符合要求']
+            values: ''
           }
         ]
       };
@@ -52,26 +55,58 @@
       uSelect
     },
     mounted() {
+      this.getReasonInfo();
     },
     methods: {
+      getReasonInfo() {
+        request('client.accredit.getReason', r => {
+          this.slots[0].values = r.data;
+        });
+      },
       getReason() {
+        this.showChoose = true;
         this.$refs.select.open();
       },
       onReasonSelectChange(v) {
         this.options.account = v[0];
       },
       edit() {
+        this.showChoose = !this.showChoose;
         this.$refs.reason.focus();
+        this.options.account = '';
+      },
+      checkInfo() {
+        if (!this.options.account) {
+          if (this.showChoose) {
+            alert('请选择拒绝原因');
+            return false;
+          } else {
+            alert('请输入拒绝原因');
+            return false;
+          }
+          // Toast('请选择拒绝原因');
+        }
+        if (!this.options.password) {
+          alert('请输入授权密码');
+          return false;
+          // Toast('请输入授权密码');
+        }
+        if (this.options.password.length < 6) {
+          alert('密码格式不正确，至少需要6位');
+          return false;
+        }
+        return true;
       },
       submitMessage() {
-        if (this.options.account && this.options.password) {
-        } else {
-          if (!this.options.account) {
-            Toast('请选择拒绝原因');
-          } else {
-            Toast('请输入授权密码');
-          }
+        if (!this.checkInfo()) {
+          return;
         }
+        request('client.accredit.getReason', r => {
+          console.log(r.data);
+          AlipayJSBridge.call('pushWindow', {
+            url: 'result.html'
+          });
+        });
       }
     }
   };
@@ -90,20 +125,21 @@
       background-image: url('~common/img/pencil.png');
       background-size: 25px 35px;
       background-repeat: no-repeat;
-      width: 25px;
-      height: 35px;
+      background-position: center;
+      width: 50px;
+      height: 50px;
       display: inline-block;
       margin-left:34px;
     }
     .pencil-position{
       position: absolute;
-      top:0px;
-      right:12px;
+      top:-5px;
+      right:-13px;
     }
     .arrow-position{
       position: absolute;
-      top:0px;
-      right:70px;
+      top:-5px;
+      right:35px;
     }
     .arrow-position-special{
       position: absolute;
@@ -114,8 +150,9 @@
       background-image: url('~common/img/arrow.png');
       background-size: 15px 30px;
       background-repeat: no-repeat;
-      width: 15px;
-      height: 30px;
+      background-position: center;
+      width: 50px;
+      height: 50px;
       display: inline-block;
     }
     .reason-dis{
