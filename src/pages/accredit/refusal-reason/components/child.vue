@@ -102,7 +102,6 @@
           return;
         }
         request('client.accredit.getReason', r => {
-          console.log(r.data);
           AlipayJSBridge.call('pushWindow', {
             url: 'result.html'
           });

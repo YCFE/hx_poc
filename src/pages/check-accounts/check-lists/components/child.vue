@@ -69,9 +69,7 @@
         });
       },
       detail(index) {
-        console.log(1);
         this.params.index = index;
-        console.log(this.params);
         AlipayJSBridge.call('pushWindow', {
           url: 'detail.html',
           data: this.params

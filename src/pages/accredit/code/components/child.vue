@@ -10,7 +10,7 @@
           <input class="input-distance" maxlength="6" type="tel" placeholder="请输入" v-model="options.number"/>
           <!--<button class="btn btn-code code-button-position">获取验证码</button>-->
           <countdown
-            :second="10"
+            :second="60"
             @click.native="runTimer('again')"
             ref="timer"></countdown>
         </li>
@@ -55,7 +55,6 @@
       runTimer(argu) {
         if (argu === 'again') {
           request('client.accredit.getCode', r => {
-            console.log(r.data);
             this.$refs.timer.run();
           });
         } else {
@@ -76,7 +75,6 @@
           return false;
         }
         if (this.options.code.length < 6) {
-          console.log(1);
           alert('密码格式不正确，至少需要6位');
           return false;
         }
