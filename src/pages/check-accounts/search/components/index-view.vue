@@ -71,6 +71,7 @@
 <script>
 import { mapState } from 'vuex';
 import uSelect from 'common/components/u-select';
+import request from 'common/js/request';
 
 const startDate = new Date();
 
@@ -93,11 +94,7 @@ export default {
         startDate: '',
         endDate: ''
       },
-      slots: [
-        {
-          values: ['全部', '6226****3381', '6226****8624', '6226****4675']
-        }
-      ],
+      slots: [],
       slots2: [{
         values: ['全部', '未对账', '已对账']
       }],
@@ -140,12 +137,20 @@ export default {
       AlipayJSBridge.call('pushWindow', {
         url: 'check-lists.html'
       });
+    },
+    getAccounts() {
+      request('client.check-accounts.getAccounts', r => {
+        this.slots = [{
+          values: r.data
+        }];
+      });
     }
   },
   mounted() {
     const date = new Date();
     this.setStartDate(date);
     this.setEndDate(date);
+    this.getAccounts();
   }
 };
 </script>
