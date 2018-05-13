@@ -76,6 +76,10 @@
       "check-accounts/result": {
         "entry": "./src/pages/check-accounts/result/index.js",
         "template": "./src/layout/check-accounts/result.html"
+      },
+      "accredit/bank-enterprise": {
+        "entry": "./src/pages/accredit/bank-enterprise/index.js",
+        "template": "./src/layout/accredit/bank-enterprise.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",

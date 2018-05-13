@@ -1,16 +1,10 @@
 <template>
   <div id="app">
-    <div class="search">
-      <div class="searchbar">
-          <i class="mintui mintui-search"></i>
-          <input type="search" placeholder="请输入搜索内容">
-      </div>
-    </div>
     <div class="transfer">
       <div class="transfer-heard clearfix">
           <div class="pull-left checkbox-div">
             <input @click="allCheckbox" type="checkbox" name="" id="allCheck" class="ui-checkbox">
-            <label class="" for="allCheck">转账汇款</label>
+            <label class="" for="allCheck">银企对账</label>
           </div>
           <i class="i-img-toggle-arrow pull-right" @click="toggleArrow" :class="{transformArrow:transformArrow}"></i>
       </div>
@@ -20,14 +14,11 @@
           <label class="normal" :for="index">i</label>
         </div>
         <div class="pull-left">
-          <p class="font-light-gray">{{ item.name }}</p>
-          <p>{{ item.number }} <span class="font-red">{{item.type}}</span></p>
-          <p class="font-light-gray">{{item.time}}</p>
+          <p>账单编号：{{ item.number }}</p>
+          <p class="font-light-gray"><span>{{item.time}}</span> <span class="padding-span">提交人：{{item.submitter}}</span></p>
         </div>
         <div class="pull-right block-right">
-          <p>{{item.transfer}}</p>
-          <p><a href="" class="font-red">{{item.reservation}} <i class="font-red i-img-red-arrow"></i></a></p>
-          <p class="font-light-gray">提交人：{{item.submitter}}</p>
+          <a href="" class="font-red"><i class="font-red i-img-red-arrow"></i></a>
         </div>
       </section>
     </div>
@@ -48,7 +39,7 @@
   Vue.component(Search.name, Search); */
 
   export default {
-    name: 'accreditTransfer',
+    name: 'accreditBankEnterprise',
     components: {
 
     },
@@ -61,21 +52,13 @@
         checkedArr:[],
         options:[
           {
-            name:'企业一行测试1',
-            number:'尾号0011',
-            type:'贷款',
+            number:'201808088870011',
             time:'2018-05-11',
-            transfer:'预约转账',
-            reservation:'全额预约',
             submitter:'测试三',
           },
           {
-            name:'企业一行测试2',
-            number:'尾号0011',
-            type:'贷款',
+            number:'201808088870011',
             time:'2018-05-11',
-            transfer:'预约转账',
-            reservation:'全额预约',
             submitter:'测试三',
           }
         ]
@@ -126,6 +109,9 @@
   @line-gray:#ddd;
   @font-gray:#A1A1A1;
   @red:#e14636;
+  .padding-span{
+    padding-left: 200px;
+  }
   .footer{
     text-align: center;
     font-size: 28px;
@@ -181,15 +167,6 @@
     width: 30px;
     height: 30px;
   }
-  .search{
-    background: @light-gray;
-    padding: 20px 30px;
-    .searchbar{
-      background: #fff;
-      padding: 10px 20px;
-      border-radius:4px;
-    }
-  }
   .transfer{
     color: @black-gray;
     padding: 0 30px;
@@ -208,7 +185,7 @@
         text-align: right;
         i{
           margin-right: -60px;
-          margin-top: 10px;
+          margin-top: 30px;
           display: block;
           float: right;
         }
@@ -220,15 +197,13 @@
     }
     label.normal {
       color: #fff;
-      margin-top: 54px;
+      margin-top: 25px;
     }
   }
   .ui-checkbox {
     display: none;
   }
-  /* .checkbox-div{
 
-  } */
   .ui-checkbox+label {
     padding: 5px 0 5px 58px;
     background: url('~common/img/transfer_03.jpg') no-repeat;
