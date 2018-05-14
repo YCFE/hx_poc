@@ -85,9 +85,21 @@
         "entry": "./src/pages/check-accounts/reconciliation-result/index.js",
         "template": "./src/layout/check-accounts/reconciliation-result.html"
       },
+      "accredit/bank-detail": {
+        "entry": "./src/pages/accredit/bank-detail/index.js",
+        "template": "./src/layout/accredit/bank-detail.html"
+      },
+      "accredit/transfer-detail": {
+        "entry": "./src/pages/accredit/transfer-detail/index.js",
+        "template": "./src/layout/accredit/transfer-detail.html"
+      },
       "accredit/account-context": {
         "entry": "./src/pages/accredit/account-context/index.js",
         "template": "./src/layout/accredit/account-context.html"
+      },
+      "accredit/financial-product": {
+        "entry": "./src/pages/accredit/financial-product/index.js",
+        "template": "./src/layout/accredit/financial-product.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
