@@ -103,7 +103,10 @@
         }
         request('client.accredit.getReason', r => {
           AlipayJSBridge.call('pushWindow', {
-            url: 'result.html'
+            url: 'result.html',
+            param: {
+              result: 'fail'
+            }
           });
         });
       }

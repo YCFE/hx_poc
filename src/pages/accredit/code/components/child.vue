@@ -86,7 +86,10 @@
         }
         request('client.accredit.submitReason', r => {
           AlipayJSBridge.call('pushWindow', {
-            url: 'result.html'
+            url: 'result.html',
+            param: {
+              result: 'success'
+            }
           });
         });
       }
