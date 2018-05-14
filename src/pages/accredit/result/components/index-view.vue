@@ -50,8 +50,8 @@
     },
     methods: {
       doAgain() {
-        AlipayJSBridge.call('pushWindow', {
-          url: 'index.html'
+        AlipayJSBridge.call('popTo',{
+          urlPattern: 'index.html',
         });
       }
     },

@@ -24,8 +24,8 @@
     },
     methods: {
       doAgain() {
-        AlipayJSBridge.call('pushWindow', {
-          url: 'reconciliation.html'
+        AlipayJSBridge.call('popTo',{
+          urlPattern: 'reconciliation.html',
         });
       }
     },

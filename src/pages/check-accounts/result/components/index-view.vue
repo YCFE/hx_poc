@@ -22,8 +22,8 @@
     },
     methods: {
       doAgain() {
-        AlipayJSBridge.call('pushWindow', {
-          url: 'input-search.html'
+        AlipayJSBridge.call('popTo',{
+          urlPattern: 'input-search.html',
         });
       }
     },
