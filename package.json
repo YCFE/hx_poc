@@ -108,6 +108,10 @@
       "transfer/confirm": {
         "entry": "./src/pages/transfer/confirm/index.js",
         "template": "./src/layout/transfer/confirm.html"
+      },
+      "transfer/result": {
+        "entry": "./src/pages/transfer/result/index.js",
+        "template": "./src/layout/transfer/result.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
@@ -123,16 +127,19 @@
       [
         "vue"
       ],
-      ["resource", {
-        "map": {
-          "vue": {
-            "external": "Vue"
-          },
-          "vuex": {
-            "external": "Vuex"
+      [
+        "resource",
+        {
+          "map": {
+            "vue": {
+              "external": "Vue"
+            },
+            "vuex": {
+              "external": "Vuex"
+            }
           }
         }
-      }],
+      ],
       [
         "env"
       ]

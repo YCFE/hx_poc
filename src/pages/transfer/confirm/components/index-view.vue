@@ -95,7 +95,10 @@
           MessageBox('提示', '请输入6位验证码');
           return;
         }
-        alert(1);
+
+        AlipayJSBridge.call('pushWindow',{
+          url: 'result.html',
+        });
       }
     },
     mounted() {
