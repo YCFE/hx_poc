@@ -28,7 +28,7 @@
           </mt-radio>
         </li>
         <li>
-          <input class="reason-input" type="text" v-if="item.state === '拒绝授权'" placeholder="拒绝授权原因" v-focus v-model="item.reason">
+          <input class="reason-input" type="text" v-if="item.state === '拒绝授权'" placeholder="请输入拒绝授权原因" v-focus v-model="item.reason">
         </li>
       </ul>
     </section>
@@ -58,6 +58,13 @@
       return {
         name: 'child',
         options:null,
+      }
+    },
+    directives: {
+      focus: {
+        inserted: function(el) {
+          el.focus();
+        }
       }
     },
     methods: {
