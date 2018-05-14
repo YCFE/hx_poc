@@ -104,6 +104,10 @@
       "transfer/index": {
         "entry": "./src/pages/transfer/index/index.js",
         "template": "./src/layout/transfer/index.html"
+      },
+      "transfer/confirm": {
+        "entry": "./src/pages/transfer/confirm/index.js",
+        "template": "./src/layout/transfer/confirm.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
