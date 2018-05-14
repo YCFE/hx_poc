@@ -84,6 +84,10 @@
       "check-accounts/reconciliation-result": {
         "entry": "./src/pages/check-accounts/reconciliation-result/index.js",
         "template": "./src/layout/check-accounts/reconciliation-result.html"
+      },
+      "accredit/account-context": {
+        "entry": "./src/pages/accredit/account-context/index.js",
+        "template": "./src/layout/accredit/account-context.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
