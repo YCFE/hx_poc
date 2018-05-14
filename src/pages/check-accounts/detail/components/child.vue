@@ -2,54 +2,54 @@
   <div class="container">
     <!-- Hello {{name}} -->
     <div class="account-detail">
-      <ul v-for="(item,index) in options" :key="index">
+      <ul>
         <li>
           <span class="span-label">账号</span>
-          <span class="span-content">{{ item.accountNumber }}</span>
+          <span class="span-content">{{ options.accountNumber }}</span>
         </li>
         <li>
           <span class="span-label">币种</span>
-          <span class="span-content">{{item.currency}}</span>
+          <span class="span-content">{{options.currency}}</span>
         </li>
         <li>
           <span class="span-label">账户名称</span>
-          <span class="span-content">{{item.accountName}}</span>
+          <span class="span-content">{{options.accountName}}</span>
         </li>
         <li>
           <span class="span-label">账户余额</span>
-          <span class="span-content">{{item.accountBalance}}</span>
+          <span class="span-content">{{options.accountBalance}}</span>
         </li>
         <li>
           <span class="span-label">余额日期</span>
-          <span class="span-content">{{item.date}}</span>
+          <span class="span-content">{{options.date}}</span>
         </li>
         <li>
           <span class="span-label">余额状态</span>
-          <span class="span-content">{{item.state}}</span>
+          <span class="span-content">{{options.state}}</span>
         </li>
         <li>
           <span class="span-label">发起人</span>
-          <span class="span-content">{{item.sponsor}}</span>
+          <span class="span-content">{{options.sponsor}}</span>
         </li>
         <li>
           <span class="span-label">授权人</span>
-          <span class="span-content">{{item.authorizer}}</span>
+          <span class="span-content">{{options.authorizer}}</span>
         </li>
         <li>
           <span class="span-label">调整相符</span>
-          <span class="span-content">{{item.isMatch}}</span>
+          <span class="span-content">{{options.isMatch}}</span>
         </li>
         <li>
           <span class="span-label">调整相符原因</span>
-          <span class="span-content">{{item.reason}}</span>
+          <span class="span-content">{{options.reason}}</span>
         </li>
         <li>
           <span class="span-label">余额调节表</span>
-          <span class="span-content">{{item.table}}</span>
+          <span class="span-content">{{options.table}}</span>
         </li>
         <li>
           <span class="span-label">银行回复</span>
-          <span class="span-content">{{item.reply}}</span>
+          <span class="span-content">{{options.reply}}</span>
         </li>
       </ul>
     </div>
@@ -58,32 +58,39 @@
 </template>
 
 <script>
-
+  import request from 'common/js/request';
   export default {
     name: 'child',
     data() {
       return {
         name: 'child',
-        options: [
+        options:
           {
-            accountNumber: '12312356',
-            currency: '人民币',
-            accountName: '李晓',
-            accountBalance: '12.00',
-            date: '2018-01-15',
-            state: '状态',
-            sponsor: '发起人',
-            authorizer: '授权人',
-            isMatch: '否',
-            reason: '原因',
+            accountNumber: '',
+            currency: '',
+            accountName: '',
+            accountBalance: '',
+            date: '',
+            state: '',
+            sponsor: '',
+            authorizer: '',
+            isMatch: '',
+            reason: '',
             table: '',
             reply: ''
           }
-        ]
+
+      }
+    },
+    methods: {
+      getData() {
+        request('client.checkAccounts.getDetailData', r => {
+          this.options = r.data;
+        });
       }
     },
     mounted() {
-
+      this.getData();
     }
   }
 
