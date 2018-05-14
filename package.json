@@ -92,6 +92,10 @@
       "accredit/transfer-detail": {
         "entry": "./src/pages/accredit/transfer-detail/index.js",
         "template": "./src/layout/accredit/transfer-detail.html"
+      },
+      "accredit/account-context": {
+        "entry": "./src/pages/accredit/account-context/index.js",
+        "template": "./src/layout/accredit/account-context.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",

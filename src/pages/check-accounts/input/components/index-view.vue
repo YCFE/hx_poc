@@ -103,7 +103,7 @@ export default {
       });
     },
     getData() {
-      request('client.check-accounts.getData', r => {
+      request('client.checkaccounts.getData', r => {
         this.options = r.data;
       });
     }
