@@ -117,7 +117,7 @@ export default {
       });
     },
     getAccounts() {
-      request('client.check-accounts.getAccounts', r => {
+      request('client.checkaccounts.getAccounts', r => {
         this.slots = [{
           values: r.data
         }];

@@ -96,7 +96,7 @@
         });
       },
       getData() {
-        request('client.check-accounts.getReconciliationData', r => {
+        request('client.checkaccounts.getReconciliationData', r => {
           this.options = r.data;
         });
       }
