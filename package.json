@@ -100,6 +100,10 @@
       "accredit/financial-product": {
         "entry": "./src/pages/accredit/financial-product/index.js",
         "template": "./src/layout/accredit/financial-product.html"
+      },
+      "transfer/index": {
+        "entry": "./src/pages/transfer/index/index.js",
+        "template": "./src/layout/transfer/index.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
