@@ -17,7 +17,19 @@ const config = {
       });
     },
     pushWindow(opts) {
-      window.location.href = opts.url;
+      let params = opts.param;
+      let query = '';
+      if (params) {
+        query = '?';
+        const arr = Object.keys(params);
+        const arr2 = arr.map(el => {
+          const str = `${el}=${params[el]}`;
+          return str;
+        });
+
+        query += arr2.join('&');
+      }
+      window.location.href = opts.url + query;
     }
   }
 };
