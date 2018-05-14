@@ -7,7 +7,8 @@ module.exports = function () {
         "accountName": "李晓",
         "accountBalance": "12.00",
         "date": "2018-01-15",
-        "state": ""
+        "state": "",
+        "reason": ""
       },
       {
         "accountNumber": "12312356",
@@ -15,7 +16,8 @@ module.exports = function () {
         "accountName": "李晓",
         "accountBalance": "12.00",
         "date": "2018-01-15",
-        "state": ""
+        "state": "",
+        "reason": ""
       },
       {
         "accountNumber": "12312356",
@@ -23,7 +25,8 @@ module.exports = function () {
         "accountName": "李晓",
         "accountBalance": "12.00",
         "date": "2018-01-15",
-        "state": ""
+        "state": "",
+        "reason": ""
       }
     ]
   }
