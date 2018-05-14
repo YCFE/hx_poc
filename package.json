@@ -96,6 +96,10 @@
       "accredit/account-context": {
         "entry": "./src/pages/accredit/account-context/index.js",
         "template": "./src/layout/accredit/account-context.html"
+      },
+      "accredit/financial-product": {
+        "entry": "./src/pages/accredit/financial-product/index.js",
+        "template": "./src/layout/accredit/financial-product.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
