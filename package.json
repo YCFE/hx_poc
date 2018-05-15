@@ -112,6 +112,10 @@
       "transfer/result": {
         "entry": "./src/pages/transfer/result/index.js",
         "template": "./src/layout/transfer/result.html"
+      },
+      "transfer/do-transfer": {
+        "entry": "./src/pages/transfer/do-transfer/index.js",
+        "template": "./src/layout/transfer/do-transfer.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
