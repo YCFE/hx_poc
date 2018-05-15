@@ -124,6 +124,10 @@
       "transfer/appointment-transfer": {
         "entry": "./src/pages/transfer/appointment-transfer/index.js",
         "template": "./src/layout/transfer/appointment-transfer.html"
+      },
+      "transfer/appointment-transfer-confirm": {
+        "entry": "./src/pages/transfer/appointment-transfer-confirm/index.js",
+        "template": "./src/layout/transfer/appointment-transfer-confirm.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
