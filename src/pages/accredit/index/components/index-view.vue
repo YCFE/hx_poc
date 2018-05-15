@@ -17,9 +17,9 @@
         </span>
         <i class="fr arrow"></i>
       </li>
-      <li class="accredit-item clearfix">
+      <li class="accredit-item clearfix" @click="open('financial-product.html')">
         <span class="fl">
-          <i class="accredit-icon icon2" @click="open('financial-product.html')"></i>
+          <i class="accredit-icon icon2"></i>
           <span class="acreadit-title">理财产品</span>
           <span class="count">({{counts[1]}})</span>
         </span>
