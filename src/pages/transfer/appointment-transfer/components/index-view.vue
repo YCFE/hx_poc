@@ -97,13 +97,13 @@ export default {
         1}月${date.getDate()}日`;
     },
     doOrder(){
-      if(this.search.type == null){
+      if(this.search.type == ""){
         MessageBox('提示', '请选择执行时间');
           return false;
       }else{
-        /* AlipayJSBridge.call('pushWindow', {
-          url: 'code.html'
-        }); */
+        AlipayJSBridge.call('pushWindow', {
+          url: 'appointment-transfer-confirm.html'
+        });
       }
     }
   },
@@ -168,4 +168,5 @@ export default {
     margin-bottom: 10px;
   }
 }
+
 </style>

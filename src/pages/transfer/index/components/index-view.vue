@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="options">
     <div class="transfer-top">
       <img src="~common/img/transfer_05.jpg" alt="">
       <span>向其他联系人转账</span>
@@ -28,6 +28,8 @@
 
 <script>
   import { mapState } from 'vuex';
+  import { MessageBox } from 'mint-ui';
+  import request from 'common/js/request';
 
   export default {
     name: 'transferIndex',
@@ -36,22 +38,18 @@
     },
     data() {
       return {
-        options:[
-          {
-            name:'企业银行',
-            bank:'企业银行',
-            id:'2222'
-          },
-          {
-            name:'企业银行',
-            bank:'企业银行',
-            id:'2222'
-          }
-        ]
+        options: null
+      }
+    },
+    methods:{
+      getData(){
+        request('client.transfer.getTransferContactsData', r => {
+          this.options = r.data;
+        });
       }
     },
     mounted() {
-
+      this.getData();
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="options">
     <div class="search">
       <div class="searchbar">
           <i class="mintui mintui-search"></i>
@@ -20,6 +20,7 @@
 
 <script>
   import { mapState } from 'vuex';
+  import request from 'common/js/request';
 
   export default {
     name: 'transferAllContacts',
@@ -29,18 +30,7 @@
     data() {
       return {
         search:'',
-        options:[
-          {
-            name:'企业银行',
-            bank:'企业银行',
-            id:'2222'
-          },
-          {
-            name:'企业银行1',
-            bank:'企业银行1',
-            id:'1111'
-          }
-        ]
+        options:null
       }
     },
     methods:{
@@ -48,10 +38,20 @@
         /* AlipayJSBridge.call('pushWindow', {
           url: 'refusal-reason.html'
         }); */
+      },
+      getDate(){
+        request('client.transfer.getTransferAllContactsData', r => {
+          this.options = r.data;
+        });
+      },
+      searchData(){
+        request('client.transfer.getTransferAllContactsData', r => {
+          this.options = r.data;
+        });
       }
     },
     mounted() {
-
+      this.getDate();
     }
   }
 

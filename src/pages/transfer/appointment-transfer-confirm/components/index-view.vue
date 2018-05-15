@@ -4,8 +4,8 @@
     <div class="confirm-header">
       <p class="header-title">转账金额</p>
       <div class="clearfix header-money">
-        <span class="fl">&yen;500</span>
-        <span class="fr">手续费：&yen;5</span>
+        <span class="fl">{{options.money}}</span>
+        <span class="fr">手续费：{{options.fee}}</span>
       </div>
     </div>
     <div class="confirm-wrap">
@@ -13,30 +13,30 @@
         <p class="item-title">对方账户</p>
         <div class="confirm-item">
           <span class="label">收款人</span>
-          <span class="value">大白</span>
+          <span class="value">{{options.beneficiaryName}}</span>
         </div>
         <div class="confirm-item">
           <span class="label">收款账号</span>
-          <span class="value">110 2011 0446 967 </span>
+          <span class="value">{{options.beneficiaryId}}</span>
         </div>
         <div class="confirm-item">
           <span class="label">收款银行</span>
-          <span class="value">华夏银行</span>
+          <span class="value">{{options.beneficiaryBank}}</span>
         </div>
       </div>
       <div class="confirm-list">
         <p class="item-title">交易信息</p>
         <div class="confirm-item">
           <span class="label">付款账号</span>
-          <span class="value">110 2011 0446 967</span>
+          <span class="value">{{options.payerId}}</span>
         </div>
         <div class="confirm-item">
           <span class="label">付款用途</span>
-          <span class="value">转账汇款 </span>
+          <span class="value">{{options.payerUse}} </span>
         </div>
         <div class="confirm-item">
           <span class="label">大写金额</span>
-          <span class="value">五百元整</span>
+          <span class="value">{{options.payerCapital}}</span>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
       </div>
       <div class="transaction-item bor-bottom">
         <label for="">验证码</label>
-        <input type="text" placeholder="请输入验证码">
+        <input type="text" placeholder="请输入验证码" v-model="code">
         <!-- <button class="btn btn-code">重新获取</button> -->
         <countdownClick
             :second="60"
@@ -75,19 +75,22 @@
     },
     data() {
       return {
-        code: ''
+        code: '',
+        options:{
+          money:'',
+          fee:'',
+          beneficiaryName:'',
+          beneficiaryId:'',
+          beneficiaryBank:'',
+          payerId:'',
+          payerUse:'',
+          payerCapital:'',
+        }
       }
     },
     methods: {
       runTimer(argu) {
         this.$refs.timer.run();
-        /* if (argu === 'again') {
-          request('client.accredit.getCode', r => {
-            this.$refs.timer.run();
-          });
-        } else {
-          this.$refs.timer.run();
-        } */
       },
       doSubmit() {
         if(!this.code) {
@@ -102,12 +105,15 @@
         AlipayJSBridge.call('pushWindow',{
           url: 'result.html',
         });
+      },
+      getData(){
+        request('client.transfer.getAppointmentTransferConirmData', r => {
+          this.options = r.data;
+        });
       }
     },
     mounted() {
-      setTimeout(() => {
-        this.runTimer();
-      }, 1000);
+      this.getData();
     }
   }
 
@@ -191,12 +197,25 @@
     font-size: 26px;
     padding: 20px 0;
     float: right;
-    margin-bottom: 60px;
+    //margin-bottom: 60px;
+    width: 142px;
+    margin-top: -15px;
   }
   .code-input{
     margin-left: 80px;
   }
   .submit-button{
     margin: 40px 30px 60px;
+  }
+  .transaction-item{
+    padding: 40px;
+    font-size: 30px;
+    label{
+      width: 170px;
+      display: inline-block;
+    }
+  }
+  .bor-bottom{
+    border-bottom: 1px #ddd solid;
   }
 </style>
