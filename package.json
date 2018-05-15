@@ -112,6 +112,18 @@
       "transfer/result": {
         "entry": "./src/pages/transfer/result/index.js",
         "template": "./src/layout/transfer/result.html"
+      },
+      "transfer/all-contacts": {
+        "entry": "./src/pages/transfer/all-contacts/index.js",
+        "template": "./src/layout/transfer/all-contacts.html"
+      },
+      "transfer/all-banks": {
+        "entry": "./src/pages/transfer/all-banks/index.js",
+        "template": "./src/layout/transfer/all-banks.html"
+      },
+      "transfer/appointment-transfer": {
+        "entry": "./src/pages/transfer/appointment-transfer/index.js",
+        "template": "./src/layout/transfer/appointment-transfer.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",

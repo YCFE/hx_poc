@@ -13,8 +13,8 @@
         <li v-for="(item,index) in options" :key="index">
           <img src="~common/img/transfer_07.jpg" alt="">
           <div class="div-inline">
-            <p >{{options.name}}</p>
-            <p class="font-gray">{{options.bank}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尾号{{options.id}}</p>
+            <p >{{ item.name }}</p>
+            <p class="font-gray">{{ item.bank }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尾号{{ item.id }}</p>
           </div>
         </li>
       </ul>
@@ -37,6 +37,11 @@
     data() {
       return {
         options:[
+          {
+            name:'企业银行',
+            bank:'企业银行',
+            id:'2222'
+          },
           {
             name:'企业银行',
             bank:'企业银行',
