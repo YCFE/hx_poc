@@ -32,10 +32,10 @@
         <label for="">验证码</label>
         <input type="text" placeholder="请输入验证码">
         <!-- <button class="btn btn-code">重新获取</button> -->
-        <!-- <countdown
+        <countdownClick
             :second="60"
-            @click.native="runTimer('again')"
-            ref="timer"></countdown> -->
+            @click.native="runTimer"
+            ref="timer"></countdownClick>
       </div>
       <button class="btn">确认转账</button>
     </div>
@@ -44,13 +44,14 @@
 
 <script>
   import { mapState } from 'vuex';
+  import { MessageBox } from 'mint-ui';
   import request from 'common/js/request';
-  import countdown from 'common/components/countdown';
+  import countdownClick from 'common/components/countdownClick';
 
   export default {
     name: 'transferConfirm',
     components: {
-      countdown
+      countdownClick
     },
     data() {
       return {
@@ -58,14 +59,10 @@
       }
     },
     method:{
-      runTimer(argu) {
-        if (argu === 'again') {
-          request('client.accredit.getCode', r => {
-            this.$refs.timer.run();
-          });
-        } else {
+      runTimer() {
+        request('client.accredit.getCode', r => {
           this.$refs.timer.run();
-        }
+        });
       }
     },
     mounted() {
@@ -142,7 +139,6 @@
     padding: 20px 0;
     float: right;
     margin-bottom: 60px;
-    margin-top: -60px;
   }
   .bor-bottom{
     border-bottom: 1px solid #ddd;
