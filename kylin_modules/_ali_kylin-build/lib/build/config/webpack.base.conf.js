@@ -42,7 +42,7 @@ function webpackBaseConfig(program, kylinApp, option) {
     babel: babelQuery,
     output: {
       path: _path2.default.resolve(program.cwd, kylinApp.output),
-      publicPath: '',
+      publicPath: process.env.NODE_ENV === 'production' ? '' : '/',
       filename: '[name].js'
     },
     watch: program.watch,
