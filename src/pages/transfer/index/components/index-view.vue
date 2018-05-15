@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-if="options">
-    <div class="transfer-top">
+    <div class="transfer-top" @click="open('do-transfer.html')">
       <img src="~common/img/transfer_05.jpg" alt="">
       <span>向其他联系人转账</span>
       <i class="i-img pull-right"></i>
@@ -10,8 +10,9 @@
     </div>
     <div class="contacts">
       <ul>
-        <li v-for="(item,index) in options" :key="index">
-          <img src="~common/img/transfer_07.jpg" alt="">
+        <li v-for="(item,index) in options" :key="index" @click="open('do-transfer.html', index+1)">
+          <img v-if="index === 0" src="~common/img/transfer_07.jpg" alt="">
+          <img v-else src="~common/img/hxlogo.jpg" alt="">
           <div class="div-inline">
             <p >{{ item.name }}</p>
             <p class="font-gray">{{ item.bank }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尾号{{ item.id }}</p>
@@ -19,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <div class="all-contacts">
+    <div class="all-contacts" @click="open('all-contacts.html')">
       全部联系人
       <i class="i-img pull-right"></i>
     </div>
@@ -45,6 +46,11 @@
       getData(){
         request('client.transfer.getTransferContactsData', r => {
           this.options = r.data;
+        });
+      },
+      open(url, bank) {
+        AlipayJSBridge.call('pushWindow', {
+          url: `${url}?bank=${bank}`
         });
       }
     },

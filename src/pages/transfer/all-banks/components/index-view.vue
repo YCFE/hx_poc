@@ -4,9 +4,10 @@
       常用收款银行
     </div>
     <ul class="contacts">
-      <li v-for="(item,index) in options" :key="index" @click="detail">
+      <li v-for="(item,index) in options" :key="index" @click="detail(item.name)">
         <!-- <i  class="pull-left head-img"></i> -->
-        <img class="pull-left" src="~common/img/transfer_07.jpg" alt="">
+        <img class="pull-left" v-if="index === 0" src="~common/img/transfer_07.jpg" alt="">
+        <img class="pull-left" v-else src="~common/img/hxlogo.jpg" alt="">
         <div class="div-inline">
           <p >{{item.name}}</p>
           <i class="i-img pull-right"></i>
@@ -28,19 +29,22 @@
       return {
         options:[
           {
-            name:'企业银行'
+            name:'中国银行'
           },
           {
-            name:'企业银行1'
+            name:'华夏银行'
           }
         ]
       }
     },
     methods:{
-      detail(){
-        /* AlipayJSBridge.call('pushWindow', {
-          url: 'refusal-reason.html'
-        }); */
+      detail(bankName){
+        AlipayJSBridge.call('popWindow', {
+          url: 'do-transfer.html',
+          data: {
+            bankName
+          }
+        });
       }
     },
     mounted() {

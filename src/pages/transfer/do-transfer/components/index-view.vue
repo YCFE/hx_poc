@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="transfer-box transfer-receive">
-      <div class="input-item">
+      <div class="input-item" @click="open('all-contacts.html', 'from=transfer')">
         <span class="input-label">收款方</span>
         <input type="text" class="input-text" placeholder="请输入收款方户名" v-model.trim="form.receiveName">
         <i class="icon icon-contact"></i>
@@ -10,21 +10,21 @@
         <span class="input-label">收款账户</span>
         <input type="tel" class="input-text" placeholder="请输入收款方账户" maxlength="19" v-model.trim="form.receiveNum" @input="formatCardNum">
       </div>
+      <div class="input-item" @click="open('all-banks.html')">
+        <span class="input-label">收款银行</span>
+        <input type="text" class="input-text" readonly placeholder="请选择收款银行" v-model.trim="form.receiveBank">
+        <i class="icon icon-bank"></i>
+      </div>
     </div>
 
     <div class="transfer-box transfer-money">
       <div class="input-item">
         <span class="input-label">转账金额</span>
-        <input type="text" class="input-text" placeholder="请输入转账金额" v-model.trim="form.transforValue" @focus="focusMoney" @change="formatMoney">
+        <input type="tel" class="input-text" placeholder="请输入转账金额" v-model.trim="form.transforValue" @focus="focusMoney" @change="formatMoney">
       </div>
       <div class="input-item">
         <span class="input-label">大写金额</span>
         <span class="uppercase-text">{{ valueupperCase }}</span>
-      </div>
-      <div class="input-item">
-        <span class="input-label">收款银行</span>
-        <input type="text" class="input-text" readonly placeholder="请选择收款银行" v-model.trim="form.receiveBank">
-        <i class="icon icon-bank"></i>
       </div>
       <div class="input-item">
         <span class="input-label">用途</span>
@@ -46,7 +46,7 @@
       </div>
       <div class="input-item">
         <span class="input-label">可用金额</span>
-        <input type="text" class="input-text pay-text" readonly v-model.trim="form.totalValue">
+        <span class="input-text pay-text">{{form.totalValue}}</span>
       </div>
       <div class="input-item">
         <span class="input-label">短信通知</span>
@@ -58,7 +58,7 @@
       </div>
     </div>
     <div class="transfer-button">
-      <button>预约转账</button>
+      <button @click="doOrder">预约转账</button>
       <button @click="doSubmit">立即转账</button>
     </div>
 
@@ -79,6 +79,11 @@
 <script>
 import { mapState } from 'vuex';
 import uSelect from 'common/components/u-select';
+import utils from 'common/js/utils';
+import request from 'common/js/request';
+import { MessageBox } from 'mint-ui';
+
+const { getParam } = utils;
 
 export default {
   name: 'doTransfer',
@@ -113,6 +118,11 @@ export default {
     uSelect
   },
   methods: {
+    open(url, param = '') {
+      AlipayJSBridge.call('pushWindow', {
+        url: `${url}?${param}`
+      });
+    },
     showUse() {
       this.$refs.use.open();
     },
@@ -146,12 +156,18 @@ export default {
       if(v > parseFloat(this.form.totalValue)) {
         v = parseFloat(this.form.totalValue);
       }
+      if(isNaN(v)) {
+        v = '';
+      }
       this.valueupperCase = this.digitUppercase(v);
       this.form.transforValue = v
         .toString()
         .replace(/(\d)(?=(?:\d{3})+(.\d{1,2})?$)/g, '$1,');
     },
     digitUppercase(n) {
+      if(!n) {
+        return '';
+      }
       var fraction = ['角', '分'];
       var digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
       var unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']];
@@ -181,13 +197,76 @@ export default {
           .replace(/^整$/, '零元整')
       );
     },
+    getData(url, cb) {
+      request(url, r => {
+        this.form = Object.assign({}, this.form, r.data);
+        cb && cb();
+      });
+    },
+    checkSubmit() {
+      const { form } = this;
+      if(!form.receiveName) {
+        MessageBox('提示', '请输入收款方户名');
+        return false;
+      }
+      if(!form.receiveNum) {
+        MessageBox('提示', '请输入收款方账户');
+        return false;
+      }
+      if(!form.transforValue) {
+        MessageBox('提示', '请输入转账金额');
+        return false;
+      }
+      if(!form.use) {
+        MessageBox('提示', '请输入用途');
+        return false;
+      }
+      return true;
+    },
+    initStatus() {
+      this.formatCardNum();
+    },
     doSubmit() {
-      AlipayJSBridge.call('confirm', {
+      if(!this.checkSubmit()) {
+        return;
+      }
+
+      AlipayJSBridge.call('pushWindow', {
         url: 'confirm.html'
+      });
+    },
+    doOrder() {
+      if(!this.checkSubmit()) {
+        return;
+      }
+
+      AlipayJSBridge.call('pushWindow', {
+        url: 'appointment-transfer.html'
       });
     }
   },
-  mounted() {}
+  mounted() {
+    const bank = getParam('bank');
+
+    if(bank === '1') {
+      this.getData('client.transfer.getTransferData', this.initStatus);
+    }else if(bank === '2') {
+      this.getData('client.transfer.getTransferData2', this.initStatus);
+    }
+
+    document.addEventListener('resume', (event) => {
+      const bank2 = event.data.bank;
+      const bankName = event.data.bankName;
+
+      this.form.receiveBank = bankName;
+
+      if(bank2 == '1') {
+        this.getData('client.transfer.getTransferData', this.initStatus);
+      }else if(bank2 == '2') {
+        this.getData('client.transfer.getTransferData2', this.initStatus);
+      }
+    });
+  }
 };
 </script>
 
@@ -205,7 +284,8 @@ body {
 .input-item {
   position: relative;
   margin: 0 30px;
-  padding: 36px 0;
+  height: 102px;
+  line-height: 110px;
   color: #333;
   font-size: 30px;
   border-bottom: 1px #ddd solid;

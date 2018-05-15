@@ -8,8 +8,9 @@
     </div>
     <ul class="contacts">
       <li v-for="(item,index) in options" :key="index" @click="detail">
-        <img  class="pull-left" src="~common/img/transfer_07.jpg" alt="">
-        <div class="div-inline">
+        <img class="pull-left" v-if="index === 0" src="~common/img/transfer_07.jpg" alt="">
+        <img class="pull-left" v-else src="~common/img/hxlogo.jpg" alt="">
+        <div class="div-inline" @click="open(index)">
           <p >{{item.name}}</p>
           <p class="font-gray">{{item.bank}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尾号{{item.id}}</p>
         </div>
@@ -21,6 +22,9 @@
 <script>
   import { mapState } from 'vuex';
   import request from 'common/js/request';
+  import utils from 'common/js/utils';
+
+  const { getParam } = utils;
 
   export default {
     name: 'transferAllContacts',
@@ -30,7 +34,8 @@
     data() {
       return {
         search:'',
-        options:null
+        options:null,
+        from: getParam('from')
       }
     },
     methods:{
@@ -48,6 +53,20 @@
         request('client.transfer.getTransferAllContactsData', r => {
           this.options = r.data;
         });
+      },
+      open(index) {
+        if(this.from === 'transfer') {
+          AlipayJSBridge.call('popWindow', {
+            url: 'do-transfer.html',
+            data: {
+              bank: `${index+1}`
+            }
+          });
+        }else {
+          AlipayJSBridge.call('pushWindow', {
+            url: `do-transfer.html?bank=${index+1}`
+          });
+        }
       }
     },
     mounted() {

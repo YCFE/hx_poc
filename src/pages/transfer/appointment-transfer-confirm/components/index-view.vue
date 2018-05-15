@@ -214,6 +214,9 @@
       width: 170px;
       display: inline-block;
     }
+    input{
+      width: 200px;
+    }
   }
   .bor-bottom{
     border-bottom: 1px #ddd solid;
