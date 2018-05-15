@@ -19,7 +19,7 @@
         </li>
       </ul>
     </div>
-    <div class="all-contacts">
+    <div class="all-contacts" @click="allContacts">
       全部联系人
       <i class="i-img pull-right"></i>
     </div>
@@ -45,6 +45,11 @@
       getData(){
         request('client.transfer.getTransferContactsData', r => {
           this.options = r.data;
+        });
+      },
+      allContacts(){
+        AlipayJSBridge.call('pushWindow', {
+          url: 'all-contacts.html'
         });
       }
     },
