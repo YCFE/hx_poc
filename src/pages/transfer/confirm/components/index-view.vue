@@ -46,13 +46,14 @@
         <span class="fl">认证方式</span>
         <span class="fr">短信认证</span>
       </div>
-      <div class="code-send">
-        <span class="label">验证码</span>
-        <input type="tel" class="code-input" placeholder="请输入验证码" maxlength="6" v-model="code">
-        <countdown
-          :second="60"
-          @click.native="runTimer('again')"
-          ref="timer"></countdown>
+      <div class="transaction-item bor-bottom">
+        <label for="">验证码</label>
+        <input type="text" placeholder="请输入验证码">
+        <!-- <button class="btn btn-code">重新获取</button> -->
+        <countdownClick
+            :second="60"
+            @click.native="runTimer"
+            ref="timer"></countdownClick>
       </div>
     </div>
     <div class="submit-button">
@@ -63,13 +64,14 @@
 
 <script>
   import { mapState } from 'vuex';
-  import countdown from 'common/components/countdown';
   import { MessageBox } from 'mint-ui';
+  import request from 'common/js/request';
+  import countdownClick from 'common/components/countdownClick';
 
   export default {
     name: 'transferConfirm',
     components: {
-      countdown
+      countdownClick
     },
     data() {
       return {
@@ -78,13 +80,14 @@
     },
     methods: {
       runTimer(argu) {
-        if (argu === 'again') {
+        this.$refs.timer.run();
+        /* if (argu === 'again') {
           request('client.accredit.getCode', r => {
             this.$refs.timer.run();
           });
         } else {
           this.$refs.timer.run();
-        }
+        } */
       },
       doSubmit() {
         if(!this.code) {
@@ -187,23 +190,8 @@
   .btn-code{
     font-size: 26px;
     padding: 20px 0;
-    width: 140px;
-  }
-  .code-distance{
-    margin-top: 58px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid #DDDDDD;
-    margin-bottom: 66px;
-  }
-  .code-button-position{
-    position: absolute;
-    bottom:30px;
-    right:30px;
-  }
-  .button-size{
-    height: 100px;
-    background-color: #E14535;
-    border-radius: 10px;
+    float: right;
+    margin-bottom: 60px;
   }
   .code-input{
     margin-left: 80px;
