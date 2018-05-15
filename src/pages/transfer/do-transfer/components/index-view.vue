@@ -1,0 +1,302 @@
+<template>
+  <div id="app">
+    <div class="transfer-box transfer-receive">
+      <div class="input-item">
+        <span class="input-label">收款方</span>
+        <input type="text" class="input-text" placeholder="请输入收款方户名" v-model.trim="form.receiveName">
+        <i class="icon icon-contact"></i>
+      </div>
+      <div class="input-item">
+        <span class="input-label">收款账户</span>
+        <input type="tel" class="input-text" placeholder="请输入收款方账户" maxlength="19" v-model.trim="form.receiveNum" @input="formatCardNum">
+      </div>
+    </div>
+
+    <div class="transfer-box transfer-money">
+      <div class="input-item">
+        <span class="input-label">转账金额</span>
+        <input type="text" class="input-text" placeholder="请输入转账金额" v-model.trim="form.transforValue" @focus="focusMoney" @change="formatMoney">
+      </div>
+      <div class="input-item">
+        <span class="input-label">大写金额</span>
+        <span class="uppercase-text">{{ valueupperCase }}</span>
+      </div>
+      <div class="input-item">
+        <span class="input-label">收款银行</span>
+        <input type="text" class="input-text" readonly placeholder="请选择收款银行" v-model.trim="form.receiveBank">
+        <i class="icon icon-bank"></i>
+      </div>
+      <div class="input-item">
+        <span class="input-label">用途</span>
+        <input type="text" class="input-text" ref="useInput" placeholder="请输入用途" v-model.trim="form.use">
+        <i class="icon icon-down" @click="showUse"></i>
+        <i class="icon icon-edit" @click="editUse"></i>
+      </div>
+    </div>
+
+    <div class="transfer-box transfer-pay">
+      <div class="input-item" @click="showPayAccount">
+        <span class="input-label">付款账户</span>
+        <input type="text" class="input-text pay-text" readonly v-model.trim="form.payNum">
+        <i class="icon icon-down"></i>
+      </div>
+      <div class="input-item">
+        <span class="input-label">开户网点</span>
+        <input type="text" class="input-text" readonly v-model.trim="form.openNet">
+      </div>
+      <div class="input-item">
+        <span class="input-label">可用金额</span>
+        <input type="text" class="input-text pay-text" readonly v-model.trim="form.totalValue">
+      </div>
+      <div class="input-item">
+        <span class="input-label">短信通知</span>
+        <input type="text" class="input-text" placeholder="请输入手机号（选填）">
+      </div>
+      <div class="input-item">
+        <span class="input-label">添加联系人</span>
+        <mt-switch></mt-switch>
+      </div>
+    </div>
+    <div class="transfer-button">
+      <button>预约转账</button>
+      <button @click="doSubmit">立即转账</button>
+    </div>
+
+    <u-select
+      ref="account"
+      :slots="slots"
+      :on-change="onAccountChange">
+    </u-select>
+
+    <u-select
+      ref="use"
+      :slots="slots2"
+      :on-change="onUseChange">
+    </u-select>
+  </div>
+</template>
+
+<script>
+import { mapState } from 'vuex';
+import uSelect from 'common/components/u-select';
+
+export default {
+  name: 'doTransfer',
+  data() {
+    return {
+      form: {
+        receiveName: '',
+        receiveNum: '',
+        transforValue: '',
+        transformUpper: '',
+        receiveBank: '',
+        use: '',
+        payNum: '6226****3381',
+        openNet: '北京知春支行',
+        totalValue: '58000.00'
+      },
+      valueupperCase: '',
+      slots: [{
+        values: ['6226****3381', '6226****8624', '6226****4675']
+      }],
+      slots2: [{
+        values: ['工资', '差旅费', '往来费', '汇款', '贷款', '费用报销', '还款', '其他']
+      }],
+      nets: {
+        '6226****3381': '北京知春支行',
+        '6226****8624': '北京方庄支行',
+        '6226****4675': '北京学院路支行',
+      }
+    };
+  },
+  components: {
+    uSelect
+  },
+  methods: {
+    showUse() {
+      this.$refs.use.open();
+    },
+    onUseChange(v) {
+      this.form.use = v[0];
+    },
+    editUse() {
+      this.form.use = '';
+      this.$refs.useInput.focus();
+    },
+    showPayAccount() {
+      this.$refs.account.open();
+    },
+    onAccountChange(v) {
+      this.form.payNum = v[0];
+      this.form.openNet = this.nets[v[0]];
+    },
+    formatCardNum() {
+      const v = this.form.receiveNum;
+      this.form.receiveNum = v.replace(/(\d{4})(?=\d)/g, '$1 ');
+    },
+    focusMoney() {
+      let v = this.form.transforValue;
+      v = v.toString().replace(/,/g, '');
+      this.form.transforValue = v;
+    },
+    formatMoney() {
+      let v = this.form.transforValue;
+      v = parseFloat(v);
+      v = v.toFixed(2);
+      if(v > parseFloat(this.form.totalValue)) {
+        v = parseFloat(this.form.totalValue);
+      }
+      this.valueupperCase = this.digitUppercase(v);
+      this.form.transforValue = v
+        .toString()
+        .replace(/(\d)(?=(?:\d{3})+(.\d{1,2})?$)/g, '$1,');
+    },
+    digitUppercase(n) {
+      var fraction = ['角', '分'];
+      var digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+      var unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']];
+      var head = n < 0 ? '欠' : '';
+      n = Math.abs(n);
+      var s = '';
+      for (var i = 0; i < fraction.length; i++) {
+        s += (
+          digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]
+        ).replace(/零./, '');
+      }
+      s = s || '整';
+      n = Math.floor(n);
+      for (var i = 0; i < unit[0].length && n > 0; i++) {
+        var p = '';
+        for (var j = 0; j < unit[1].length && n > 0; j++) {
+          p = digit[n % 10] + unit[1][j] + p;
+          n = Math.floor(n / 10);
+        }
+        s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s;
+      }
+      return (
+        head +
+        s
+          .replace(/(零.)*零元/, '元')
+          .replace(/(零.)+/g, '零')
+          .replace(/^整$/, '零元整')
+      );
+    },
+    doSubmit() {
+      AlipayJSBridge.call('confirm', {
+        url: 'confirm.html'
+      });
+    }
+  },
+  mounted() {}
+};
+</script>
+
+<style lang="less">
+@import '~common/css/base.less';
+
+body {
+  background-color: #efeff4;
+}
+
+.transfer-box {
+  background-color: #fff;
+}
+
+.input-item {
+  position: relative;
+  margin: 0 30px;
+  padding: 36px 0;
+  color: #333;
+  font-size: 30px;
+  border-bottom: 1px #ddd solid;
+  background-color: #fff;
+  &:last-child {
+    border-bottom: none;
+  }
+  .input-label {
+    display: inline-block;
+    width: 210px;
+  }
+  input {
+    width: 340px;
+    font-size: 30px;
+  }
+}
+
+.transfer-money,
+.transfer-pay {
+  margin-top: 28px;
+}
+.transfer-button {
+  margin: 60px 0 80px;
+  text-align: center;
+  button {
+    padding: 30px 80px;
+    color: #fff;
+    font-size: 36px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: #e14636;
+    &:last-child {
+      margin-left: 50px;
+    }
+  }
+}
+.icon {
+  position: absolute;
+  display: inline-block;
+  right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.icon-contact {
+  width: 33px;
+  height: 36px;
+  top: 38px;
+  background-image: url(../imgs/contact.png);
+}
+.icon-arrow {
+  width: 15px;
+  height: 31px;
+  top: 42px;
+  background-image: url(../imgs/arrow.png);
+}
+.icon-bank {
+  width: 34px;
+  height: 34px;
+  top: 39px;
+  background-image: url(../imgs/search.png);
+}
+.icon-down {
+  width: 31px;
+  height: 15px;
+  top: 48px;
+  right: 60px;
+  background-image: url(../imgs/arrow-down.png);
+}
+.icon-edit {
+  width: 24px;
+  height: 35px;
+  top: 38px;
+  background-image: url(../imgs/edit.png);
+}
+.mint-switch {
+  position: absolute;
+  right: 0;
+  top: 14px;
+  display: inline-block;
+}
+.mint-switch-input:checked + .mint-switch-core {
+  background-color: #e14636;
+  border-color: #e14636;
+}
+.uppercase-text{
+  display: inline-block;
+  width: 400px;
+  vertical-align: middle;
+}
+.pay-text{
+  color: #e14636;
+}
+</style>

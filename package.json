@@ -113,6 +113,10 @@
         "entry": "./src/pages/transfer/result/index.js",
         "template": "./src/layout/transfer/result.html"
       },
+      "transfer/do-transfer": {
+        "entry": "./src/pages/transfer/do-transfer/index.js",
+        "template": "./src/layout/transfer/do-transfer.html"
+      },
       "transfer/all-contacts": {
         "entry": "./src/pages/transfer/all-contacts/index.js",
         "template": "./src/layout/transfer/all-contacts.html"

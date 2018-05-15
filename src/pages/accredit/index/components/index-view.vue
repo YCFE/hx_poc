@@ -19,7 +19,7 @@
       </li>
       <li class="accredit-item clearfix">
         <span class="fl">
-          <i class="accredit-icon icon2"></i>
+          <i class="accredit-icon icon2" @click="open('financial-product.html')"></i>
           <span class="acreadit-title">理财产品</span>
           <span class="count">({{counts[1]}})</span>
         </span>
