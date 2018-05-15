@@ -49,6 +49,7 @@
       <div class="transaction-item bor-bottom">
         <label for="">验证码</label>
         <input type="text" placeholder="请输入验证码" v-model="code">
+        <!-- <button class="btn btn-code">重新获取</button> -->
         <countdownClick
             :second="60"
             @click.native="runTimer"
@@ -68,14 +69,14 @@
   import countdownClick from 'common/components/countdownClick';
 
   export default {
-    name: 'transferConfirm',
+    name: 'transferAppointmentTransferConfirm',
     components: {
       countdownClick
     },
     data() {
       return {
         code: '',
-        options: {
+        options:{
           money:'',
           fee:'',
           beneficiaryName:'',
@@ -88,7 +89,7 @@
       }
     },
     methods: {
-      runTimer() {
+      runTimer(argu) {
         this.$refs.timer.run();
       },
       doSubmit() {
@@ -106,7 +107,7 @@
         });
       },
       getData(){
-        request('client.transfer.getTransferConirmData', r => {
+        request('client.transfer.getAppointmentTransferConirmData', r => {
           this.options = r.data;
         });
       }

@@ -116,6 +116,22 @@
       "transfer/do-transfer": {
         "entry": "./src/pages/transfer/do-transfer/index.js",
         "template": "./src/layout/transfer/do-transfer.html"
+      },
+      "transfer/all-contacts": {
+        "entry": "./src/pages/transfer/all-contacts/index.js",
+        "template": "./src/layout/transfer/all-contacts.html"
+      },
+      "transfer/all-banks": {
+        "entry": "./src/pages/transfer/all-banks/index.js",
+        "template": "./src/layout/transfer/all-banks.html"
+      },
+      "transfer/appointment-transfer": {
+        "entry": "./src/pages/transfer/appointment-transfer/index.js",
+        "template": "./src/layout/transfer/appointment-transfer.html"
+      },
+      "transfer/appointment-transfer-confirm": {
+        "entry": "./src/pages/transfer/appointment-transfer-confirm/index.js",
+        "template": "./src/layout/transfer/appointment-transfer-confirm.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
