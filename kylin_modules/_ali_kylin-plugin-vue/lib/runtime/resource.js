@@ -16,9 +16,11 @@ function generateResourceImpl() {
 
     if (useExternal) {
       if (program.prod) {
-        js['Vue'] = 'https://gw.alipayobjects.com/as/g/h5-lib/vue/2.5.13/vue.min.js';
+        js['Vue'] = 'https://cn-hangzhou-mdsweb.cloud.alipay.com/E508030101442_FinMallDev/common/vue.min.js';
+        js['Vuex'] = 'https://cn-hangzhou-mdsweb.cloud.alipay.com/E508030101442_FinMallDev/common/vuex.min.js';
       } else {
-        js['Vue'] = 'https://gw.alipayobjects.com/as/g/h5-lib/vue/2.5.13/vue.js';
+        js['Vue'] = 'https://cdn.bootcss.com/vue/2.5.16/vue.min.js';
+        js['Vuex'] = 'https://cdn.bootcss.com/vuex/3.0.0/vuex.min.js';
       }
     } else {
       delete externals['vue'];

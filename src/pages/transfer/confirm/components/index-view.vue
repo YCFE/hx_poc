@@ -1,32 +1,50 @@
 <template>
   <div id="app">
-    <div class="tip">
-      请确认一下信息
-    </div>
-    <div class="fee-detail">
-      <p>转账金额</p>
-      <p class="number-p"><span class="number">¥500.00</span> <span class="pull-right">手续费：3.00</span></p>
-    </div>
-    <div class="transaction">
-      <div class="transaction-item">
-        <p class="title">对方账户</p>
-        <p><span>收款人</span> 白白</p>
-        <p><span>收款账号</span> 110 2120 1233 1000</p>
-        <p><span>收款银行</span> 华夏银行</p>
-      </div>
-      <div class="transaction-item">
-        <p class="title">交易信息</p>
-        <p><span>付款账号</span> 110 2120 1233 1000</p>
-        <p><span>付款用途</span> 转账汇款</p>
-        <p><span>大写金额</span> 五百元整</p>
+    <h3 class="confirm-title">请确认以下信息</h3>
+    <div class="confirm-header">
+      <p class="header-title">转账金额</p>
+      <div class="clearfix header-money">
+        <span class="fl">&yen;500</span>
+        <span class="fr">手续费：&yen;5</span>
       </div>
     </div>
-    <div class="tip">
-      请完成以下认证
+    <div class="confirm-wrap">
+      <div class="confirm-list">
+        <p class="item-title">对方账户</p>
+        <div class="confirm-item">
+          <span class="label">收款人</span>
+          <span class="value">大白</span>
+        </div>
+        <div class="confirm-item">
+          <span class="label">收款账号</span>
+          <span class="value">110 2011 0446 967 </span>
+        </div>
+        <div class="confirm-item">
+          <span class="label">收款银行</span>
+          <span class="value">华夏银行</span>
+        </div>
+      </div>
+      <div class="confirm-list">
+        <p class="item-title">交易信息</p>
+        <div class="confirm-item">
+          <span class="label">付款账号</span>
+          <span class="value">110 2011 0446 967</span>
+        </div>
+        <div class="confirm-item">
+          <span class="label">付款用途</span>
+          <span class="value">转账汇款 </span>
+        </div>
+        <div class="confirm-item">
+          <span class="label">大写金额</span>
+          <span class="value">五百元整</span>
+        </div>
+      </div>
     </div>
-    <div class="transaction">
-      <div class="transaction-item">
-        <p>对方账户 <span class="pull-right font-gray">短信认证方式</span></p>
+    <div class="auth-title">请完成以下认证</div>
+    <div class="auth-code">
+      <div class="code-title clearfix">
+        <span class="fl">认证方式</span>
+        <span class="fr">短信认证</span>
       </div>
       <div class="transaction-item bor-bottom">
         <label for="">验证码</label>
@@ -37,7 +55,9 @@
             @click.native="runTimer"
             ref="timer"></countdownClick>
       </div>
-      <button class="btn">确认转账</button>
+    </div>
+    <div class="submit-button">
+      <button class="btn btn-primary" @click="doSubmit">确认转账</button>
     </div>
   </div>
 </template>
@@ -55,18 +75,39 @@
     },
     data() {
       return {
-
+        code: ''
       }
     },
-    method:{
-      runTimer() {
-        request('client.accredit.getCode', r => {
+    methods: {
+      runTimer(argu) {
+        this.$refs.timer.run();
+        /* if (argu === 'again') {
+          request('client.accredit.getCode', r => {
+            this.$refs.timer.run();
+          });
+        } else {
           this.$refs.timer.run();
+        } */
+      },
+      doSubmit() {
+        if(!this.code) {
+          MessageBox('提示', '请输入验证码');
+          return;
+        }
+        if(this.code.length < 6) {
+          MessageBox('提示', '请输入6位验证码');
+          return;
+        }
+
+        AlipayJSBridge.call('pushWindow',{
+          url: 'result.html',
         });
       }
     },
     mounted() {
-
+      setTimeout(() => {
+        this.runTimer();
+      }, 1000);
     }
   }
 
@@ -74,76 +115,88 @@
 
 <style lang="less">
   @import '~common/css/base.less';
-  .pull-right{
-    float: right;
-  }
-  .pull-left{
-    float: left;
-  }
-  .clearfix{
-    display: block;
-    clear:both;
-  }
-  ul,li{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .tip{
-    background: #efeff4;
-    padding: 28px 40px 20px;
-    font-size: 30px;
+
+  .confirm-title,.auth-title{
     color: #333;
-  }
-  .fee-detail{
-    background: #e14636;
-    color: #fff;
     font-size: 30px;
-    padding: 35px 40px 5px;
+    background-color: #efeff4;
+    padding: 20px 30px;
+    font-weight: normal;
   }
-  .number-p{
-    line-height: 100px;
-  }
-  .number{
-    font-size: 50px;
-  }
-  .transaction{
-    padding: 0 40px;
-    .title{
-      margin-bottom: 10px;
+  .confirm-header{
+    background-color: #e14636;
+    padding: 30px 30px 56px;
+    color: #fff;
+    .header-title{
+      font-size: 30px;
     }
-    .transaction-item{
-      border-bottom: 1px solid #ddd;
-      padding: 40px 0;
+    .header-money{
+      margin-top: 30px;
+      .fl{
+        font-size: 50px;
+      }
+      .fr{
+        margin-top: 12px;
+        font-size: 30px;
+      }
+    }
+  }
+  .confirm-wrap{
+    margin: 0 30px;
+    .confirm-list{
+      padding: 38px 0 18px;
+      &:first-child {
+        border-bottom: 1px #ddd solid;
+      }
+    }
+    .confirm-item{
+      margin-bottom: 20px;
+    }
+    .item-title{
+      margin-bottom: 30px;
       color: #333;
-      line-height: 50px;
-      label{
-        width: 165px;
-        display: inline-block;
-      }
-      span{
-        width: 175px;
-        display: inline-block;
-        color: #999;
-      }
+      font-size: 30px;
     }
-    .transaction-item:last-child{
-      border-bottom: none;
+    .label{
+      display: inline-block;
+      width: 180px;
+      color: #999;
+      font-size: 30px;
     }
+    .value{
+      display: inline-block;
+      width: 300px;
+      color: #333;
+      font-size: 30px;
+    }
+  }
+  .code-title {
+    padding: 34px 30px;
+    color: #333;
+    font-size: 30px;
+    background-color: #fff;
+    border-bottom: 1px #ddd solid;
+  }
+  .code-send{
+    position: relative;
+    height: 132px;
+    line-height: 132px;
+    padding: 0 30px;
+    color: #333;
+    font-size: 30px;
+    background-color: #fff;
+    border-bottom: 1px #ddd solid;
   }
   .btn-code{
-    display: inline-block;
-    width: 140px;
-    height: 60px;
     font-size: 26px;
     padding: 20px 0;
     float: right;
     margin-bottom: 60px;
   }
-  .bor-bottom{
-    border-bottom: 1px solid #ddd;
+  .code-input{
+    margin-left: 80px;
   }
-  .font-gray{
-    color: #333 !important;
+  .submit-button{
+    margin: 40px 30px 60px;
   }
 </style>

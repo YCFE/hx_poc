@@ -108,6 +108,10 @@
       "transfer/confirm": {
         "entry": "./src/pages/transfer/confirm/index.js",
         "template": "./src/layout/transfer/confirm.html"
+      },
+      "transfer/result": {
+        "entry": "./src/pages/transfer/result/index.js",
+        "template": "./src/layout/transfer/result.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
@@ -124,6 +128,19 @@
         "vue"
       ],
       [
+        "resource",
+        {
+          "map": {
+            "vue": {
+              "external": "Vue"
+            },
+            "vuex": {
+              "external": "Vuex"
+            }
+          }
+        }
+      ],
+      [
         "env"
       ]
     ]
@@ -138,6 +155,7 @@
     "vuex": "3.0.1"
   },
   "devDependencies": {
+    "@ali/kylin-plugin-resource": "./kylin_modules/_ali_kylin-plugin-resource",
     "@ali/kylin-plugin-env": "./kylin_modules/_ali_kylin-plugin-env",
     "@ali/kylin-plugin-vue": "./kylin_modules/_ali_kylin-plugin-vue",
     "@ali/kylin-build": "./kylin_modules/_ali_kylin-build",
