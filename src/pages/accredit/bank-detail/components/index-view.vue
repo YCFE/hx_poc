@@ -1,16 +1,16 @@
 <template>
-  <div id="app" v-if="options">
+  <div id="app" v-if="params">
     <div class="detail-title">
         <div class="detail-top">
-          <p>对账单编号：{{ options.id }}</p>
-          <p>流水号：{{options.no}}</p>
+          <p>对账单编号：{{ params.number }}</p>
+          <p>流水号：{{params.no}}</p>
         </div>
         <div class="detail-bottom clearfix">
           <div class="pull-left">
               银企对账
           </div>
           <div class="pull-right">
-              提交人：{{options.submitter}}
+              提交人：{{params.submitter}}
           </div>
         </div>
     </div>
@@ -19,24 +19,24 @@
         <li class="clearfix">
           <label for="">账户名称</label>
           <div class="input-div">
-            {{options.name}}
+            {{params.name}}
           </div>
         </li>
         <li>
           <label for="">存款类型</label>
-          <input type="text" readonly value="" v-model="options.type">
+          <input type="text" readonly value="" v-model="params.type">
         </li>
         <li>
           <label for="">余额</label>
-          <input type="text" readonly value="" v-model="options.balance">
+          <input type="text" readonly value="" v-model="params.balance">
         </li>
         <li>
           <label for="">余额日期</label>
-          <input type="text" readonly value="" v-model="options.time">
+          <input type="text" readonly value="" v-model="params.time">
         </li>
         <li>
           <label for="">对账结果</label>
-          <input type="text" readonly value="" v-model="options.result">
+          <input type="text" readonly value="" v-model="params.result">
         </li>
       </ul>
     </div>
@@ -55,6 +55,9 @@
   import { MessageBox } from 'mint-ui';
   import request from 'common/js/request';
   import mixins from 'common/js/mixins';
+  import utils from 'common/js/utils';
+
+  const { getParam } = utils;
 
   export default {
     name: 'accreditBankDetail',
@@ -63,16 +66,8 @@
     },
     data() {
       return {
-        options:{
-          id:'',
-          name:'',
-          submitter:'',
-          name:'',
-          type:'',
-          balance:'',
-          time:'',
-          result:''
-        }
+        options: null,
+        params: JSON.parse(getParam('r'))
       }
     },
     mixins,
@@ -90,7 +85,6 @@
       getData() {
         request('client.accrdeit.getBankDetailData', r => {
           this.options = r.data;
-          //console.log(this.options);
         });
       }
     },

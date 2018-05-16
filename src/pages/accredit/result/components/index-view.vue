@@ -6,7 +6,7 @@
       <p class="success-content"><span>3</span>条指令审批成功</p>
       <div class="result-button">
         <button class="again" @click="doAgain">继续审批</button>
-        <button class="go-home">返回首页</button>
+        <button class="go-home" @click="goHome">返回首页</button>
       </div>
     </template>
     <template v-else>
@@ -15,7 +15,7 @@
       <p class="fail-content"><span>3</span>条指令审批拒绝</p>
       <div class="result-button">
         <button class="again" @click="doAgain">继续审批</button>
-        <button class="go-home">返回首页</button>
+        <button class="go-home" @click="goHome">返回首页</button>
       </div>
       <!-- <div class="fail-list">
         <div class="fail-item">
@@ -55,6 +55,9 @@
         AlipayJSBridge.call('popTo',{
           urlPattern: 'index.html',
         });
+      },
+      goHome() {
+        AlipayJSBridge.call('exitSession');
       }
     },
     mounted() {

@@ -1,16 +1,16 @@
 <template>
-  <div id="app" v-if="options">
+  <div id="app" v-if="options && params">
     <div class="detail-title">
         <div class="detail-top">
-          <p class="money">{{ options.money }}</p>
+          <p class="money">{{ params.money }}</p>
           <p>交易金额</p>
         </div>
         <div class="detail-bottom clearfix">
           <div class="pull-left">
-              预约转账
+              {{params.transfer}}
           </div>
           <div class="pull-right">
-              提交人：{{options.submitter}}
+              提交人：{{params.submitter}}
           </div>
         </div>
     </div>
@@ -18,35 +18,35 @@
       <ul>
         <li>
           <label for="">指令状态</label>
-          <input type="text" readonly value="" v-model="options.order">
+          <input type="text" readonly value="" v-model="params.order">
         </li>
         <li>
           <label for="">提交时间</label>
-          <input type="text" readonly value="" v-model="options.time">
+          <input type="text" readonly value="" v-model="params.time">
         </li>
         <li>
           <label for="">手续费</label>
-          <input type="text" readonly value="" v-model="options.fees">
+          <input type="text" readonly value="" v-model="params.fees">
         </li>
         <li>
-          <label for="">收款方详情({{options.beneficiaryName}})</label>
+          <label for="">收款方详情({{params.beneficiaryName}})</label>
           <i class="i-img-toggle-arrow pull-right" @click="toggleArrow" :class="{transformArrow:transformArrow}"></i>
         </li>
         <div v-show="isShowSection" class="li-div">
-            <p>收款方：{{options.beneficiaryName}}</p>
-            <p>收款账号：{{options.beneficiaryId}}</p>
-            <p>收款方开户行：{{options.beneficiaryBank}}</p>
+            <p>收款方：{{params.beneficiaryName}}</p>
+            <p>收款账号：{{params.beneficiaryId}}</p>
+            <p>收款方开户行：{{params.beneficiaryBank}}</p>
           </div>
         <li>
           <label for="">更多详情</label>
           <i class="i-img-toggle-arrow pull-right" @click="toggleArrow1" :class="{transformArrow:transformArrow1}"></i>
         </li>
         <div v-show="isShowSection1" class="li-div">
-          <p>付款方：{{options.payerName}}</p>
-          <p>付款账号：{{options.payerId}}</p>
-          <p>付款用途：{{options.payerUse}}</p>
-          <p>执行时间：{{options.payerTime}}</p>
-          <p>交易流水号：{{options.payerNo}}</p>
+          <p>付款方：{{params.payerName}}</p>
+          <p>付款账号：{{params.payerId}}</p>
+          <p>付款用途：{{params.payerUse}}</p>
+          <p>执行时间：{{params.payerTime}}</p>
+          <p>交易流水号：{{params.payerNo}}</p>
         </div>
       </ul>
     </div>
@@ -65,6 +65,9 @@
   import { MessageBox } from 'mint-ui';
   import request from 'common/js/request';
   import mixins from 'common/js/mixins';
+  import utils from 'common/js/utils';
+
+  const { getParam } = utils;
 
   export default {
     name: 'accreditTransferDetail',
@@ -78,21 +81,8 @@
         isShowSection:true,
         transformArrow1:false,
         isShowSection1:true,
-        options:{
-          money:'',
-          submitter:'',
-          order:'',
-          time:'',
-          fees:'',
-          beneficiaryName:'',
-          beneficiaryId:'',
-          beneficiaryBank:'',
-          payerName:'',
-          payerId:'',
-          payerUse:'',
-          payerTime:'',
-          payerNo:'',
-        }
+        options: null,
+        params: JSON.parse(getParam('r'))
       }
     },
     methods: {

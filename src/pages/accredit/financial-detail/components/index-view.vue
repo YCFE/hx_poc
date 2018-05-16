@@ -1,8 +1,8 @@
 <template>
-  <div id="app" v-if="options">
+  <div id="app" v-if="params">
     <div class="detail-title">
         <div class="detail-top">
-          <p class="money">{{ options.money }}</p>
+          <p class="money">{{ params.money }}</p>
           <p>交易金额</p>
         </div>
         <div class="detail-bottom clearfix">
@@ -10,7 +10,7 @@
               理财产品认购
           </div>
           <div class="pull-right">
-              提交人：{{options.submitter}}
+              提交人：{{params.submitter}}
           </div>
         </div>
     </div>
@@ -18,44 +18,44 @@
       <ul>
         <li>
           <label for="">产品名称</label>
-          <input type="text" readonly value="" v-model="options.name">
+          <input type="text" readonly value="" v-model="params.name">
         </li>
         <li>
           <label for="">产品类型</label>
-          <input type="text" readonly value="" v-model="options.type">
+          <input type="text" readonly value="" v-model="params.type">
         </li>
         <li>
           <label for="">预期年化收益率</label>
-          <input type="text" readonly value="" v-model="options.return">
+          <input type="text" readonly value="" v-model="params.return">
         </li>
         <li>
           <label for="">期限</label>
-          <input type="text" readonly value="" v-model="options.timeLimit">
+          <input type="text" readonly value="" v-model="params.timeLimit">
         </li>
         <li>
           <label for="">到期日</label>
-          <input type="text" readonly value="" v-model="options.deadline">
+          <input type="text" readonly value="" v-model="params.deadline">
         </li>
         <li>
           <label for="">指令状态</label>
-          <input type="text" readonly value="" v-model="options.state">
+          <input type="text" readonly value="" v-model="params.state">
         </li>
         <li>
           <label for="">提交时间</label>
-          <input type="text" readonly value="" v-model="options.time">
+          <input type="text" readonly value="" v-model="params.time">
         </li>
         <li>
           <label for="">更多详情</label>
           <i class="i-img-toggle-arrow pull-right" @click="toggleArrow" :class="{transformArrow:transformArrow}"></i>
         </li>
         <div v-show="isShowSection" class="li-div">
-          <p>募集日期：{{options.recruitmentDate}}</p>
-          <p>起息日：{{options.valueDate}}</p>
-          <p>剩余额度：{{options.remaining}}</p>
-          <p>认购账号：{{options.subscriptionNo}}</p>
-          <p>产品代码：{{options.productNo}}</p>
-          <p>流水号：{{options.number}}</p>
-          <p>投资及收益币种：{{options.currency}}</p>
+          <p>募集日期：{{params.recruitmentDate}}</p>
+          <p>起息日：{{params.valueDate}}</p>
+          <p>剩余额度：{{params.remaining}}</p>
+          <p>认购账号：{{params.subscriptionNo}}</p>
+          <p>产品代码：{{params.productNo}}</p>
+          <p>流水号：{{params.number}}</p>
+          <p>投资及收益币种：{{params.currency}}</p>
         </div>
       </ul>
     </div>
@@ -73,6 +73,9 @@
   import { mapState } from 'vuex';
   import { MessageBox } from 'mint-ui';
   import request from 'common/js/request';
+  import utils from 'common/js/utils';
+
+  const { getParam } = utils;
 
   export default {
     name: 'accreditFinancialDetail',
@@ -83,24 +86,8 @@
       return {
         transformArrow:false,
         isShowSection:true,
-        options:{
-          "money":"",
-          "submitter":"",
-          "name":"",
-          "type":"",
-          "return":"",
-          "timeLimit":"",
-          "deadline":"",
-          "state":"",
-          "time":"",
-          "recruitmentDate":"",
-          "valueDate":"",
-          "remaining":"",
-          "subscriptionNo":"",
-          "productNo":"",
-          "number":"",
-          "currency":""
-        }
+        options:null,
+        params: JSON.parse(getParam('r'))
       }
     },
     methods: {

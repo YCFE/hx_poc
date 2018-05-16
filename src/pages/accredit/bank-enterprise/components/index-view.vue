@@ -13,12 +13,12 @@
           <input @click="totalNumber"   v-model="checkedArr" type="checkbox" :value="index" name="" class="ui-checkbox" :id="index">
           <label class="normal" :for="index">i</label>
         </div>
-        <div class="pull-left">
+        <div class="pull-left" @click="goDetail(item)">
           <p>账单编号：{{ item.number }}</p>
           <p class="font-light-gray"><span>{{item.time}}</span> <span class="padding-span">提交人：{{item.submitter}}</span></p>
         </div>
-        <div class="pull-right block-right">
-          <a href="" class="font-red"><i class="font-red i-img-red-arrow"></i></a>
+        <div class="pull-right block-right" @click="goDetail(item)">
+          <a href="javascript:;" class="font-red"><i class="font-red i-img-red-arrow"></i></a>
         </div>
       </section>
     </div>
@@ -87,6 +87,13 @@
       getData() {
         request('client.accredit.getBankData', r => {
           this.options = r.data;
+        });
+      },
+      goDetail(item) {
+        const r = encodeURIComponent(JSON.stringify(item));
+
+        AlipayJSBridge.call('pushWindow', {
+          url: `bank-detail.html?r=${r}`
         });
       },
       refuse(){
