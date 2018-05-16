@@ -15,6 +15,13 @@
         <input type="text" class="input-text" readonly placeholder="请选择收款银行" v-model.trim="form.receiveBank">
         <i class="icon icon-bank"></i>
       </div>
+      <div class="input-item" v-if="form.receiveBank !== '华夏银行'">
+        <span class="input-label">开户行</span>
+        <input type="text" class="input-text" placeholder="请输入开户行" @input="searchReceiveNets" v-model.trim="form.receiveNet">
+        <ul class="nets-downlist" v-if="isShowDownlist">
+          <li @click="onClickDownlist('中国银行北京支行')">中国银行北京支行</li>
+        </ul>
+      </div>
     </div>
 
     <div class="transfer-box transfer-money">
@@ -41,7 +48,7 @@
         <i class="icon icon-down"></i>
       </div>
       <div class="input-item">
-        <span class="input-label">开户网点</span>
+        <span class="input-label">开户行</span>
         <input type="text" class="input-text" readonly v-model.trim="form.openNet">
       </div>
       <div class="input-item">
@@ -54,7 +61,7 @@
       </div>
       <div class="input-item">
         <span class="input-label">添加联系人</span>
-        <mt-switch></mt-switch>
+        <mt-switch :value="true"></mt-switch>
       </div>
     </div>
     <div class="transfer-button">
@@ -90,6 +97,7 @@ export default {
   name: 'doTransfer',
   data() {
     return {
+      isShowDownlist: false,
       form: {
         receiveName: '',
         receiveNum: '',
@@ -120,6 +128,17 @@ export default {
   },
   mixins,
   methods: {
+    searchReceiveNets() {
+      if(this.form.receiveNet !== '') {
+        this.isShowDownlist = true;
+      }else{
+        this.isShowDownlist = false;
+      }
+    },
+    onClickDownlist(v) {
+      this.isShowDownlist = false;
+      this.form.receiveNet = v;
+    },
     open(url, param = '') {
       AlipayJSBridge.call('pushWindow', {
         url: `${url}?${param}`
@@ -215,6 +234,14 @@ export default {
         MessageBox('提示', '请输入收款方账户');
         return false;
       }
+      if(!form.receiveBank) {
+        MessageBox('提示', '请选择收款银行');
+        return false;
+      }
+      if(!form.receiveNet && form.receiveBank !== '华夏银行') {
+        MessageBox('提示', '请输入开户行');
+        return false;
+      }
       if(!form.transforValue) {
         MessageBox('提示', '请输入转账金额');
         return false;
@@ -233,8 +260,10 @@ export default {
         return;
       }
 
+      const r= encodeURIComponent(JSON.stringify(this.form));
+
       AlipayJSBridge.call('pushWindow', {
-        url: 'confirm.html'
+        url: `confirm.html?r=${r}`
       });
     },
     doOrder() {
@@ -242,8 +271,10 @@ export default {
         return;
       }
 
+      const r= encodeURIComponent(JSON.stringify(this.form));
+
       AlipayJSBridge.call('pushWindow', {
-        url: 'appointment-transfer.html'
+        url: `appointment-transfer.html?r=${r}`
       });
     }
   },
@@ -380,5 +411,25 @@ body {
 }
 .pay-text{
   color: #e14636;
+}
+.nets-downlist{
+  position: absolute;
+  top: 110px;
+  width: 400px;
+  left: 220px;
+  border: 1px #ddd solid;
+  background-color: #fff;
+  z-index: 10;
+  li{
+    height: 80px;
+    line-height: 86px;
+    padding: 0px 30px;
+    color: #333;
+    font-size: 30px;
+    border-bottom: 1px #ddd solid;
+    &:last-child{
+      border-bottom: none;
+    }
+  }
 }
 </style>
