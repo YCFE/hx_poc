@@ -34,6 +34,8 @@
   import { mapState } from 'vuex';
   import { Toast } from 'mint-ui';
   import uSelect from 'common/components/u-select';
+  import { MessageBox } from 'mint-ui';
+
   export default {
     name: 'child',
     data() {
@@ -78,21 +80,21 @@
       checkInfo() {
         if (!this.options.account) {
           if (this.showChoose) {
-            alert('请选择拒绝原因');
+            MessageBox('提示', '请选择拒绝原因');
             return false;
           } else {
-            alert('请输入拒绝原因');
+            MessageBox('提示', '请输入拒绝原因');
             return false;
           }
           // Toast('请选择拒绝原因');
         }
         if (!this.options.password) {
-          alert('请输入授权密码');
+          MessageBox('提示', '请输入授权密码');
           return false;
           // Toast('请输入授权密码');
         }
         if (this.options.password.length < 6) {
-          alert('密码格式不正确，至少需要6位');
+          MessageBox('提示', '密码格式不正确，至少需要6位');
           return false;
         }
         return true;
