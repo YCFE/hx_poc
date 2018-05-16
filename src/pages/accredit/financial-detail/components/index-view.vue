@@ -7,7 +7,7 @@
         </div>
         <div class="detail-bottom clearfix">
           <div class="pull-left">
-              预约转账
+              理财产品认购
           </div>
           <div class="pull-right">
               提交人：{{options.submitter}}
@@ -17,36 +17,45 @@
     <div class="detail-content">
       <ul>
         <li>
+          <label for="">产品名称</label>
+          <input type="text" readonly value="" v-model="options.name">
+        </li>
+        <li>
+          <label for="">产品类型</label>
+          <input type="text" readonly value="" v-model="options.type">
+        </li>
+        <li>
+          <label for="">预期年化收益率</label>
+          <input type="text" readonly value="" v-model="options.return">
+        </li>
+        <li>
+          <label for="">期限</label>
+          <input type="text" readonly value="" v-model="options.timeLimit">
+        </li>
+        <li>
+          <label for="">到期日</label>
+          <input type="text" readonly value="" v-model="options.deadline">
+        </li>
+        <li>
           <label for="">指令状态</label>
-          <input type="text" readonly value="" v-model="options.order">
+          <input type="text" readonly value="" v-model="options.state">
         </li>
         <li>
           <label for="">提交时间</label>
           <input type="text" readonly value="" v-model="options.time">
         </li>
         <li>
-          <label for="">手续费</label>
-          <input type="text" readonly value="" v-model="options.fees">
-        </li>
-        <li>
-          <label for="">收款方详情({{options.beneficiaryName}})</label>
+          <label for="">更多详情</label>
           <i class="i-img-toggle-arrow pull-right" @click="toggleArrow" :class="{transformArrow:transformArrow}"></i>
         </li>
         <div v-show="isShowSection" class="li-div">
-            <p>收款方：{{options.beneficiaryName}}</p>
-            <p>收款账号：{{options.beneficiaryId}}</p>
-            <p>收款方开户行：{{options.beneficiaryBank}}</p>
-          </div>
-        <li>
-          <label for="">更多详情</label>
-          <i class="i-img-toggle-arrow pull-right" @click="toggleArrow1" :class="{transformArrow:transformArrow1}"></i>
-        </li>
-        <div v-show="isShowSection1" class="li-div">
-          <p>付款方：{{options.payerName}}</p>
-          <p>付款账号：{{options.payerId}}</p>
-          <p>付款用途：{{options.payerUse}}</p>
-          <p>执行时间：{{options.payerTime}}</p>
-          <p>交易流水号：{{options.payerNo}}</p>
+          <p>募集日期：{{options.recruitmentDate}}</p>
+          <p>起息日：{{options.valueDate}}</p>
+          <p>剩余额度：{{options.remaining}}</p>
+          <p>认购账号：{{options.subscriptionNo}}</p>
+          <p>产品代码：{{options.productNo}}</p>
+          <p>流水号：{{options.number}}</p>
+          <p>投资及收益币种：{{options.currency}}</p>
         </div>
       </ul>
     </div>
@@ -66,7 +75,7 @@
   import request from 'common/js/request';
 
   export default {
-    name: 'accreditTransferDetail',
+    name: 'accreditFinancialDetail',
     components: {
 
     },
@@ -74,22 +83,23 @@
       return {
         transformArrow:false,
         isShowSection:true,
-        transformArrow1:false,
-        isShowSection1:true,
         options:{
-          money:'',
-          submitter:'',
-          order:'',
-          time:'',
-          fees:'',
-          beneficiaryName:'',
-          beneficiaryId:'',
-          beneficiaryBank:'',
-          payerName:'',
-          payerId:'',
-          payerUse:'',
-          payerTime:'',
-          payerNo:'',
+          "money":"",
+          "submitter":"",
+          "name":"",
+          "type":"",
+          "return":"",
+          "timeLimit":"",
+          "deadline":"",
+          "state":"",
+          "time":"",
+          "recruitmentDate":"",
+          "valueDate":"",
+          "remaining":"",
+          "subscriptionNo":"",
+          "productNo":"",
+          "number":"",
+          "currency":""
         }
       }
     },
@@ -105,7 +115,7 @@
         });
       },
       getData() {
-        request('client.accrdeit.getTransferDetailData', r => {
+        request('client.accrdeit.getFinancialDetailData', r => {
           this.options = r.data;
         });
       },
@@ -115,14 +125,6 @@
           this.isShowSection = true;
         }else{
           this.isShowSection = false;
-        }
-      },
-      toggleArrow1(){
-        this.transformArrow1 = !this.transformArrow1;
-        if(!this.transformArrow1){
-          this.isShowSection1 = true;
-        }else{
-          this.isShowSection1 = false;
         }
       }
     },

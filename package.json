@@ -132,6 +132,10 @@
       "transfer/appointment-transfer-confirm": {
         "entry": "./src/pages/transfer/appointment-transfer-confirm/index.js",
         "template": "./src/layout/transfer/appointment-transfer-confirm.html"
+      },
+      "accredit/financial-detail": {
+        "entry": "./src/pages/accredit/financial-detail/index.js",
+        "template": "./src/layout/accredit/financial-detail.html"
       }
     },
     "pageTemplate": "./src/layout/layout.html",
