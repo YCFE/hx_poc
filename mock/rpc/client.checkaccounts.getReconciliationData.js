@@ -2,29 +2,29 @@ module.exports = function () {
   return {
     "data": [
       {
-        "accountNumber": "12312356",
+        "accountNumber": "6226****3381",
         "currency": "人民币",
-        "accountName": "李晓",
-        "accountBalance": "12.00",
-        "date": "2018-01-15",
+        "accountName": "华夏银行厦门分行",
+        "accountBalance": "1200000.00",
+        "date": "2018-04-15",
+        "state": "",
+        "reason": ""
+      },
+      {
+        "accountNumber": "6226****8624",
+        "currency": "人民币",
+        "accountName": "华夏银行厦门分行",
+        "accountBalance": "128555.00",
+        "date": "2018-04-18",
         "state": "",
         "reason": ""
       },
       {
         "accountNumber": "12312356",
         "currency": "人民币",
-        "accountName": "李晓",
-        "accountBalance": "12.00",
-        "date": "2018-01-15",
-        "state": "",
-        "reason": ""
-      },
-      {
-        "accountNumber": "12312356",
-        "currency": "人民币",
-        "accountName": "李晓",
-        "accountBalance": "12.00",
-        "date": "2018-01-15",
+        "accountName": "华夏银行厦门分行",
+        "accountBalance": "2500000.88",
+        "date": "2018-05-15",
         "state": "",
         "reason": ""
       }

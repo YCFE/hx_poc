@@ -4,8 +4,8 @@ module.exports = function () {
       {
         "accountNumber": "6226****3381",
         "currency": "人民币",
-        "accountName": "李晓",
-        "accountBalance": "87000.00",
+        "accountName": "华夏银行厦门分行",
+        "accountBalance": "1200000.00",
         "date": "2018-04-15",
         "state": "",
         "reason": ""
@@ -13,8 +13,8 @@ module.exports = function () {
       {
         "accountNumber": "6226****8624",
         "currency": "人民币",
-        "accountName": "张峰",
-        "accountBalance": "110000.00",
+        "accountName": "华夏银行厦门分行",
+        "accountBalance": "128555.00",
         "date": "2018-04-18",
         "state": "",
         "reason": ""
@@ -22,8 +22,8 @@ module.exports = function () {
       {
         "accountNumber": "6226****4675",
         "currency": "人民币",
-        "accountName": "王亮",
-        "accountBalance": "55246.88",
+        "accountName": "华夏银行厦门分行",
+        "accountBalance": "2500000.88",
         "date": "2018-05-15",
         "state": "",
         "reason": ""

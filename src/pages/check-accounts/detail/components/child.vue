@@ -1,11 +1,10 @@
 <template>
-  <div class="container">
-    <!-- Hello {{name}} -->
+  <div class="container" v-if="options !== null">
     <div class="account-detail">
       <ul>
         <li>
           <span class="span-label">账号</span>
-          <span class="span-content">{{ options.accountNumber }}</span>
+          <span class="span-content">{{ params.accountNumber }}</span>
         </li>
         <li>
           <span class="span-label">币种</span>
@@ -13,19 +12,19 @@
         </li>
         <li>
           <span class="span-label">账户名称</span>
-          <span class="span-content">{{options.accountName}}</span>
+          <span class="span-content">{{params.accountName}}</span>
         </li>
         <li>
           <span class="span-label">账户余额</span>
-          <span class="span-content">{{options.accountBalance}}</span>
+          <span class="span-content">{{params.accountBalance}}</span>
         </li>
         <li>
           <span class="span-label">余额日期</span>
-          <span class="span-content">{{options.date}}</span>
+          <span class="span-content">{{params.date}}</span>
         </li>
         <li>
           <span class="span-label">余额状态</span>
-          <span class="span-content">{{options.state}}</span>
+          <span class="span-content">{{params.state}}</span>
         </li>
         <li>
           <span class="span-label">发起人</span>
@@ -59,32 +58,23 @@
 
 <script>
   import request from 'common/js/request';
+  import utils from 'common/js/utils';
+
+  const { getParam } = utils;
+
   export default {
     name: 'child',
     data() {
       return {
         name: 'child',
-        options:
-          {
-            accountNumber: '',
-            currency: '',
-            accountName: '',
-            accountBalance: '',
-            date: '',
-            state: '',
-            sponsor: '',
-            authorizer: '',
-            isMatch: '',
-            reason: '',
-            table: '',
-            reply: ''
-          }
+        options: null,
+        params: JSON.parse(decodeURIComponent(getParam('r'))),
 
       }
     },
     methods: {
       getData() {
-        request('client.checkAccounts.getDetailData', r => {
+        request('client.checkaccounts.getDetailData', r => {
           this.options = r.data;
         });
       }
@@ -96,12 +86,11 @@
 
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @black-gray:#333;
   @light-gray:#999;
   @line-gray:#ddd;
   .container{
-    overflow: hidden;
     font-size: 30px;
     background: #fff;
   }
