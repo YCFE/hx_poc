@@ -6,6 +6,7 @@
 
 <script>
   import { mapState } from 'vuex';
+  import mixins from 'common/js/mixins';
   import child from './child';
 
   export default {
@@ -13,6 +14,7 @@
     components: {
       child
     },
+    mixins,
     data() {
       return {
 

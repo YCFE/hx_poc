@@ -12,11 +12,13 @@
 
 <script>
   import { mapState } from 'vuex';
+  import mixins from 'common/js/mixins';
 
   export default {
     name: 'checkResult',
     components: {
     },
+    mixins,
     data() {
       return {
 

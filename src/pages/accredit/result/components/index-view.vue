@@ -38,6 +38,7 @@
 <script>
   import { mapState } from 'vuex';
   import utils from 'common/js/utils';
+  import mixins from 'common/js/mixins';
 
   const { getParam } = utils;
 
@@ -48,6 +49,7 @@
         result: getParam('result')
       }
     },
+    mixins,
     methods: {
       doAgain() {
         AlipayJSBridge.call('popTo',{

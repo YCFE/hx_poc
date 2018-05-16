@@ -31,12 +31,14 @@
   import { mapState } from 'vuex';
   import { MessageBox } from 'mint-ui';
   import request from 'common/js/request';
+  import mixins from 'common/js/mixins';
 
   export default {
     name: 'transferIndex',
     components: {
 
     },
+    mixins,
     data() {
       return {
         options: null

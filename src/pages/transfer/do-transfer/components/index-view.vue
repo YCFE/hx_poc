@@ -82,6 +82,7 @@ import uSelect from 'common/components/u-select';
 import utils from 'common/js/utils';
 import request from 'common/js/request';
 import { MessageBox } from 'mint-ui';
+import mixins from 'common/js/mixins';
 
 const { getParam } = utils;
 
@@ -117,6 +118,7 @@ export default {
   components: {
     uSelect
   },
+  mixins,
   methods: {
     open(url, param = '') {
       AlipayJSBridge.call('pushWindow', {

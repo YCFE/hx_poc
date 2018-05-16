@@ -72,6 +72,7 @@
 <script>
   import { mapState } from 'vuex';
   import request from 'common/js/request';
+  import mixins from 'common/js/mixins';
 
   export default {
     name: 'accreditIndex',
@@ -80,6 +81,7 @@
         counts: null
       }
     },
+    mixins,
     methods: {
       getAccounts() {
         request('client.accredit.getCounts', r => {
