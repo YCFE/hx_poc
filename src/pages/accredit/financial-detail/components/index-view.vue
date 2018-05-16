@@ -74,6 +74,7 @@
   import { MessageBox } from 'mint-ui';
   import request from 'common/js/request';
   import utils from 'common/js/utils';
+  import mixins from 'common/js/mixins';
 
   const { getParam } = utils;
 
@@ -82,6 +83,7 @@
     components: {
 
     },
+    mixins,
     data() {
       return {
         transformArrow:false,
