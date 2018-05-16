@@ -12,6 +12,7 @@
 
 <script>
   import { mapState } from 'vuex';
+  import mixins from 'common/js/mixins';
 
   export default {
     name: 'accreditResult',
@@ -20,6 +21,7 @@
 
       }
     },
+    mixins,
     methods: {
       doAgain() {
         AlipayJSBridge.call('popTo',{

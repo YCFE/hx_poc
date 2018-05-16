@@ -19,12 +19,14 @@
 
 <script>
   import { mapState } from 'vuex';
+  import mixins from 'common/js/mixins';
 
   export default {
     name: 'transferAllBanks',
     components: {
 
     },
+    mixins,
     data() {
       return {
         options:[

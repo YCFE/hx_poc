@@ -53,6 +53,7 @@
 import { mapState } from 'vuex';
 import { MessageBox } from 'mint-ui';
 import request from 'common/js/request';
+import mixins from 'common/js/mixins';
 
 export default {
   name: 'accountInput',
@@ -61,6 +62,7 @@ export default {
       options: null
     };
   },
+  mixins,
   directives: {
     focus: {
       inserted: function(el) {

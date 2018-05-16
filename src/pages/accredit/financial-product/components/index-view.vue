@@ -39,12 +39,14 @@
   import { mapState } from 'vuex';
   import { MessageBox } from 'mint-ui';
   import request from 'common/js/request';
+  import mixins from 'common/js/mixins';
 
   export default {
     name: 'accreditFinancialProduct',
     components: {
 
     },
+    mixins,
     data() {
       return {
         search:'',

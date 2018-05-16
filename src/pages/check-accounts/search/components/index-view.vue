@@ -72,6 +72,7 @@
 import { mapState } from 'vuex';
 import uSelect from 'common/components/u-select';
 import request from 'common/js/request';
+import mixins from 'common/js/mixins';
 
 const startDate = new Date();
 
@@ -82,6 +83,7 @@ export default {
   components: {
     uSelect
   },
+  mixins,
   data() {
     return {
       search: {

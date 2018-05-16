@@ -66,12 +66,14 @@
   import { MessageBox } from 'mint-ui';
   import request from 'common/js/request';
   import countdownClick from 'common/components/countdownClick';
+  import mixins from 'common/js/mixins';
 
   export default {
     name: 'transferConfirm',
     components: {
       countdownClick
     },
+    mixins,
     data() {
       return {
         code: '',
