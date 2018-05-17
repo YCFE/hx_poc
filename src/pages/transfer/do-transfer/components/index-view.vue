@@ -15,7 +15,7 @@
         <input type="text" class="input-text" readonly placeholder="请选择收款银行" v-model.trim="form.receiveBank">
         <i class="icon icon-bank"></i>
       </div>
-      <div class="input-item" v-if="form.receiveBank !== '华夏银行'">
+      <div class="input-item" v-if="form.receiveBank !== '' && form.receiveBank !== '华夏银行'">
         <span class="input-label">开户行</span>
         <input type="text" class="input-text" placeholder="请输入开户行" @input="searchReceiveNets" v-model.trim="form.receiveNet">
         <ul class="nets-downlist" v-if="isShowDownlist">

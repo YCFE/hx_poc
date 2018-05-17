@@ -35,14 +35,14 @@
     <p class="page-info">
        共12条记录，显示7至9条记录
     </p>
-    <!-- <div class="page-count clearfix">
+    <div class="page-count clearfix">
       <span class="fl">
-        <a href="javascript:;">上一页</a>/<a href="javascript:;">第一页</a>
+        <a href="javascript:;" @click="getData">上一页</a>/<a href="javascript:;" @click="getData">第一页</a>
       </span>
       <span class="fr">
-        <a href="javascript:;">下一页</a>/<a href="javascript:;">最后一页</a>
+        <a href="javascript:;" @click="getData">下一页</a>/<a href="javascript:;" @click="getData">最后一页</a>
       </span>
-    </div> -->
+    </div>
     <div class="input-button">
       <button class="btn btn-primary" @click="doSubmit">下一步</button>
     </div>
@@ -69,7 +69,7 @@
     },
     methods: {
       checkSubmit() {
-        const r = this.options.some(obj => {
+        const r = this.options.every(obj => {
           return obj.state === ''
         });
 
@@ -95,8 +95,12 @@
           return;
         }
 
+        const length = this.options.filter(el => {
+          return el.state !== ''
+        }).length;
+
         AlipayJSBridge.call('pushWindow', {
-          url: 'reconciliation-result.html'
+          url: `code.html?length=${length}`
         });
       },
       getData() {
@@ -106,6 +110,12 @@
       }
     },
     mounted() {
+      document.addEventListener('resume', () => {
+        this.options.forEach(el => {
+          el.state = '';
+          el.reason = '';
+        });
+      });
       this.getData();
     }
   }
@@ -122,7 +132,7 @@
     background: none;
   }
   .input-button{
-    margin: 0 30px;
+    margin: 30px 30px 0;
   }
   .list-wrap{
     font-size: 30px;
@@ -132,7 +142,17 @@
       width: 180px;
     }
   }
+  .page-count {
+    color: #a1a1a1;
+    font-size: 28px;
+    margin: 50px 28px 0;
+    a {
+      color: #a1a1a1;
+      font-size: 28px;
+    }
+  }
   .reason-input{
+    width: 400px;
     border: none !important;
     height: 60px;
     &::-webkit-input-placeholder{

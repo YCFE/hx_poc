@@ -1,14 +1,18 @@
 <template>
   <div id="app">
-
+    <child></child>
   </div>
 </template>
 
 <script>
   import { mapState } from 'vuex';
+  import child from './child';
 
   export default {
-    name: '<%=pageName%>',
+    name: 'CheckAccounts/code',
+    components: {
+      child
+    },
     data() {
       return {
 

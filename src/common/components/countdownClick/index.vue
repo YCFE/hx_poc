@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-code" :disabled="isDisabled">{{text}}</button>
+  <button class="btn btn-code" :disabled="isDisabled" :class="{'code-disabled': isDisabled}">{{text}}</button>
 </template>
 
 <script>
@@ -40,5 +40,7 @@ export default{
 </script>
 
 <style lang="less" scoped>
-
+.code-disabled{
+  background-color: #bbb;
+}
 </style>
