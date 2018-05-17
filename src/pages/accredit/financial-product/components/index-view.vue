@@ -8,7 +8,7 @@
           </div>
           <i class="i-img-toggle-arrow pull-right" @click="toggleArrow" :class="{transformArrow:transformArrow}"></i>
       </div>
-      <section class="clearfix" v-for="(item, index) in options" :key="index" v-show="isShowSection" @click="productDetail(item)">
+      <section class="clearfix" v-for="(item, index) in options" :key="index" v-show="isShowSection">
         <div class="pull-left">
           <input @click.stop="totalNumber"   v-model="checkedArr" type="checkbox" :value="index" name="" class="ui-checkbox" :id="index">
           <label class="normal" :for="index">i</label>
@@ -20,7 +20,7 @@
         </div>
         <div class="pull-right block-right">
           <p>{{item.transfer}}</p>
-          <p><a class="font-red"><span :style="{color:'#fff'}">&nbsp;</span><i class="font-red i-img-red-arrow"></i></a></p>
+          <p><a class="font-red" @click="productDetail(item)"><span :style="{color:'#fff'}">&nbsp;</span><i class="font-red i-img-red-arrow"></i></a></p>
           <p class="font-light-gray">提交人：{{item.submitter}}</p>
         </div>
       </section>
@@ -94,7 +94,7 @@
       },
       refuse(){
         if(this.total == 0){
-          MessageBox('提示', '请选择转账理财产品');
+          MessageBox('提示', '请选择理财产品');
           return false;
         }else{
           AlipayJSBridge.call('pushWindow', {
@@ -104,7 +104,7 @@
       },
       agree(){
         if(this.total == 0){
-          MessageBox('提示', '请选择转理财产品');
+          MessageBox('提示', '请选择理财产品');
           return false;
         }else{
           AlipayJSBridge.call('pushWindow', {
