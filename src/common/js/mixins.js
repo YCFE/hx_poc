@@ -1,6 +1,6 @@
 export default [{
   mounted() {
-    AlipayJSBridge.call('setNavigationBar', {
+    AlipayJSBridge.call('setTitle', {
       title: document.title
     });
   }

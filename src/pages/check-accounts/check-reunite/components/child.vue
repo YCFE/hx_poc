@@ -15,12 +15,12 @@
         </li>
         <li class="li-dis">
           <span class="text-color title">对账结果</span>
-          <span>{{item.checkResult}}</span>
+          <span>{{state[index]}}</span>
         </li>
-        <li class="li-dis-special">
+        <!-- <li class="li-dis-special">
           <span class="text-color title">复核结果</span>
           <span>{{item.result}}</span>
-        </li>
+        </li> -->
       </ul>
     </section>
     <footer class="footer-dis">
@@ -44,6 +44,10 @@
 
 <script>
   import request from 'common/js/request';
+  import utils from 'common/js/utils';
+
+  const { getParam } = utils;
+
   export default {
     name: 'child',
     data() {
@@ -52,7 +56,8 @@
         totalNumber: '',
         fromNumber: 1,
         toNumber: 3,
-        options: null
+        options: null,
+        state: getParam('r').split(',')
       };
     },
     mounted() {

@@ -97,11 +97,10 @@ export default {
         return;
       }
 
+      const arr = this.options.map(el => el.state).join(',');
+
       AlipayJSBridge.call('pushWindow', {
-        url: 'check-reunite.html',
-        params: {
-          count: this.options.length
-        }
+        url: `check-reunite.html?r=${arr}`
       });
     },
     getData() {

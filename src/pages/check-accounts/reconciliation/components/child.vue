@@ -96,10 +96,7 @@
         }
 
         AlipayJSBridge.call('pushWindow', {
-          url: 'reconciliation-result.html',
-          params: {
-            count: this.options.length
-          }
+          url: 'reconciliation-result.html'
         });
       },
       getData() {

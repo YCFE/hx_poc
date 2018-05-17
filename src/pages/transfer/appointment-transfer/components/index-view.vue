@@ -51,6 +51,9 @@ import uSelect from 'common/components/u-select';
 import request from 'common/js/request';
 import { MessageBox } from 'mint-ui';
 import mixins from 'common/js/mixins';
+import utils from 'common/js/utils';
+
+const { getParam } = utils;
 
 const startDate = new Date();
 
@@ -99,12 +102,14 @@ export default {
         1}月${date.getDate()}日`;
     },
     doOrder(){
+      const r = encodeURIComponent(getParam('r'));
+
       if(this.search.type == ""){
         MessageBox('提示', '请选择执行时间');
           return false;
       }else{
         AlipayJSBridge.call('pushWindow', {
-          url: 'appointment-transfer-confirm.html'
+          url: `appointment-transfer-confirm.html?r=${r}`
         });
       }
     }

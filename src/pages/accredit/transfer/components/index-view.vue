@@ -19,12 +19,12 @@
           <input @click="totalNumber"   v-model="checkedArr" type="checkbox" :value="index" name="" class="ui-checkbox" :id="index">
           <label class="normal" :for="index">i</label>
         </div>
-        <div class="pull-left" @click="openDetail">
+        <div class="pull-left" @click="openDetail(item)">
           <p class="font-light-gray">{{ item.name }}</p>
           <p>{{ item.number }} <span class="font-red">{{item.type}}</span></p>
           <p class="font-light-gray">{{item.time}}</p>
         </div>
-        <div class="pull-right block-right" @click="openDetail">
+        <div class="pull-right block-right" @click="openDetail(item)">
           <p>{{item.transfer}}</p>
           <p><a class="font-red">{{item.reservation}} <i class="font-red i-img-red-arrow"></i></a></p>
           <p class="font-light-gray">提交人：{{item.submitter}}</p>
@@ -130,9 +130,10 @@
           });
         }
       },
-      openDetail() {
+      openDetail(item) {
+        const r = encodeURIComponent(JSON.stringify(item));
         AlipayJSBridge.call('pushWindow', {
-          url: 'transfer-detail.html'
+          url: `transfer-detail.html?r=${r}`
         });
       }
     },

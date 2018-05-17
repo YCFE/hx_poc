@@ -25,7 +25,7 @@
           <span class="text-color title">余额状态</span>
           <span>{{item.state}}</span>
         </li>
-        <button class="button-position-set button-detail" @click="detail(index)">详情</button>
+        <button class="button-position-set button-detail" @click="detail(item)">详情</button>
       </ul>
     </section>
     <footer class="footer-dis">
@@ -63,16 +63,16 @@
         this.getLists();
       },
       getLists() {
-        request('client.checkAccounts.getCheckLists', r => {
+        request('client.checkaccounts.getCheckLists', r => {
           this.options = r.data;
           this.totalNumber = this.options.length;
         });
       },
-      detail(index) {
-        this.params.index = index;
+      detail(item) {
+        const r = encodeURIComponent(JSON.stringify(item));
+
         AlipayJSBridge.call('pushWindow', {
-          url: 'detail.html',
-          data: this.params
+          url: `detail.html?r=${r}`
         });
       }
     }

@@ -5,7 +5,7 @@
     <p class="success-content"><span>3</span>条数据授权成功</p>
     <div class="success-button">
       <button class="again" @click="doAgain">继续授权</button>
-      <button class="go-home">返回首页</button>
+      <button class="go-home" @click="goHome">返回首页</button>
     </div>
   </div>
 </template>
@@ -29,6 +29,9 @@
         AlipayJSBridge.call('popTo',{
           urlPattern: 'reconciliation.html',
         });
+      },
+      goHome() {
+        AlipayJSBridge.call('exitSession');
       }
     },
     mounted() {

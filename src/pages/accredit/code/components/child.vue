@@ -31,6 +31,8 @@
 <script>
   import request from 'common/js/request';
   import countdown from 'common/components/countdown';
+  import { MessageBox } from 'mint-ui';
+
   export default {
     name: 'child',
     data() {
@@ -63,19 +65,19 @@
       },
       checkInfo() {
         if (!this.options.number) {
-          alert('请输入短信验证码');
+          MessageBox('提示', '请输入短信验证码');
           return false;
         }
         if (this.options.number.length < 6) {
-          alert('请输入6位短信验证码');
+          MessageBox('提示', '请输入6位短信验证码');
           return false;
         }
         if (!this.options.code) {
-          alert('请输入授权密码');
+          MessageBox('提示', '请输入授权密码');
           return false;
         }
         if (this.options.code.length < 6) {
-          alert('密码格式不正确，至少需要6位');
+          MessageBox('提示', '密码格式不正确，至少需要6位');
           return false;
         }
         return true;
@@ -86,10 +88,7 @@
         }
         request('client.accredit.submitReason', r => {
           AlipayJSBridge.call('pushWindow', {
-            url: 'result.html',
-            param: {
-              result: 'success'
-            }
+            url: 'result.html?result=success'
           });
         });
       }

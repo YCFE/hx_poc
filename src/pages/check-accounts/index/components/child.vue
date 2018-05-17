@@ -91,7 +91,7 @@
     font-size: 30px;
     margin: 0 29px;
     .a{
-      padding: 65px 0 24px;
+      padding: 45px 0 45px;
       color: @black-gray;
       display: block;
       border-bottom: 1px solid @line-gray;

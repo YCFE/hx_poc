@@ -8,9 +8,9 @@
           </div>
           <i class="i-img-toggle-arrow pull-right" @click="toggleArrow" :class="{transformArrow:transformArrow}"></i>
       </div>
-      <section class="clearfix" v-for="(item, index) in options" :key="index" v-show="isShowSection" @click="productDetail(index)">
+      <section class="clearfix" v-for="(item, index) in options" :key="index" v-show="isShowSection" @click="productDetail(item)">
         <div class="pull-left">
-          <input @click="totalNumber"   v-model="checkedArr" type="checkbox" :value="index" name="" class="ui-checkbox" :id="index">
+          <input @click.stop="totalNumber"   v-model="checkedArr" type="checkbox" :value="index" name="" class="ui-checkbox" :id="index">
           <label class="normal" :for="index">i</label>
         </div>
         <div class="pull-left">
@@ -112,9 +112,11 @@
           });
         }
       },
-      productDetail(i){
+      productDetail(item){
+        const r = encodeURIComponent(JSON.stringify(item));
+
         AlipayJSBridge.call('pushWindow', {
-          url: 'financial-detail.html'
+          url: `financial-detail.html?r=${r}`
         });
       }
     },
