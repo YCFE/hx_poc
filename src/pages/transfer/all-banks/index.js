@@ -5,6 +5,11 @@ import FastClick from 'fastclick';
 import IndexView from './components/index-view.vue';
 import store from './store';
 
+if (process.env.NODE_ENV === 'development') {
+  const VConsole = require('common/js/dev/vconsole.min');
+  const vconsole = new VConsole();
+}
+
 Vue.use(MintUI);
 FastClick.attach(document.body);
 

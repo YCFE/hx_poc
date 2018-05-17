@@ -179,11 +179,11 @@
     "vuex": "3.0.1"
   },
   "devDependencies": {
-    "@ali/kylin-plugin-resource": "./kylin_modules/_ali_kylin-plugin-resource",
-    "@ali/kylin-plugin-env": "./kylin_modules/_ali_kylin-plugin-env",
-    "@ali/kylin-plugin-vue": "./kylin_modules/_ali_kylin-plugin-vue",
     "@ali/kylin-build": "./kylin_modules/_ali_kylin-build",
     "@ali/kylin-cli": "./kylin_modules/_ali_kylin-cli",
+    "@ali/kylin-plugin-env": "./kylin_modules/_ali_kylin-plugin-env",
+    "@ali/kylin-plugin-resource": "./kylin_modules/_ali_kylin-plugin-resource",
+    "@ali/kylin-plugin-vue": "./kylin_modules/_ali_kylin-plugin-vue",
     "babel-eslint": "^7.1.1",
     "eslint": "~3.5.0",
     "eslint-config-standard": "~6.0.1",
