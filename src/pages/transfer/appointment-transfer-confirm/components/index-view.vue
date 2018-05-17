@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h3 class="confirm-title">请确认以下信息</h3>
     <div class="confirm-header">
       <p class="header-title">转账金额</p>
       <div class="clearfix header-money">
@@ -8,6 +7,7 @@
         <span class="fr">手续费：{{options.fee}}</span>
       </div>
     </div>
+    <h3 class="confirm-title">请确认以下信息</h3>
     <div class="confirm-wrap">
       <div class="confirm-list">
         <p class="item-title">对方账户</p>
@@ -44,16 +44,20 @@
     <div class="auth-code">
       <div class="code-title clearfix">
         <span class="fl">认证方式</span>
-        <span class="fr">短信认证</span>
+        <span class="fr" v-if="!isBig">短信认证</span>
+        <span class="fr" v-else>动态挑战码</span>
       </div>
-      <div class="transaction-item bor-bottom">
+      <div class="transaction-item bor-bottom" v-if="!isBig">
         <label for="">验证码</label>
-        <input type="text" placeholder="请输入验证码" v-model="code">
-        <!-- <button class="btn btn-code">重新获取</button> -->
+        <input type="tel" placeholder="请输入验证码" maxlength="6" v-model="code">
         <countdownClick
             :second="60"
             @click.native="runTimer"
             ref="timer"></countdownClick>
+      </div>
+      <div class="transaction-item bor-bottom" v-else>
+        <label for="">动态挑战码</label>
+        <input type="tel" placeholder="请输入动态挑战码" v-model="code">
       </div>
     </div>
     <div class="submit-button">
@@ -247,7 +251,7 @@
       display: inline-block;
     }
     input{
-      width: 200px;
+      width: 230px;
     }
   }
   .bor-bottom{

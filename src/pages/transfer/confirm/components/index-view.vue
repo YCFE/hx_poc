@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h3 class="confirm-title">请确认以下信息</h3>
     <div class="confirm-header">
       <p class="header-title">转账金额</p>
       <div class="clearfix header-money">
@@ -8,6 +7,7 @@
         <span class="fr">手续费：{{options.fee}}</span>
       </div>
     </div>
+    <h3 class="confirm-title">请确认以下信息</h3>
     <div class="confirm-wrap">
       <div class="confirm-list">
         <p class="item-title">对方账户</p>
@@ -44,7 +44,8 @@
     <div class="auth-code">
       <div class="code-title clearfix">
         <span class="fl">认证方式</span>
-        <span class="fr">短信认证</span>
+        <span class="fr" v-if="!isBig">短信认证</span>
+        <span class="fr" v-else>动态挑战码</span>
       </div>
       <div class="transaction-item bor-bottom" v-if="!isBig">
         <label for="">验证码</label>
