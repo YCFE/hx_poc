@@ -94,7 +94,7 @@
       },
       refuse(){
         if(this.total == 0){
-          MessageBox('提示', '请选择转账汇款项目');
+          MessageBox('提示', '请选择转账理财产品');
           return false;
         }else{
           AlipayJSBridge.call('pushWindow', {
@@ -104,7 +104,7 @@
       },
       agree(){
         if(this.total == 0){
-          MessageBox('提示', '请选择转账汇款项目');
+          MessageBox('提示', '请选择转理财产品');
           return false;
         }else{
           AlipayJSBridge.call('pushWindow', {
