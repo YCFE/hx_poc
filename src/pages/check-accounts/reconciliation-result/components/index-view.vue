@@ -27,7 +27,7 @@
     methods: {
       doAgain() {
         AlipayJSBridge.call('popTo',{
-          urlPattern: 'reconciliation.html',
+          urlPattern: 'index.html',
         });
       },
       goHome() {

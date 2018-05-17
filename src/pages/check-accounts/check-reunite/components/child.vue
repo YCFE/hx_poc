@@ -28,12 +28,12 @@
         共{{totalNumber}}条记录， 显示{{fromNumber}}至{{toNumber}}条记录
       </div>
       <div class="text-color page">
-        <span>上一页</span>
+        <span @click="getLists">上一页</span>
         <span>/</span>
-        <span>第一页</span>
-        <span class="next-page">下一页</span>
+        <span @click="getLists">第一页</span>
+        <span class="next-page" @click="getLists">下一页</span>
         <span>/</span>
-        <span>最后一页</span>
+        <span @click="getLists">最后一页</span>
       </div>
       <div class="footer-button">
         <button class="button-size button-dis btn" @click="nextStep">下一步</button>

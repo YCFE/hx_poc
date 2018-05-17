@@ -37,10 +37,10 @@
     </p>
     <div class="page-count clearfix">
       <span class="fl">
-        <a href="javascript:;">上一页</a>/<a href="javascript:;">第一页</a>
+        <a href="javascript:;" @click="getData">上一页</a>/<a href="javascript:;" @click="getData">第一页</a>
       </span>
       <span class="fr">
-        <a href="javascript:;">下一页</a>/<a href="javascript:;">最后一页</a>
+        <a href="javascript:;" @click="getData">下一页</a>/<a href="javascript:;" @click="getData">最后一页</a>
       </span>
     </div>
     <div class="input-button">
@@ -136,7 +136,7 @@ export default {
   }
 }
 .input-button {
-  margin: 30px 28px 50px;
+  margin: 30px 28px 0px;
 }
 .reason-input {
   width: 400px;
