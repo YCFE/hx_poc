@@ -57,7 +57,7 @@
       </div>
       <div class="input-item">
         <span class="input-label">短信通知</span>
-        <input type="text" class="input-text" placeholder="请输入手机号（选填）">
+        <input type="text" class="input-text" v-inputScrollView placeholder="请输入手机号（选填）">
       </div>
       <div class="input-item">
         <span class="input-label">添加联系人</span>
@@ -90,6 +90,7 @@ import utils from 'common/js/utils';
 import request from 'common/js/request';
 import { MessageBox } from 'mint-ui';
 import mixins from 'common/js/mixins';
+import directives from 'common/js/directives';
 
 const { getParam } = utils;
 
@@ -127,6 +128,7 @@ export default {
     uSelect
   },
   mixins,
+  directives,
   methods: {
     searchReceiveNets() {
       if(this.form.receiveNet !== '') {
@@ -341,7 +343,7 @@ body {
   margin-top: 28px;
 }
 .transfer-button {
-  margin: 60px 0 80px;
+  margin: 60px 0 0px;
   text-align: center;
   button {
     padding: 30px 80px;
