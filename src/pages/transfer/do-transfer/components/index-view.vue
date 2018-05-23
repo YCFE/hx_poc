@@ -98,6 +98,7 @@ export default {
   name: 'doTransfer',
   data() {
     return {
+      seedId: 'transferEnter',
       isShowDownlist: false,
       form: {
         receiveName: '',

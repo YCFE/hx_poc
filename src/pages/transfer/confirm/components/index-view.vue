@@ -122,7 +122,8 @@
         code: '',
         isBig: false,
         options: null,
-        params: JSON.parse(getParam('r'))
+        params: JSON.parse(getParam('r')),
+        seedId: 'transferConfirm'
       }
     },
     methods: {

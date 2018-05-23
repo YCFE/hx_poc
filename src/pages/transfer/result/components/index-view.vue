@@ -18,7 +18,7 @@
     name: 'transferResult',
     data() {
       return {
-
+        seedId: 'transferSuccess'
       }
     },
     mixins,
