@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>对账确认</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="format-detection" content="email=no"/>
+  <script>
+    (function(win, lib) {
+      var doc = win.document;
+      var docEl = doc.documentElement;
+      var dpr = 0;
+      var tid;
+      var flexible = lib.flexible || (lib.flexible = {});
+
+      if (!dpr) {
+        var isAndroid = win.navigator.appVersion.match(/android/gi);
+        var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+        var devicePixelRatio = win.devicePixelRatio;
+        if (isIPhone) {
+          // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+          if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+            dpr = 3;
+          } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+            dpr = 2;
+          } else {
+            dpr = 1;
+          }
+        } else {
+          // 其他设备下，仍旧使用1倍的方案
+          dpr = 1;
+        }
+      }
+
+      docEl.setAttribute('data-dpr', dpr);
+
+      // 设置 harilines 属性
+      // if (dpr > 1) {
+      //   docEl.setAttribute('data-harilines', true);
+      // }
+
+      function refreshRem() {
+        var width = docEl.getBoundingClientRect().width;
+        /**
+         * 这个540其实是个经验值，或者最大值
+         * 目前主流手机最大的css像素尺寸，是540（比如devicePixelRatio为2，分辨率是1080x1920的手机），所以用了这个经验值。
+         * 这样可以让在ipad横屏这种情况下浏览无线页面，不至于因为拉伸适配后体验太差。
+         */
+        if (width > 540) {
+          width = 540;
+        }
+        var rem = width / 10;
+        docEl.style.fontSize = rem + 'px';
+        flexible.rem = win.rem = rem;
+      }
+
+      win.addEventListener('resize', function() {
+        clearTimeout(tid);
+        tid = setTimeout(refreshRem, 300);
+      }, false);
+
+      win.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 300);
+        }
+      }, false);
+
+      refreshRem();
+
+      flexible.dpr = win.dpr = dpr;
+      flexible.refreshRem = refreshRem;
+    })(window, window['lib'] || (window['lib'] = {}));
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://cn-hangzhou-mdsweb.cloud.alipay.com/E508030101442_FinMallDev/common/vue.min.js"></script>
+  <script src="https://cn-hangzhou-mdsweb.cloud.alipay.com/E508030101442_FinMallDev/common/vuex.min.js"></script>
+</body>
+</html>
