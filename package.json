@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "dev:mock": "set MOCK='use' && npm run dev",
+    "dev:mock-mac": "export MOCK='use' && npm run dev",
     "init-page": "node build/init-page.js -p",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
