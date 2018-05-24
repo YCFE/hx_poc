@@ -1,6 +1,3 @@
-import { Toast } from 'mint-ui';
-import 'mint-ui/lib/style.css';
-
 const config = {
   call: {
     rpc(opts, callback) {
@@ -10,11 +7,6 @@ const config = {
       setTimeout(() => {
         callback && callback(data);
       }, 10);
-    },
-    toast(opts, callback) {
-      Toast({
-        message: opts.content
-      });
     },
     pushWindow(opts) {
       let params = opts.param;

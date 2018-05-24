@@ -1,21 +1,21 @@
-# H5App Open
+# project
 
-## 命令
+> A Vue.js project
 
-- `cnpm install` 安装依赖
-- `cnpm run dev` 启动kylin开发服务器，监听8090端口
-- `cnpm run dev:preview` 启动kylin开发服务器，并打开chrome
-- `cnpm run dev:watch` 启动kylin开发模式，但不启动server，会监听构建到`./www/`目录
-- `cnpm run lint` eslint standard
-- `cnpm run build:debug` 不压缩构建到`./www/`
-- `cnpm run build` 构建到`./www/`
+## Build Setup
 
+``` bash
+# install dependencies
+npm install
 
-## Bin
+# serve with hot reload at localhost:8080
+npm run dev
 
-`kylin build` => `./node_modules/.bin/kylin build`
+# build for production with minification
+npm run build
 
+# build for production and view the bundle analyzer report
+npm run build --report
+```
 
-
-
-
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

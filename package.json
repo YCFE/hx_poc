@@ -1,204 +1,84 @@
 {
-  "name": "open-feat",
+  "name": "hx-poc",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "dreamjser <dreamjser@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "kylin build --dev",
-    "dev:preview": "kylin build --dev --open index",
-    "dev:watch": "kylin build --watch --no-prod --hot --no-compress",
-    "dev:mock": "kylin build --dev --mock ./mock/mock.config.js",
-    "lint": "eslint ./src/ --ext js --ext vue",
-    "lint:fix": "eslint --fix ./src/ --ext js --ext vue",
-    "build:debug": "rimraf ./www/ && kylin build --no-compress",
-    "build": "rimraf ./www/ && kylin build",
-    "init-page": "kylin init-page",
-    "init-component": "kylin init-component",
-    "mpaas:open:npm": "kylin-pack --npm --no-devdep --out ./kylin_modules/ --package @ali/kylin-framework@0.1.10-open,@ali/kylin-cli@0.1.8-open,@ali/kylin-build@0.1.44-open02,@alipay/alipayjsapi@3.1.0,@ali/kylin-plugin-resource@0.1.0,@ali/kylin-plugin-env@0.1.0,@ali/kylin-plugin-vue@0.8.0",
-    "mpaas:open:cnpm": "kylin-pack --no-devdep --out ./kylin_modules/ --package @ali/kylin-framework@0.1.10-open,@ali/kylin-cli@0.1.8-open,@ali/kylin-build@0.1.44-open02,@alipay/alipayjsapi@3.1.0,@ali/kylin-plugin-resource@0.1.0,@ali/kylin-plugin-env@0.1.0,@ali/kylin-plugin-vue@0.8.0"
-  },
-  "kylinApp": {
-    "output": "www",
-    "pages": {
-      "check-accounts/index": {
-        "entry": "./src/pages/check-accounts/index/index.js",
-        "template": "./src/layout/check-accounts/index.html"
-      },
-      "check-accounts/check-lists": {
-        "entry": "./src/pages/check-accounts/check-lists/index.js",
-        "template": "./src/layout/check-accounts/check-lists.html"
-      },
-      "check-accounts/detail": {
-        "entry": "./src/pages/check-accounts/detail/index.js",
-        "template": "./src/layout/check-accounts/detail.html"
-      },
-      "check-accounts/search": {
-        "entry": "./src/pages/check-accounts/search/index.js",
-        "template": "./src/layout/check-accounts/search.html"
-      },
-      "check-accounts/input-search": {
-        "entry": "./src/pages/check-accounts/input-search/index.js",
-        "template": "./src/layout/check-accounts/input-search.html"
-      },
-      "check-accounts/input": {
-        "entry": "./src/pages/check-accounts/input/index.js",
-        "template": "./src/layout/check-accounts/input.html"
-      },
-      "check-accounts/check-reunite": {
-        "entry": "./src/pages/check-accounts/check-reunite/index.js",
-        "template": "./src/layout/check-accounts/check-reunite.html"
-      },
-      "check-accounts/reconciliation": {
-        "entry": "./src/pages/check-accounts/reconciliation/index.js",
-        "template": "./src/layout/check-accounts/reconciliation.html"
-      },
-      "accredit/index": {
-        "entry": "./src/pages/accredit/index/index.js",
-        "template": "./src/layout/accredit/index.html"
-      },
-      "accredit/result": {
-        "entry": "./src/pages/accredit/result/index.js",
-        "template": "./src/layout/accredit/result.html"
-      },
-      "accredit/refusal-reason": {
-        "entry": "./src/pages/accredit/refusal-reason/index.js",
-        "template": "./src/layout/accredit/refusal-reason.html"
-      },
-      "accredit/transfer": {
-        "entry": "./src/pages/accredit/transfer/index.js",
-        "template": "./src/layout/accredit/transfer.html"
-      },
-      "accredit/code": {
-        "entry": "./src/pages/accredit/code/index.js",
-        "template": "./src/layout/accredit/code.html"
-      },
-      "check-accounts/result": {
-        "entry": "./src/pages/check-accounts/result/index.js",
-        "template": "./src/layout/check-accounts/result.html"
-      },
-      "accredit/bank-enterprise": {
-        "entry": "./src/pages/accredit/bank-enterprise/index.js",
-        "template": "./src/layout/accredit/bank-enterprise.html"
-      },
-      "check-accounts/reconciliation-result": {
-        "entry": "./src/pages/check-accounts/reconciliation-result/index.js",
-        "template": "./src/layout/check-accounts/reconciliation-result.html"
-      },
-      "accredit/bank-detail": {
-        "entry": "./src/pages/accredit/bank-detail/index.js",
-        "template": "./src/layout/accredit/bank-detail.html"
-      },
-      "accredit/transfer-detail": {
-        "entry": "./src/pages/accredit/transfer-detail/index.js",
-        "template": "./src/layout/accredit/transfer-detail.html"
-      },
-      "accredit/account-context": {
-        "entry": "./src/pages/accredit/account-context/index.js",
-        "template": "./src/layout/accredit/account-context.html"
-      },
-      "accredit/financial-product": {
-        "entry": "./src/pages/accredit/financial-product/index.js",
-        "template": "./src/layout/accredit/financial-product.html"
-      },
-      "transfer/index": {
-        "entry": "./src/pages/transfer/index/index.js",
-        "template": "./src/layout/transfer/index.html"
-      },
-      "transfer/confirm": {
-        "entry": "./src/pages/transfer/confirm/index.js",
-        "template": "./src/layout/transfer/confirm.html"
-      },
-      "transfer/result": {
-        "entry": "./src/pages/transfer/result/index.js",
-        "template": "./src/layout/transfer/result.html"
-      },
-      "transfer/do-transfer": {
-        "entry": "./src/pages/transfer/do-transfer/index.js",
-        "template": "./src/layout/transfer/do-transfer.html"
-      },
-      "transfer/all-contacts": {
-        "entry": "./src/pages/transfer/all-contacts/index.js",
-        "template": "./src/layout/transfer/all-contacts.html"
-      },
-      "transfer/all-banks": {
-        "entry": "./src/pages/transfer/all-banks/index.js",
-        "template": "./src/layout/transfer/all-banks.html"
-      },
-      "transfer/appointment-transfer": {
-        "entry": "./src/pages/transfer/appointment-transfer/index.js",
-        "template": "./src/layout/transfer/appointment-transfer.html"
-      },
-      "transfer/appointment-transfer-confirm": {
-        "entry": "./src/pages/transfer/appointment-transfer-confirm/index.js",
-        "template": "./src/layout/transfer/appointment-transfer-confirm.html"
-      },
-      "accredit/financial-detail": {
-        "entry": "./src/pages/accredit/financial-detail/index.js",
-        "template": "./src/layout/accredit/financial-detail.html"
-      },
-      "check-accounts/code": {
-        "entry": "./src/pages/check-accounts/code/index.js",
-        "template": "./src/layout/check-accounts/code.html"
-      }
-    },
-    "pageTemplate": "./src/layout/layout.html",
-    "devPort": 8090,
-    "dirAlias": {
-      "common": "./src/common/",
-      "pages": "./src/pages/"
-    },
-    "options": {
-      "enableGlobalResourceInject": true
-    },
-    "plugins": [
-      [
-        "vue"
-      ],
-      [
-        "resource",
-        {
-          "map": {
-            "vue": {
-              "external": "Vue"
-            },
-            "vuex": {
-              "external": "Vuex"
-            }
-          }
-        }
-      ],
-      [
-        "env"
-      ]
-    ]
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev:mock": "set MOCK='use' && npm run dev",
+    "init-page": "node build/init-page.js -p",
+    "start": "npm run dev",
+    "lint": "eslint --ext .js,.vue src",
+    "build": "node build/build.js"
   },
   "dependencies": {
-    "@alipay/alipayjsapi": "./kylin_modules/_alipay_alipayjsapi",
-    "babel-runtime": "6.25.0",
-    "fastclick": "1.0.6",
-    "mint-ui": "2.2.13",
-    "v-verify": "1.1.0",
-    "vue": "2.5.13",
-    "vuex": "3.0.1"
+    "fastclick": "^1.0.6",
+    "vue": "^2.5.2",
+    "vuex": "^3.0.1",
+    "vux": "^2.9.1",
+    "vux-loader": "^1.2.9"
   },
   "devDependencies": {
-    "@ali/kylin-build": "./kylin_modules/_ali_kylin-build",
-    "@ali/kylin-cli": "./kylin_modules/_ali_kylin-cli",
-    "@ali/kylin-plugin-env": "./kylin_modules/_ali_kylin-plugin-env",
-    "@ali/kylin-plugin-resource": "./kylin_modules/_ali_kylin-plugin-resource",
-    "@ali/kylin-plugin-vue": "./kylin_modules/_ali_kylin-plugin-vue",
-    "babel-eslint": "^7.1.1",
-    "eslint": "~3.5.0",
-    "eslint-config-standard": "~6.0.1",
-    "eslint-plugin-jsx": "^0.0.2",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.1.1",
-    "eslint-plugin-vue": "^2.0.1",
-    "rimraf": "^2.6.1"
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^8.2.1",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-stage-2": "^6.22.0",
+    "chalk": "^2.0.1",
+    "commander": "^2.15.1",
+    "copy-template-dir": "^1.4.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.0",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb-base": "^11.3.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-vue": "^4.0.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.4",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "html-string-replace-webpack-plugin": "^1.0.5",
+    "html-webpack-plugin": "^2.30.1",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "node-notifier": "^5.1.2",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "ora": "^1.2.0",
+    "portfinder": "^1.0.13",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.8",
+    "postcss-pxtorem": "^4.0.1",
+    "postcss-url": "^7.2.1",
+    "replace-in-file-webpack-plugin": "^1.0.6",
+    "rimraf": "^2.6.0",
+    "semver": "^5.3.0",
+    "shelljs": "^0.7.6",
+    "uglifyjs-webpack-plugin": "^1.1.1",
+    "url-loader": "^0.5.8",
+    "vconsole-webpack-plugin": "^1.4.0",
+    "vue-loader": "^13.3.0",
+    "vue-style-loader": "^3.0.1",
+    "vue-template-compiler": "^2.5.2",
+    "webpack": "^3.6.0",
+    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-merge": "^4.1.0"
   },
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
