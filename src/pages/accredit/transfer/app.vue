@@ -44,16 +44,13 @@
 <script>
 import Vue from 'vue';
 import { mapState } from 'vuex';
-import { AlertPlugin } from 'vux';
 import request from '@/libs/request';
 import mixins from '@/libs/mixins';
-
-Vue.use(AlertPlugin);
 
 export default {
   name: 'accreditTransfer',
   components: {},
-  mixins,
+  mixins: [mixins],
   data() {
     return {
       search: '',
@@ -105,10 +102,7 @@ export default {
     },
     refuse() {
       if (this.total == 0) {
-        this.$vux.alert.show({
-          title: '提示',
-          content: '请选择转账汇款项目'
-        });
+        this.alert('请选择转账汇款项目');
         return false;
       } else {
         AlipayJSBridge.call('pushWindow', {
@@ -118,10 +112,7 @@ export default {
     },
     agree() {
       if (this.total == 0) {
-        this.$vux.alert.show({
-          title: '提示',
-          content: '请选择转账汇款项目'
-        });
+        this.alert('请选择转账汇款项目');
         return false;
       } else {
         AlipayJSBridge.call('pushWindow', {
