@@ -11,6 +11,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin')
+const HtmlInsertWebpackPlugin = require('html-insertjs-webpack-plugin')
 
 const env = require('../config/prod.env')
 
@@ -31,6 +32,10 @@ const webpackConfig = baseWebpackConfig.map((el) => {
     output: {
       path: config.build.assetsRoot,
       filename: `${key}/js/[name].[chunkhash:16].js`
+    },
+    externals: {
+      vue: 'Vue',
+      vuex: 'Vuex'
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -64,6 +69,12 @@ const webpackConfig = baseWebpackConfig.map((el) => {
       // split vendor js into its own file
       new webpack.optimize.CommonsChunkPlugin({
         name: 'common'
+      }),
+      new HtmlInsertWebpackPlugin({
+        paths: [
+          'https://cn-hangzhou-mdsweb.cloud.alipay.com/E508030101442_FinMallDev/common/vue.min.js',
+          'https://cn-hangzhou-mdsweb.cloud.alipay.com/E508030101442_FinMallDev/common/vuex.min.js'
+        ]
       }),
       new ReplaceInFileWebpackPlugin([{
         dir: `dist/${key}/`,

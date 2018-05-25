@@ -46,6 +46,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "html-insertjs-webpack-plugin": "^1.0.1",
     "html-string-replace-webpack-plugin": "^1.0.5",
     "html-webpack-plugin": "^2.30.1",
     "less": "^3.0.4",

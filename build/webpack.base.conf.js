@@ -42,10 +42,6 @@ let webpackConfig = Object.keys(entries).map(el => {
         mock: resolve('mock')
       }
     },
-    externals: {
-      vue: 'Vue',
-      vuex: 'Vuex'
-    },
     module: {
       rules: [
         ...(config.dev.useEslint ? [createLintingRule()] : []),
