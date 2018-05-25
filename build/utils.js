@@ -120,7 +120,7 @@ exports.entries = function() {
     map[path] = {};
     filenames.forEach(el => {
       const filename = el.substring(
-        el.lastIndexOf(path) + path.length + 1,
+        el.lastIndexOf(`/${path}/`) + path.length + 2,
         el.lastIndexOf('/')
       );
       map[path][filename] = el;
@@ -149,7 +149,7 @@ exports.htmlPlugin = function() {
 
     filenames.forEach(el => {
       const filename = el.substring(
-        el.lastIndexOf(path) + path.length + 1,
+        el.lastIndexOf(`/${path}/`) + path.length + 2,
         el.lastIndexOf('/')
       );
       // map[path][filename] = el;
