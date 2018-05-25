@@ -297,9 +297,10 @@ body {
   margin: 60px 0 0px;
   text-align: center;
   button {
-    padding: 30px 80px;
+    padding: 0 80px;
     color: #fff;
     font-size: 36px;
+    line-height: 2.6;
     border: none;
     outline: none;
     border-radius: 10px;

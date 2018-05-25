@@ -200,8 +200,8 @@
   }
   .btn-code{
     font-size: 26px;
-    padding: 20px 0;
     float: right;
+    line-height: 2.6;
     //margin-bottom: 60px;
     width: 142px;
     margin-top: -15px;

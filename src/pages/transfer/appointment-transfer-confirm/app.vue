@@ -197,7 +197,7 @@
   }
   .btn-code{
     font-size: 26px;
-    padding: 20px 0;
+    line-height: 2.6;
     float: right;
     //margin-bottom: 60px;
     width: 142px;
