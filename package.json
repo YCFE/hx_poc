@@ -5,7 +5,7 @@
   "author": "dreamjser <dreamjser@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --host 0.0.0.0 --config build/webpack.dev.conf.js",
     "dev:mock": "set MOCK='use' && npm run dev",
     "dev:mock-mac": "export MOCK='use' && npm run dev",
     "init-page": "node build/init-page.js -p",
