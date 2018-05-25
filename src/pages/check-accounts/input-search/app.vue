@@ -1,14 +1,27 @@
 <template>
   <div id="app">
     <div class="search-box">
-      <div class="search-item clearfix" @click="openAccountSelect">
+      <group>
+        <popup-picker
+          title="账号"
+          :data="slots"
+          v-model="search.account"
+          @on-show="onShow"
+          @on-hide="onHide"
+          @on-change="onChange"
+          placeholder="全部">
+        </popup-picker>
+        <datetime title="开始日期" :start-date="startDate" :end-date="endDate" v-model="search.startDate"></datetime>
+        <datetime title="结束日期" :start-date="startDate" :end-date="endDate" v-model="search.endDate"></datetime>
+      </group>
+      <!-- <div class="search-item clearfix" @click="openAccountSelect">
         <span class="search-label fl">账号</span>
         <span class="search-value fr">
           <span class="search-text">{{search.account}}</span>
           <i class="search-arrow"></i>
         </span>
-      </div>
-      <div class="search-item clearfix" @click="openStartPicker">
+      </div> -->
+      <!-- <div class="search-item clearfix" @click="openStartPicker">
         <span class="search-label fl">开始日期</span>
         <span class="search-value fr">
           <span class="search-text calendar-text">{{search.startDate}}</span>
@@ -23,79 +36,56 @@
           <i class="search-calendar"></i>
           <i class="search-arrow"></i>
         </span>
-      </div>
+      </div> -->
       <div class="search-button">
         <button class="btn btn-primary" @click="doSearch">查询</button>
       </div>
     </div>
-
-    <!-- <u-select
-      ref="select"
-      :slots="slots"
-      :on-change="onAccountSelectChange">
-    </u-select> -->
-    <PopupPicker>
-
-    </PopupPicker>
-
-    <mt-datetime-picker
-      ref="startPicker"
-      type="date"
-      :start-date="startDate"
-      :end-date="endDate"
-      v-model="value.endDate"
-      @confirm="setStartDate">
-    </mt-datetime-picker>
-
-    <mt-datetime-picker
-      ref="endPicker"
-      type="date"
-      :start-date="startDate"
-      :end-date="endDate"
-      v-model="value.startDate"
-      @confirm="setEndDate">
-    </mt-datetime-picker>
   </div>
 </template>
 
 <script>
 
 import { mapState } from 'vuex';
-//import uSelect from '@/libs/u-select';
-import { PopupPicker } from 'vux';
+import { PopupPicker,Group,Datetime } from 'vux';
 import request from '@/libs/request';
 import mixins from '@/libs/mixins';
+
 
 const startDate = new Date();
 
 startDate.setMonth(startDate.getMonth() - 6);
 
+const date = new Date();
+const startDate1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+
 export default {
   name: 'inputSearch',
   components: {
-    PopupPicker
+    PopupPicker,
+    Group,
+    Datetime
   },
   mixins:[mixins],
   data() {
     return {
       search: {
-        account: '全部',
-        type: '全部',
+        account: ['全部'],
+        startDate: startDate1,
+        endDate: startDate1
+      },
+      /* value: {
         startDate: '',
         endDate: ''
-      },
-      value: {
-        startDate: '',
-        endDate: ''
-      },
-      //slots: [],
+      }, */
+      slots: [],
       startDate: startDate,
       endDate: new Date()
     };
   },
   methods: {
-    openAccountSelect() {
-      //this.$refs.select.open();
+    /* openAccountSelect() {
+      this.$refs.select.open();
     },
     onAccountSelectChange(v) {
       this.search.account = v[0];
@@ -117,7 +107,7 @@ export default {
       value.endDate = date;
       search.endDate = `${date.getFullYear()}年${date.getMonth() +
         1}月${date.getDate()}日`;
-    },
+    }, */
     doSearch() {
       AlipayJSBridge.call('pushWindow', {
         url: 'input.html'
@@ -125,26 +115,36 @@ export default {
     },
     getAccounts() {
       request('client.checkaccounts.getAccounts', r => {
-        this.slots = [{
-          values: r.data
-        }];
+        this.slots = [r.data];
       });
+    },
+    getTime(){
+      let date = new Date();
+      this.search.startDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+      console.log("this.search.startDate");
+      console.log(this.search.startDate);
     }
   },
   mounted() {
-    const date = new Date();
-    this.setStartDate(date);
-    this.setEndDate(date);
+    //const date = new Date();
+    /* this.setStartDate(date);
+    this.setEndDate(date); */
     this.getAccounts();
+    this.getTime();
   }
 };
 </script>
 
 <style lang="less">
 @import '~@/assets/less/base.less';
-
+.search-box label,p,span{
+  font-size: 30px !important;
+}
 .search-box {
-  margin: 0 30px;
+  margin: 0;
+  .vux-no-group-title{
+    margin-top: 0;
+  }
 }
 .search-item {
   padding: 36px 0;
@@ -179,6 +179,6 @@ export default {
   color: #999;
 }
 .search-button {
-  margin-top: 136px;
+  margin: 135px 30px;
 }
 </style>
