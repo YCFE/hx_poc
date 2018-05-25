@@ -6,18 +6,12 @@
           title="账号"
           :data="slots"
           v-model="search.account"
-          @on-show="onShow"
-          @on-hide="onHide"
-          @on-change="onChange"
           placeholder="全部">
         </popup-picker>
         <popup-picker
           title="对账情况"
           :data="typeList"
           v-model="search.type"
-          @on-show="onShowType"
-          @on-hide="onHideType"
-          @on-change="onChangeType"
           placeholder="全部">
         </popup-picker>
         <datetime title="开始日期" :start-date="startDate" :end-date="endDate" v-model="search.startDate"></datetime>
@@ -38,12 +32,17 @@ import request from '@/libs/request';
 import mixins from '@/libs/mixins';
 
 
+const format = (n) => {
+  return n < 10 ? `0${n}`: `${n}`;
+};
+
 const startDate = new Date();
 
 startDate.setMonth(startDate.getMonth() - 6);
+const start = startDate.getFullYear() + '-' +  format((startDate.getMonth() + 1)) + '-' + format(startDate.getDate());
 
 const date = new Date();
-const startDate1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+const startDate1 = date.getFullYear() + '-' + format((date.getMonth() + 1)) + '-' + format(date.getDate());
 
 export default {
   name: 'search',
@@ -63,14 +62,14 @@ export default {
       },
       slots: [],
       typeList:[['全部','已对账','未对账']],
-      startDate: startDate,
-      endDate: new Date()
+      startDate: start,
+      endDate: startDate1
     };
   },
   methods: {
     doSearch() {
       AlipayJSBridge.call('pushWindow', {
-        url: 'input.html'
+        url: 'check-lists.html'
       });
     },
     getAccounts() {

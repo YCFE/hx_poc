@@ -54,7 +54,7 @@ import { getParam } from '@/libs/utils';
 import { Checklist } from 'vux';
 
 export default {
-  name: 'checkAccountsReconciliation',
+  name: 'checkaccountsReconciliation',
   components:{
     Checklist
   },

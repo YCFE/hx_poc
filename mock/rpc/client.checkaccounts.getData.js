@@ -7,7 +7,7 @@ module.exports = function () {
         "accountName": "华夏银行厦门分行",
         "accountBalance": "1200000.00",
         "date": "2018-04-15",
-        "state": "",
+        "state": [],
         "reason": ""
       },
       {
@@ -16,7 +16,7 @@ module.exports = function () {
         "accountName": "华夏银行厦门分行",
         "accountBalance": "128555.00",
         "date": "2018-04-18",
-        "state": "",
+        "state": [],
         "reason": ""
       },
       {
@@ -25,7 +25,7 @@ module.exports = function () {
         "accountName": "华夏银行厦门分行",
         "accountBalance": "2500000.88",
         "date": "2018-05-15",
-        "state": "",
+        "state": [],
         "reason": ""
       }
     ]

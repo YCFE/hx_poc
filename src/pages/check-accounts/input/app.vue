@@ -22,11 +22,7 @@
           <span>{{item.date}}</span>
         </li>
         <li class="radio-item">
-          <!-- <mt-radio
-            v-model="item.state"
-            :options="['余额相符', '余额不符']">
-          </mt-radio> -->
-          <checklist :options="[ '余额相符', '余额不符']" v-model="item.state" :max="1"></checklist>
+          <checklist :options="[ '余额相符', '余额不符']" v-model="item.state" :max="1" :min="1"></checklist>
         </li>
         <li>
           <input class="reason-input" type="text" v-if="item.state[0] === '余额不符'" v-focus v-model="item.reason" placeholder="请输入余额不符原因">
@@ -82,17 +78,16 @@ export default {
       });
 
       if (r) {
-        //MessageBox('提示', '请选择余额是否相符');
         this.alert('请选择余额是否相符');
         return false;
       }
 
       const r2 = this.options.some(obj => {
+        console.log(obj)
         return obj.state[0] === '余额不符' && obj.reason === '';
       });
 
       if (r2) {
-       // MessageBox('提示', '请输入余额不符原因');
        this.alert('请输入余额不符原因');
         return false;
       }

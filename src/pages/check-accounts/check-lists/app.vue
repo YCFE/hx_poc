@@ -63,7 +63,7 @@ export default {
       this.getLists();
     },
     getLists() {
-      request('client.checkAccounts.getCheckLists', r => {
+      request('client.checkaccounts.getCheckLists', r => {
         this.options = r.data;
         this.totalNumber = this.options.length;
       });

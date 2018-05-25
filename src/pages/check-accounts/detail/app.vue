@@ -74,7 +74,7 @@ export default {
   mixins: [mixins],
   methods: {
     getData() {
-      request('client.checkAccounts.getDetailData', r => {
+      request('client.checkaccounts.getDetailData', r => {
         this.options = r.data;
       });
     }

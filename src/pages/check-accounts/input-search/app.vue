@@ -6,9 +6,6 @@
           title="账号"
           :data="slots"
           v-model="search.account"
-          @on-show="onShow"
-          @on-hide="onHide"
-          @on-change="onChange"
           placeholder="全部">
         </popup-picker>
         <datetime title="开始日期" :start-date="startDate" :end-date="endDate" v-model="search.startDate"></datetime>
@@ -51,13 +48,17 @@ import { PopupPicker,Group,Datetime } from 'vux';
 import request from '@/libs/request';
 import mixins from '@/libs/mixins';
 
+const format = (n) => {
+  return n < 10 ? `0${n}`: `${n}`;
+};
 
 const startDate = new Date();
 
 startDate.setMonth(startDate.getMonth() - 6);
+const start = startDate.getFullYear() + '-' +  format((startDate.getMonth() + 1)) + '-' + format(startDate.getDate());
 
 const date = new Date();
-const startDate1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+const startDate1 = date.getFullYear() + '-' + format((date.getMonth() + 1)) + '-' + format(date.getDate());
 
 export default {
   name: 'inputSearch',
@@ -74,40 +75,12 @@ export default {
         startDate: startDate1,
         endDate: startDate1
       },
-      /* value: {
-        startDate: '',
-        endDate: ''
-      }, */
       slots: [],
-      startDate: startDate,
-      endDate: new Date()
+      startDate: start,
+      endDate: startDate1
     };
   },
   methods: {
-    /* openAccountSelect() {
-      this.$refs.select.open();
-    },
-    onAccountSelectChange(v) {
-      this.search.account = v[0];
-    },
-    openStartPicker() {
-      this.$refs.startPicker.open();
-    },
-    openEndPicker() {
-      this.$refs.endPicker.open();
-    },
-    setStartDate(date) {
-      const { search, value } = this;
-      value.startDate = date;
-      search.startDate = `${date.getFullYear()}年${date.getMonth() +
-        1}月${date.getDate()}日`;
-    },
-    setEndDate(date) {
-      const { search, value } = this;
-      value.endDate = date;
-      search.endDate = `${date.getFullYear()}年${date.getMonth() +
-        1}月${date.getDate()}日`;
-    }, */
     doSearch() {
       AlipayJSBridge.call('pushWindow', {
         url: 'input.html'
@@ -126,9 +99,6 @@ export default {
     }
   },
   mounted() {
-    //const date = new Date();
-    /* this.setStartDate(date);
-    this.setEndDate(date); */
     this.getAccounts();
     this.getTime();
   }
