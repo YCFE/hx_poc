@@ -38,7 +38,7 @@
         <input type="text" class="input-text" ref="useInput" placeholder="请输入用途" v-model.trim="form.use">
         <i class="icon icon-down"></i>
         <i class="icon icon-edit" @click="editUse"></i>
-        <Group class="picker-use">
+        <Group class="picker-opacity">
           <popup-picker :data="data2" @on-change="onUseChange"></popup-picker>
         </Group>
       </div>
@@ -49,7 +49,7 @@
         <span class="input-label">付款账户</span>
         <input type="text" class="input-text pay-text" readonly v-model.trim="form.payNum">
         <i class="icon icon-down"></i>
-        <Group class="picker-account">
+        <Group class="picker-opacity">
           <popup-picker :data="data" @on-change="onAccountChange"></popup-picker>
         </Group>
       </div>

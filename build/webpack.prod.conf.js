@@ -72,22 +72,22 @@ const webpackConfig = baseWebpackConfig.map((el) => {
       }),
       new HtmlInsertWebpackPlugin({
         paths: [
-          'https://cn-hangzhou-mdsweb.cloud.alipay.com/E508030101442_FinMallDev/common/vue.min.js',
-          'https://cn-hangzhou-mdsweb.cloud.alipay.com/E508030101442_FinMallDev/common/vuex.min.js'
+          'https://cn-hangzhou-mdsweb.cloud.alipay.com/14545A0281014_default/www/vue.min.js',
+          'https://cn-hangzhou-mdsweb.cloud.alipay.com/14545A0281014_default/www/vuex.min.js'
         ]
       }),
       new ReplaceInFileWebpackPlugin([{
         dir: `dist/${key}/`,
         test: /\.(css|js)$/,
         rules: [{
-          search: /url\(\w+\//g,
+          search: /url\([\w-]+\//g,
           replace: 'url(../'
         }]
       },{
         dir: `dist/${key}/`,
         test: /\.html$/,
         rules: [{
-          search: /\.\/(\w+\/)/g,
+          search: /\.\/([\w-]+\/)/g,
           replace: './'
         }]
       }])

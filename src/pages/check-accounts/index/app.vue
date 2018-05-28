@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
  @import '~@/assets/less/base.less';
 
   @black-gray:#333;

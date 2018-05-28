@@ -7,7 +7,7 @@
           <span class="search-text calendar-text">{{search.startDate}}</span>
           <i class="search-calendar"></i>
         </span>
-        <Group class="group-date">
+        <Group class="picker-opacity">
           <Datetime v-model="search.startDate"></Datetime>
         </Group>
       </div>
@@ -17,7 +17,7 @@
           <span class="search-text">{{search.type}}</span>
           <i class="search-arrow"></i>
         </span>
-        <Group class="group-type">
+        <Group class="picker-opacity">
           <popup-picker :data="data" @on-change="setType"></popup-picker>
         </Group>
       </div>
