@@ -152,7 +152,7 @@ export default {
   .btn {
     display: inline-block;
     width: auto;
-    padding: 33px 124px;
+    padding: 0 124px;
     margin: 23px;
   }
 }
