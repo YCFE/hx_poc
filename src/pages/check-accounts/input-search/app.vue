@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="search-box">
-      <group>
+      <!-- <group>
         <popup-picker
           title="账号"
           :data="slots"
@@ -10,30 +10,50 @@
         </popup-picker>
         <datetime title="开始日期" :start-date="startDate" :end-date="endDate" v-model="search.startDate"></datetime>
         <datetime title="结束日期" :start-date="startDate" :end-date="endDate" v-model="search.endDate"></datetime>
-      </group>
-      <!-- <div class="search-item clearfix" @click="openAccountSelect">
-        <span class="search-label fl">账号</span>
-        <span class="search-value fr">
-          <span class="search-text">{{search.account}}</span>
-          <i class="search-arrow"></i>
-        </span>
-      </div> -->
-      <!-- <div class="search-item clearfix" @click="openStartPicker">
-        <span class="search-label fl">开始日期</span>
-        <span class="search-value fr">
-          <span class="search-text calendar-text">{{search.startDate}}</span>
-          <i class="search-calendar"></i>
-          <i class="search-arrow"></i>
-        </span>
+      </group> -->
+      <div class="group-item">
+        <div class="search-item clearfix">
+          <span class="search-label fl">账号</span>
+          <span class="search-value fr">
+            <span class="search-text">{{search.account}}</span>
+            <i class="search-arrow"></i>
+          </span>
+        </div>
+        <group class="picker-opacity">
+          <popup-picker
+            title="账号"
+            :data="slots"
+            v-model="search.accountHidden"
+            placeholder="全部">
+          </popup-picker>
+        </group>
       </div>
-      <div class="search-item clearfix" @click="openEndPicker">
-        <span class="search-label fl">结束日期</span>
-        <span class="search-value fr">
-          <span class="search-text calendar-text">{{search.endDate}}</span>
-          <i class="search-calendar"></i>
-          <i class="search-arrow"></i>
-        </span>
-      </div> -->
+      <div class="group-item">
+        <div class="search-item clearfix">
+          <span class="search-label fl">开始日期</span>
+          <span class="search-value fr">
+            <span class="search-text calendar-text">{{search.startDate}}</span>
+            <i class="search-calendar"></i>
+            <i class="search-arrow"></i>
+          </span>
+        </div>
+        <group class="picker-opacity">
+          <datetime title="开始日期" :start-date="startDate" :end-date="endDate" v-model="search.startDate"></datetime>
+        </group>
+      </div>
+      <div class="group-item">
+        <div class="search-item clearfix">
+          <span class="search-label fl">结束日期</span>
+          <span class="search-value fr">
+            <span class="search-text calendar-text">{{search.endDate}}</span>
+            <i class="search-calendar"></i>
+            <i class="search-arrow"></i>
+          </span>
+        </div>
+        <group class="picker-opacity">
+          <datetime title="结束日期" :start-date="startDate" :end-date="endDate" v-model="search.endDate"></datetime>
+        </group>
+      </div>
       <div class="search-button">
         <button class="btn btn-primary" @click="doSearch">查询</button>
       </div>
@@ -71,7 +91,8 @@ export default {
   data() {
     return {
       search: {
-        account: ['全部'],
+        accountHidden: ['全部'],
+        account:'全部',
         startDate: startDate1,
         endDate: startDate1
       },
@@ -94,13 +115,15 @@ export default {
     getTime(){
       let date = new Date();
       this.search.startDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-      console.log("this.search.startDate");
-      console.log(this.search.startDate);
+
     }
   },
   mounted() {
     this.getAccounts();
     this.getTime();
+  },
+  updated() {
+    this.search.account = this.search.accountHidden.toString();
   }
 };
 </script>
@@ -150,5 +173,9 @@ export default {
 }
 .search-button {
   margin: 135px 30px;
+}
+.group-item{
+  position: relative;
+  padding: 0 30px;
 }
 </style>
