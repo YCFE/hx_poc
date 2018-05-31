@@ -52,7 +52,7 @@
         </li>
       </ul>
     </div>
-    <img src="assets/img/serrated.png" alt="" class="img-pos">
+    <img src="~@/assets/img/serrated.png" alt="" class="img-pos">
   </div>
 </template>
 
@@ -90,6 +90,9 @@ export default {
 @black-gray:#333;
 @light-gray:#999;
 @line-gray:#ddd;
+body{
+  background-color: #efeff4;
+}
 .container{
   font-size: 30px;
   background: #fff;
