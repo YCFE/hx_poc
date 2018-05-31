@@ -120,18 +120,18 @@
       width: 170px;
     }
     .code-distance{
-      margin-top: 58px;
-      padding-bottom: 25px;
+      margin-top: 38px;
+      padding-bottom: 35px;
       border-bottom: 1px solid #DDDDDD;
-      margin-bottom: 66px;
+      margin-bottom: 35px;
     }
     .code-button-position{
       position: absolute;
-      bottom:6px;
+      bottom:20px;
       right:0px;
     }
     .password{
-      padding-bottom: 25px;
+      padding-bottom: 35px;
       border-bottom: 1px solid #DDDDDD;
       margin-bottom: 140px;
     }

@@ -149,9 +149,9 @@
       display: inline-block;
     }
     .reason-dis{
-      padding-bottom: 24px;
+      padding-bottom: 30px;
       border-bottom: 1px solid #DDDDDD;
-      margin-bottom: 67px;
+      margin-bottom: 35px;
     }
     .reason-text-distance{
       margin-right:80px;

@@ -38,7 +38,7 @@
         <input type="text" class="input-text" ref="useInput" placeholder="请输入用途" v-model.trim="form.use">
         <i class="icon icon-down"></i>
         <i class="icon icon-edit" @click="editUse"></i>
-        <Group class="picker-opacity">
+        <Group class="picker-use">
           <popup-picker :data="data2" @on-change="onUseChange"></popup-picker>
         </Group>
       </div>
@@ -142,6 +142,7 @@ export default {
     editUse() {
       this.form.use = '';
       this.$refs.useInput.focus();
+      this.$refs.useInput.scrollIntoView();
     },
     onAccountChange(v) {
       this.form.payNum = v[0];

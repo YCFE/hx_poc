@@ -49,7 +49,7 @@
       </div>
       <div class="transaction-item bor-bottom" v-if="!isBig">
         <label for="">验证码</label>
-        <input type="tel" placeholder="请输入验证码" maxlength="6" v-model="code">
+        <input type="tel" placeholder="请输入验证码" v-inputScrollView maxlength="6" v-model="code">
         <countdownClick
             :second="60"
             @click.native="runTimer"
@@ -57,7 +57,7 @@
       </div>
       <div class="transaction-item bor-bottom" v-else>
         <label for="">动态挑战码</label>
-        <input type="tel" placeholder="请输入动态挑战码" v-model="code">
+        <input type="tel" placeholder="请输入动态挑战码" v-inputScrollView v-model="code">
       </div>
     </div>
     <div class="submit-button">
@@ -72,6 +72,7 @@
   import countdownClick from '@/components/countdownClick';
   import mixins from '@/libs/mixins';
   import { getParam } from '@/libs/utils';
+  import directives from '@/libs/directives';
   import digitUppercase from '@/libs/modules/digit-uppercase';
 
   export default {
@@ -80,6 +81,7 @@
       countdownClick
     },
     mixins: [mixins],
+    directives,
     filters: {
       digitUppercase
     },

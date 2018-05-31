@@ -83,10 +83,9 @@ export default {
       }
 
       const r2 = this.options.some(obj => {
-        console.log(obj);
         return obj.state[0] === '拒绝授权' && obj.reason === '';
       });
-      console.log(r2);
+
       if (r2) {
        this.alert('请输入拒绝授权原因');
         return false;
@@ -99,11 +98,6 @@ export default {
         return;
       }
 
-      const arr = this.options.map(el => el.state).join(',');
-
-      /* AlipayJSBridge.call('pushWindow', {
-        url: `check-reunite.html?r=${arr}`
-      }); */
       AlipayJSBridge.call('pushWindow', {
         url: 'reconciliation-result.html'
       });
@@ -117,6 +111,12 @@ export default {
   },
   mounted() {
     this.getData();
+
+    document.addEventListener('resume', () => {
+      this.options.forEach(el => {
+        el.state = [];
+      });
+    });
   }
 };
 </script>

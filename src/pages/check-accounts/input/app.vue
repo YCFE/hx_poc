@@ -34,10 +34,10 @@
     </p>
     <div class="page-count clearfix">
       <span class="fl">
-        <a href="javascript:;">上一页</a>/<a href="javascript:;">第一页</a>
+        <a href="javascript:;" @click="getData">上一页</a>/<a href="javascript:;" @click="getData">第一页</a>
       </span>
       <span class="fr">
-        <a href="javascript:;">下一页</a>/<a href="javascript:;">最后一页</a>
+        <a href="javascript:;" @click="getData">下一页</a>/<a href="javascript:;" @click="getData">最后一页</a>
       </span>
     </div>
     <div class="input-button">
@@ -74,7 +74,7 @@ export default {
   methods: {
     checkSubmit() {
       const r = this.options.some(obj => {
-        return obj.state === '';
+        return obj.state.length === 0;
       });
 
       if (r) {
@@ -83,7 +83,6 @@ export default {
       }
 
       const r2 = this.options.some(obj => {
-        console.log(obj)
         return obj.state[0] === '余额不符' && obj.reason === '';
       });
 

@@ -1,5 +1,31 @@
 import detect from '../detect';
 
+const createEmptyDiv = (el) => {
+  const winHeight = document.documentElement.clientHeight;
+  const div = document.createElement('div');
+  const base = el.getAttribute('base')
+    ? parseFloat(el.getAttribute('base'))
+    : 0.3;
+
+  div.className = 'input-scroll-enter';
+  div.style.display = 'none';
+  div.style.height = winHeight * base + 'px';
+
+  return div;
+}
+
+const getEmptyDiv = (el) => {
+  let selector = document.querySelector('.input-scroll-enter');
+
+  if(!selector) {
+    let div = createEmptyDiv(el);
+    document.body.appendChild(div);
+    selector = div;
+  }
+
+  return selector;
+}
+
 export default {
   inputScrollView: {
     inserted(el) {
@@ -7,24 +33,19 @@ export default {
         return;
       }
 
-      const winHeight = document.documentElement.clientHeight;
-      const div = document.createElement('div');
-      const base = el.getAttribute('base')
-        ? parseFloat(el.getAttribute('base'))
-        : 0.3;
-
-      div.className = 'input-scroll-enter';
-      div.style.height = winHeight * base + 'px';
+      const div = getEmptyDiv(el);
 
       el.addEventListener('click', e => {
-        document.body.appendChild(div);
+        div.style.display = 'block';
         el.scrollIntoView();
         e.stopPropagation();
       });
 
       document.body.addEventListener('click', e => {
-        if (e.target !== div) {
-          document.body.removeChild(div);
+        if (e !== el) {
+          setTimeout(() => {
+            div.style.display = 'none';
+          }, 150);
         }
       });
     }

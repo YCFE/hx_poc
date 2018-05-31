@@ -2,9 +2,9 @@
   <div id="app">
     <div class="icon-success"></div>
     <p class="success-title">授权成功</p>
-    <p class="success-content"><span>3</span>条数据授权成功</p>
+    <!-- <p class="success-content"><span>3</span>条数据授权成功</p> -->
     <div class="success-button">
-      <button class="again" @click="doAgain">继续对账</button>
+      <button class="again" @click="doAgain">继续授权</button>
       <button class="go-home" @click="goHome">返回首页</button>
     </div>
   </div>
@@ -26,7 +26,7 @@ export default {
   methods: {
     doAgain() {
       AlipayJSBridge.call('popTo',{
-        urlPattern: 'input-search.html',
+        urlPattern: 'reconciliation.html',
       });
     },
     goHome() {

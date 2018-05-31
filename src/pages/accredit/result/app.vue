@@ -3,7 +3,7 @@
     <template v-if="result === 'success'">
       <div class="icon-success"></div>
       <p class="success-title">审批成功</p>
-      <p class="success-content"><span>3</span>条指令审批成功</p>
+      <!-- <p class="success-content"><span>3</span>条指令审批成功</p> -->
       <div class="result-button">
         <button class="again" @click="doAgain">继续审批</button>
         <button class="go-home" @click="goHome">返回首页</button>
@@ -12,7 +12,7 @@
     <template v-else>
       <div class="icon-fail"></div>
       <p class="fail-title">审批失败</p>
-      <p class="fail-content"><span>3</span>条指令审批拒绝</p>
+      <!-- <p class="fail-content"><span>3</span>条指令审批拒绝</p> -->
       <div class="result-button">
         <button class="again" @click="doAgain">继续审批</button>
         <button class="go-home" @click="goHome">返回首页</button>

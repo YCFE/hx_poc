@@ -32,16 +32,16 @@
         共{{totalNumber}}条记录， 显示{{fromNumber}}至{{toNumber}}条记录
       </div>
       <div class="text-color page">
-        <span>上一页</span>
+        <span @click="getLists">上一页</span>
         <span>/</span>
-        <span>第一页</span>
-        <span class="next-page">下一页</span>
+        <span @click="getLists">第一页</span>
+        <span class="next-page" @click="getLists">下一页</span>
         <span>/</span>
-        <span>最后一页</span>
+        <span @click="getLists">最后一页</span>
       </div>
       <div class="code-distance" style="position: relative">
         <span>验证码</span>
-        <input class="input-distance" maxlength="6" type="tel" placeholder="请输入验证码" v-model="code"/>
+        <input class="input-distance" maxlength="6" type="tel" v-inputScrollView placeholder="请输入验证码" v-model="code"/>
         <countdown
           :second="60"
           @click.native="runTimer('again')"
@@ -60,6 +60,7 @@ import mixins from '@/libs/mixins';
 import request from '@/libs/request';
 import { getParam } from '@/libs/utils';
 import countdown from '@/components/countdown';
+import directives from '@/libs/directives';
 
 export default {
   name: 'checkReunite',
@@ -76,6 +77,7 @@ export default {
   components: {
     countdown
   },
+  directives,
   mixins: [mixins],
   methods: {
     runTimer(argu) {
@@ -94,6 +96,16 @@ export default {
       });
     },
     nextStep() {
+      if(this.code === '') {
+        this.alert('请输入与验证码！');
+        reutrn;
+      }
+
+      if(!/^\d{6}$/.test(this.code)) {
+        this.alert('请输入6位数字验证码');
+        return;
+      }
+
       AlipayJSBridge.call('pushWindow', {
         url: 'result.html'
       });
