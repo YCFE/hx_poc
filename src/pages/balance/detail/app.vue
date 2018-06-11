@@ -1,30 +1,65 @@
 <template>
-  <div>
-    <div class="top">
-      <h3>6229 **** 9999</h3>
-      <div class="clearfix">
-        <div class="pull-left" style="position: relative">
-          <span>户名：</span>
-          <input type="text" value="老大的公司">
-          <span class="pencil pencil-position" @click.stop="edit"></span>
-        </div>
-        <div class="pull-right">
-          <span>余额：43,1000.00</span>
+  <div v-if="options !== null">
+    <div class="bg-white">
+      <div class="top">
+        <h3>{{ options.no }}</h3>
+        <div class="clearfix">
+          <div class="pull-left" style="position: relative">
+            <span>户名：</span>
+            <input type="text" value="" v-model="options.name">
+            <span class="pencil pencil-position" @click.stop="edit"></span>
+          </div>
+          <div class="pull-right">
+            <span>余额：{{ options.balance1 }}</span>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="detail-content">
       <ul>
         <li>
           <label for="">可用余额</label>
           <input type="text" readonly value="" v-model="options.balance">
         </li>
-        <li>
+        <li class="clearfix">
           <label for="">开户机构</label>
-          <input type="text" readonly value="" v-model="options.mechanism">
+          <textarea type="" readonly value="" v-model="options.mechanism"></textarea>
         </li>
       </ul>
     </div>
+    <div>
+      <div class="account-detail">
+        <ul>
+          <li>
+            <span class="span-label">账号余额</span>
+            <span class="span-content">{{ options.balance1 }}</span>
+          </li>
+          <li>
+            <span class="span-label">账户性质</span>
+            <span class="span-content">{{options.type}}</span>
+          </li>
+          <li>
+            <span class="span-label">最近交易日期</span>
+            <span class="span-content">{{options.time}}</span>
+          </li>
+          <li>
+            <span class="span-label">开户日期</span>
+            <span class="span-content">{{options.date}}</span>
+          </li>
+          <li>
+            <span class="span-label">币种</span>
+            <span class="span-content">{{options.currency}}</span>
+          </li>
+          <li>
+            <span class="span-label">是否计息</span>
+            <span class="span-content">{{options.interest}}</span>
+          </li>
+        </ul>
+      </div>
+      <img src="~@/assets/img/serrated.png" alt="" class="img-pos">
+    </div>
+    <div class="search-button"><button class="btn btn-primary" @click="default1()">设为默认</button></div>
   </div>
 </template>
 
@@ -38,24 +73,44 @@ export default {
   data() {
     return {
       showChoose: false,
-      options: {
-        balance: '￥43,1000.00',
-        mechanism: '一二三四五六七八九十 一二三四五六七八九十'
-      }
+      options: null
     }
   },
   mixins: [mixins],
   methods: {
+    getData(){
+      request('client.balance.getDetailData', r => {
+        this.options = r.data;
+      });
+    },
+    edit() {
+      this.showChoose = !this.showChoose;
+      this.$refs.reason.focus();
+      this.options.account = '';
+    },
+    default1(){
+      this.alert('设置成功');
 
+    }
   },
   mounted() {
-
+    this.getData();
   }
 }
 </script>
 
 <style lang="less">
 @import '~@/assets/less/base.less';
+.search-button{
+  margin: 120px 30px 0;
+}
+body{
+  background: #efeff4;
+}
+.bg-white{
+  background: #fff;
+  padding: 30px 30px 0 30px;
+}
 .pull-left{
   float: left;
 }
@@ -82,10 +137,12 @@ export default {
   right:0px;
 }
 .top{
-  margin: 30px 30px 0 30px;
+  //margin: 30px 30px 0 30px;
   background: #E14535;
   padding: 50px 30px 20px 30px;
   color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   h3{
     font-size: 48px;
     text-align: center;
@@ -100,5 +157,49 @@ export default {
     background: #E14535;
     color: #fff;
   }
+}
+.detail-content{
+  //margin: 0 30px;
+  background: #fff;
+  font-size: 30px;
+  li{
+    padding: 50px 30px 20px;
+    border-bottom: 1px solid #ddd;
+    label{
+      color: #333;
+    }
+    input,.input-div{
+      float: right;
+      text-align: right;
+      color: #999;
+      width: 455px;
+    }
+  }
+  li:last-child{
+    border-bottom: none;
+  }
+  textarea{
+    float: right;
+      text-align: right;
+      color: #999;
+      width: 455px;
+  }
+}
+.account-detail{
+  margin-top: 30px;
+  padding: 34px 29px 30px;
+  line-height: 50px;
+  background: #fff;
+  .span-label{
+    color: #999;
+    display: inline-block;
+    width: 220px;
+  }
+  .span-content{
+    color: #333;
+  }
+}
+.img-pos{
+  position: absolute;
 }
 </style>
