@@ -108,8 +108,10 @@
           return;
         }
 
-        AlipayJSBridge.call('pushWindow',{
-          url: 'result.html',
+        request('client.transfer.confirm', r => {
+          AlipayJSBridge.call('pushWindow',{
+            url: 'result.html',
+          });
         });
       },
       getData(){

@@ -63,7 +63,7 @@
       </div>
       <div class="input-item">
         <span class="input-label">短信通知</span>
-        <input type="text" class="input-text" v-inputScrollView placeholder="请输入手机号（选填）">
+        <input type="text" class="input-text" maxlength="11" v-inputScrollView placeholder="请输入手机号（选填）">
       </div>
       <group class="input-group">
         <x-switch title="添加联系人"></x-switch>
