@@ -89,8 +89,17 @@ export default {
       this.options.account = '';
     },
     default1(){
-      this.alert('设置成功');
-
+      request('client.balance.setDefault', () => {
+        AlipayJSBridge.call('toast', {
+          content: '设置成功',
+          type: 'success',
+          duration: 2000
+        }, function() {
+          AlipayJSBridge.call('popTo', {
+            urlPattern: 'index.html'
+          })
+        });
+      })
     }
   },
   mounted() {
