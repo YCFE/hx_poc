@@ -108,6 +108,11 @@
           return;
         }
 
+        AlipayJSBridge.call('remoteLog',{
+          seedId: 'transferValue',
+          param: `transfer_money=${parseFloat(this.params.transforValue.replace(/,/g, ''))}`
+        });
+
         request('client.transfer.confirm', r => {
           AlipayJSBridge.call('pushWindow',{
             url: 'result.html',

@@ -21,11 +21,11 @@
           <img src="~@/assets/img/1_08.png" alt="">
           <p>账户详情</p>
         </li>
-        <li @click="search">
+        <li>
           <img src="~@/assets/img/1_03.png" alt="">
           <p>明细查询</p>
         </li>
-        <li @click="tran">
+        <li>
           <img src="~@/assets/img/1_05.png" alt="">
           <p>转账汇款</p>
         </li>

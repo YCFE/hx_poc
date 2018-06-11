@@ -85,6 +85,14 @@ import mixins from '@/libs/mixins';
 import directives from '@/libs/directives';
 import digitUppercase from '@/libs/modules/digit-uppercase';
 
+const ready = (callback) => {
+  if (window.AlipayJSBridge) {
+    callback && callback();
+  } else {
+    document.addEventListener('AlipayJSBridgeReady', callback, false);
+  }
+}
+
 export default {
   name: 'doTransfer',
   data() {
@@ -235,11 +243,13 @@ export default {
   mounted() {
     const bank = getParam('bank');
 
-    if(bank === '1') {
-      this.getData('client.transfer.getTransferData', this.initStatus);
-    }else if(bank === '2') {
-      this.getData('client.transfer.getTransferData2', this.initStatus);
-    }
+    ready(() => {
+      if(bank === '1') {
+        this.getData('client.transfer.getTransferData', this.initStatus);
+      }else if(bank === '2') {
+        this.getData('client.transfer.getTransferData2', this.initStatus);
+      }
+    });
 
     document.addEventListener('resume', (event) => {
       const bank2 = event.data.bank;

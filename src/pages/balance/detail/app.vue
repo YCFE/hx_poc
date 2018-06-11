@@ -24,7 +24,7 @@
         </li>
         <li class="clearfix">
           <label for="">开户机构</label>
-          <textarea type="" readonly value="" v-model="options.mechanism"></textarea>
+          <input type="text" readonly value="" v-model="options.mechanism">
         </li>
       </ul>
     </div>
@@ -200,6 +200,7 @@ body{
   }
 }
 .img-pos{
+  width: 100%;
   position: absolute;
 }
 </style>
