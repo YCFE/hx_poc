@@ -72,8 +72,8 @@ const webpackConfig = baseWebpackConfig.map((el) => {
       }),
       new HtmlInsertWebpackPlugin({
         paths: [
-          'https://cn-hangzhou-mdsweb.cloud.alipay.com/14545A0281014_default/www/vue.min.js',
-          'https://cn-hangzhou-mdsweb.cloud.alipay.com/14545A0281014_default/www/vuex.min.js'
+          'https://cn-hangzhou-mdsweb.cloud.alipay.com/979E76E111925_default/www/vue.min.js',
+          'https://cn-hangzhou-mdsweb.cloud.alipay.com/979E76E111925_default/www/vuex.min.js'
         ]
       }),
       new ReplaceInFileWebpackPlugin([{
