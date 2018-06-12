@@ -20,6 +20,12 @@
             <span class="pull-right"><i class="i-img"></i></span>
           </div>
         </li>
+        <li>
+          <div class="a" @click="goBalance">
+            <span>余额查询</span>
+            <span class="pull-right"><i class="i-img"></i></span>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -52,6 +58,11 @@ export default {
         url: 'search.html'
       });
     },
+    goBalance() {
+      AlipayJSBridge.call('pushWindow', {
+        url: '/balance/index.html'
+      });
+    }
   },
   mounted() {
 
