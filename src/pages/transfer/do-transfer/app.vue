@@ -85,14 +85,6 @@ import mixins from '@/libs/mixins';
 import directives from '@/libs/directives';
 import digitUppercase from '@/libs/modules/digit-uppercase';
 
-const ready = (callback) => {
-  if (window.AlipayJSBridge) {
-    callback && callback();
-  } else {
-    document.addEventListener('AlipayJSBridgeReady', callback, false);
-  }
-}
-
 export default {
   name: 'doTransfer',
   data() {
