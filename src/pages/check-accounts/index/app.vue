@@ -20,12 +20,12 @@
             <span class="pull-right"><i class="i-img"></i></span>
           </div>
         </li>
-        <li>
+        <!-- <li>
           <div class="a" @click="goBalance">
             <span>余额查询</span>
             <span class="pull-right"><i class="i-img"></i></span>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
@@ -59,8 +59,8 @@ export default {
       });
     },
     goBalance() {
-      AlipayJSBridge.call('pushWindow', {
-        url: '/balance/index.html'
+      AlipayJSBridge.call('startH5App', {
+        appId: '05281004'
       });
     }
   },

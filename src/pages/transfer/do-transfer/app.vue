@@ -174,6 +174,7 @@ export default {
     },
     getData(url, cb) {
       request(url, r => {
+        console.log(r)
         this.form = Object.assign({}, this.form, r.data);
         cb && cb();
       });
@@ -235,13 +236,11 @@ export default {
   mounted() {
     const bank = getParam('bank');
 
-    ready(() => {
-      if(bank === '1') {
-        this.getData('client.transfer.getTransferData', this.initStatus);
-      }else if(bank === '2') {
-        this.getData('client.transfer.getTransferData2', this.initStatus);
-      }
-    });
+    if(bank === '1') {
+      this.getData('client.transfer.getTransferData', this.initStatus);
+    }else if(bank === '2') {
+      this.getData('client.transfer.getTransferData2', this.initStatus);
+    }
 
     document.addEventListener('resume', (event) => {
       const bank2 = event.data.bank;
