@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import briage from '@/libs/briage';
 import { AlertPlugin } from 'vux';
 
 Vue.use(AlertPlugin);
@@ -12,12 +13,12 @@ export default {
         return;
       }
 
-      AlipayJSBridge.call('remoteLog', {
+      briage('remoteLog', {
         seedId
       });
     },
     setTitle() {
-      AlipayJSBridge.call('setTitle', {
+      briage('setTitle', {
         title: document.title
       });
     },
